@@ -1,0 +1,14 @@
+[all]
+leaf-1
+leaf-2
+spine-1
+spine-2
+
+[leafs]
+leaf-1
+leaf-2
+
+
+[spines]
+spine-1
+spine-2
