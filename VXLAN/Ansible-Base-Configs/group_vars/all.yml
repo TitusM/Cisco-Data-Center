@@ -1,0 +1,10 @@
+---
+config_templates:
+  leaf: leaf_config.j2
+  spine: spine_config.j2
+ 
+global_vars:
+  hostname: "{{ inventory_hostname }}"
+  AS_number: 65501
+  sp1loopback: 3.3.3.3
+  sp2loopback: 4.4.4.4
