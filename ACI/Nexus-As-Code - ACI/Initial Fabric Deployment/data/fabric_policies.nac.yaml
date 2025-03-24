@@ -14,10 +14,10 @@ apic:
         - name: ntp-servers
           ntp_admin_state: true
           ntp_servers:
-            - hostname_ip: 10.207.204.16
+            - hostname_ip: NTP-IP
               preferred: true
               mgmt_epg: oob
-            - hostname_ip: 10.207.204.17
+            - hostname_ip: NTP-IP
               mgmt_epg: oob
               preferred: false
 
@@ -28,12 +28,12 @@ apic:
       - name: DNS-1
         mgmt_epg: oob
         providers:
-          - ip: 10.207.204.22
+          - ip: DNS-IP
             preferred: true
-          - ip: 10.207.204.14
+          - ip: DNS-2-IP
             preferred: false
         domains:
-          - name: cisco.com
+          - name: domain-name
             default: true
 
       
