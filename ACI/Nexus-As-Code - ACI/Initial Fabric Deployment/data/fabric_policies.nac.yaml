@@ -28,9 +28,9 @@ apic:
       - name: DNS-1
         mgmt_epg: oob
         providers:
-          - ip: DNS-IP
+          - ip: 1.2.3.a
             preferred: true
-          - ip: DNS-2-IP
+          - ip: 1.2.3.b
             preferred: false
         domains:
           - name: domain-name
