@@ -14,10 +14,10 @@ apic:
         - name: ntp-servers
           ntp_admin_state: true
           ntp_servers:
-            - hostname_ip: NTP-IP
+            - hostname_ip: 1.2.3.x
               preferred: true
               mgmt_epg: oob
-            - hostname_ip: NTP-IP
+            - hostname_ip: 1.2.3.y
               mgmt_epg: oob
               preferred: false
 
