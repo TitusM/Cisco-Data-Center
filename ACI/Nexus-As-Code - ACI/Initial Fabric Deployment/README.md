@@ -12,12 +12,14 @@ The Terraform scripts in this repository will:
 8.	Designate the Spine nodes as BGP Route Reflectors.
    
 Prerequisites
+
 Ensure you have the following before proceeding:
 •	Access to an ACI fabric with APIC connectivity
 •	Terraform installed on your system (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 •	A valid Terraform provider for ACI configured in the environment
 
 Usage
+
 To bring up the ACI fabric, execute the following Terraform commands:
 terraform init
 terraform plan
