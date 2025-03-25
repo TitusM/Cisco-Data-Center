@@ -15,9 +15,9 @@ Prerequisites
 
 Ensure you have the following before proceeding:
 
-•	Access to an ACI fabric with APIC connectivity
-•	Terraform installed on your system (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-•	A valid Terraform provider for ACI configured in the environment
+1. Access to an ACI fabric with APIC connectivity
+2. Terraform installed on your system (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+3. A valid Terraform provider for ACI configured in the environment
 
 Usage
 
