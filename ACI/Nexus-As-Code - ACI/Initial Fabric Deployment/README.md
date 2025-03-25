@@ -22,8 +22,9 @@ Ensure you have the following before proceeding:
 Usage
 
 To bring up the ACI fabric, execute the following Terraform commands:
-terraform init
-terraform plan
-terraform apply
+1. terraform init
+2. terraform plan
+3. terraform apply
+
 These steps will initialize the Terraform workspace, generate an execution plan, and apply the configuration to your ACI fabric.
 
