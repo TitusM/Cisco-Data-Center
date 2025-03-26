@@ -1,6 +1,6 @@
 ---
 apic: 
-  auto_generate_switch_pod_profiles: true
+  auto_generate_switch_pod_profiles: false
 
   fabric_policies:
     fabric_bgp_as: 65001
@@ -8,7 +8,7 @@ apic:
     fabric_bgp_rr:
       - 101
 
-    
+
     pod_policies:
       date_time_policies:
         - name: ntp-servers
@@ -17,7 +17,7 @@ apic:
             - hostname_ip: 1.2.3.x
               preferred: true
               mgmt_epg: oob
-            - hostname_ip: 1.2.3.y
+            - hostname_ip: 1.2.3.y 
               mgmt_epg: oob
               preferred: false
 
