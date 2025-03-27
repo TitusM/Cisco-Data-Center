@@ -28,3 +28,4 @@ To bring up the ACI fabric, execute the following Terraform commands:
 
 These steps will initialize the Terraform workspace, generate an execution plan, and apply the configuration to your ACI fabric.
 
+Please note that the values in the YAML files are placeholders and the user should substitute with the specific values for their own fabric deployment.
