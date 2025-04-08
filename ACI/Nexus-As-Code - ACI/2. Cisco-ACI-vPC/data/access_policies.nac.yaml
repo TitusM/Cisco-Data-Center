@@ -1,0 +1,74 @@
+---
+apic:
+  access_policies:
+    
+    leaf_switch_profiles:
+      - name: LEAF201_202_SWP
+        selectors:
+          - name: LEAF201_202
+            node_blocks:
+              - name: VPC-PEERS
+                from: 201
+                to: 202
+        interface_profiles:
+          - LEAF201_202_IP
+
+    leaf_interface_profiles:
+      - name: LEAF201_202_IP
+        selectors:
+          - name: vPC-external-switch
+            policy_group: 201-202_vPC_IPG
+            port_blocks:
+              - name: Eth1-4
+                from_port: 4
+
+
+    leaf_interface_policy_groups:
+      - name: 201-202_vPC_IPG
+        type: vpc
+        link_level_policy: 1G_ON
+        cdp_policy: CDP_ON
+        lldp_policy: LLDP_ENABLED
+        port_channel_policy: LACP-ACTIVE
+
+
+    interface_policies:
+
+      link_level_policies:
+        - name: 10G_ON
+          speed: 10G
+          auto: true
+          fec_mode: inherit
+
+        - name: 10G_OFF
+          speed: 10G
+          auto: false
+          fec_mode: inherit
+
+        - name: 1G_ON
+          speed: 1G
+          auto: true
+
+        - name: 1G_OFF
+          speed: 1G
+          auto: false
+          
+      cdp_policies:
+        - name: CDP_ON
+          admin_state: true
+
+        - name: CDP_OFF
+          admin_state: false
+
+      lldp_policies:
+        - name: LLDP_ENABLED
+          admin_rx_state: true 
+          admin_tx_state: true
+
+        - name: LLDP_DISABLED
+          admin_rx_state: false
+          admin_tx_state: false
+
+      port_channel_policies:
+        - name: LACP-ACTIVE
+          mode: active

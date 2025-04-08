@@ -1,0 +1,8 @@
+---
+apic:
+  pod_policies:
+    pods:
+      - id: 1
+        policy: pod-policies
+
+  

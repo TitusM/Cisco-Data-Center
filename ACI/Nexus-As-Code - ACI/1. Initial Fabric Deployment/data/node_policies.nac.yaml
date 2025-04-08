@@ -1,0 +1,44 @@
+---
+apic:
+  node_policies:
+    oob_endpoint_group: default
+
+
+    nodes: 
+      - id: 201
+        pod: 1
+        role: leaf
+        serial_number: xxxxxxx
+        name: leaf_201 
+        oob_address: x.y.z.42/28
+        oob_gateway: x.y.z.33
+
+
+      - id: 202
+        pod: 1
+        role: leaf
+        serial_number: xxxxxx
+        name: leaf_202
+        oob_address: x.y.z.41/28
+        oob_gateway: x.y.z.33
+
+       
+      - id: 101
+        pod: 1
+        role: spine
+        serial_number: xxxxx
+        name: spine_101
+        oob_address: x.y.z.40/28
+        oob_gateway: x.y.z.33
+
+      - id: 1
+        pod: 1
+        role: apic
+
+      - id: 2
+        pod: 1
+        role: apic
+
+      - id: 3
+        pod: 1
+        role: apic

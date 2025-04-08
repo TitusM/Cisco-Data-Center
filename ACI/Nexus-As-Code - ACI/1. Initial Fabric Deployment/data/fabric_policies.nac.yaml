@@ -1,0 +1,39 @@
+---
+apic: 
+  auto_generate_switch_pod_profiles: false
+
+  fabric_policies:
+    fabric_bgp_as: 65001
+
+    fabric_bgp_rr:
+      - 101
+
+
+    pod_policies:
+      date_time_policies:
+        - name: ntp-servers
+          ntp_admin_state: true
+          ntp_servers:
+            - hostname_ip: 1.2.3.x
+              preferred: true
+              mgmt_epg: oob
+            - hostname_ip: 1.2.3.y 
+              mgmt_epg: oob
+              preferred: false
+
+    pod_policy_groups:
+      - name: pod-policies
+        date_time_policy: ntp-servers
+    dns_policies:
+      - name: DNS-1
+        mgmt_epg: oob
+        providers:
+          - ip: 1.2.3.a
+            preferred: true
+          - ip: 1.2.3.b
+            preferred: false
+        domains:
+          - name: cisco.com
+            default: true
+
+      
