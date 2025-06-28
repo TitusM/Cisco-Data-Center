@@ -1,0 +1,16 @@
+---
+- name: Ensure that NX-OS features are enabled
+  hosts: nexus
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+
+  tasks:
+    - name: "Enable features"
+      cisco.nxos.nxos_feature:
+         feature: "{{ item }}"
+         state: enabled
+      loop:
+        - lacp 
+        - ospf
+        - bgp
+        - vpc
