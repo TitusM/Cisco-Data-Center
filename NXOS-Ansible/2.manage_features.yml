@@ -8,8 +8,13 @@
     nxos_features:
       - { feature: lacp, state: disabled }
       - { feature: ospf, state: enabled }
+      - { feature: pim, state: enabled }
+      - { feature: vn-segment-vlan-based, state: enabled}
+      - { feature: nv overlay, state: enabled}
       - { feature: bgp, state: enabled }
       - { feature: vpc, state: enabled}
+
+
 
   tasks:
     - name: Configure NX-OS feature states
