@@ -2,9 +2,9 @@
 Library  SSHLibrary
 
 *** Variables ***
-${HOST}      10.62.130.142
-${USERNAME}  tmajeza
-${PASSWORD}  
+${HOST}      10.0.0.1
+${USERNAME}  admin
+${PASSWORD}  cisco
 
 
 *** Test Cases ***
