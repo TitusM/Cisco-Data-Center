@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on darwin)" generated="2025-07-17T19:51:40.283531" rpa="false" schemaversion="5">
+<suite id="s1" name="2.Verify Interface Status" source="/Users/tmajezacisco.com/Library/CloudStorage/OneDrive-Cisco/NX-OS-Ansible/lab-dccore-cdl/Cisco-Data-Center/ROBOT/2.verify_interface_status.robot">
+<test id="s1-t1" name="Check All Nexus Interface Status" line="11">
+<kw name="Open Connection" owner="SSHLibrary">
+<arg>${HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" start="2025-07-17T19:51:40.364870" elapsed="0.000125"/>
+</kw>
+<kw name="Login" owner="SSHLibrary">
+<msg time="2025-07-17T19:51:40.365200" level="INFO">Logging into '10.62.130.142:22' as 'tmajeza'.</msg>
+<msg time="2025-07-17T19:51:43.556244" level="INFO">Read output: 
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2019, Cisco and/or its affiliates.
+All rights reserved.
+The copyrights to certain works contained in this software are
+owned by other third parties and used and distributed under their own
+licenses, such as open source.  This software is provided "as is," and unless
+otherwise stated, there is no warranty, express or implied, including but not
+limited to warranties of merchantability and fitness for a particular purpose.
+Certain components of this software are licensed under
+the GNU General Public License (GPL) version 2.0 or 
+GNU General Public License (GPL) version 3.0  or the GNU
+Lesser General Public License (LGPL) Version 2.1 or 
+Lesser General Public License (LGPL) Version 2.0. 
+A copy of each such license is available at
+http://www.opensource.org/licenses/gpl-2.0.php and
+http://opensource.org/licenses/gpl-3.0.html and
+http://www.opensource.org/licenses/lgpl-2.1.php and
+http://www.gnu.org/licenses/old-licenses/library.txt.
+KACI-C9372PX-1#</msg>
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<status status="PASS" start="2025-07-17T19:51:40.365093" elapsed="3.191265"/>
+</kw>
+<kw name="Write" owner="SSHLibrary">
+<msg time="2025-07-17T19:51:43.625116" level="INFO">terminal length 0</msg>
+<arg>terminal length 0</arg>
+<doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
+<status status="PASS" start="2025-07-17T19:51:43.556538" elapsed="0.068655"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T19:51:44.626659" level="INFO">Slept 1 second.</msg>
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T19:51:43.625363" elapsed="1.001378"/>
+</kw>
+<kw name="Read" owner="SSHLibrary">
+<msg time="2025-07-17T19:51:44.627021" level="INFO">KACI-C9372PX-1#</msg>
+<msg time="2025-07-17T19:51:44.627093" level="INFO">${_} = KACI-C9372PX-1# </msg>
+<var>${_}</var>
+<doc>Consumes and returns everything available on the server output.</doc>
+<status status="PASS" start="2025-07-17T19:51:44.626901" elapsed="0.000205"/>
+</kw>
+<kw name="Write" owner="SSHLibrary">
+<msg time="2025-07-17T19:51:44.699258" level="INFO">show interface status</msg>
+<arg>show interface status</arg>
+<doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
+<status status="PASS" start="2025-07-17T19:51:44.627184" elapsed="0.072200"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-07-17T19:51:46.701979" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-07-17T19:51:44.699541" elapsed="2.002538"/>
+</kw>
+<kw name="Read" owner="SSHLibrary">
+<msg time="2025-07-17T19:51:46.702991" level="INFO">--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+mgmt0         --                 connected routed    full    1000    --         
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/2        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/3        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/4        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/5        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/6        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/7        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/8        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/9        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/10       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/11       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/12       infra_ND           connected trunk     full    10G     SFP-H10GB-ACU10M
+Eth1/13       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/14       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/15       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/16       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/17       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/18       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/19       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/20       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/21       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/22       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/23       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/24       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/25       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/26       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/27       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/28       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/29       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/30       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/31       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/32       L2 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/32.12    --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/33       L2 to Leaf 104 1/4 connected trunk     full    10G     SFP-H10GB-AOC2M
+Eth1/34       L3 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/34.1     --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/35       L3 to Leaf 104 1/4 connected 1         full    10G     SFP-H10GB-AOC2M
+Eth1/36       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/37       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/38       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/39       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/40       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/41       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/42       L3_to_Leaf101_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43       L3_to_Leaf102_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43.50    --                 connected routed    full    10G     10Gbase-SR-S
+Eth1/44       L3_to_Leaf-201_1/4 notconnec trunk     auto    auto    10Gbase-SR-S
+Eth1/45       --                 connected 1         full    10G     10Gbase-SR-S
+Eth1/46       --                 connected trunk     full    10G     SFP-H10GB-CU2M
+Eth1/47       L2 to Leaf201      connected trunk     full    10G     10Gbase-SR 
+Eth1/48       L2 to Leaf202      connected trunk     full    10G     10Gbase-SR 
+Eth1/49       L2 to Leaf101      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/50       L2 to Leaf102      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/51       L2 to Leaf201      xcvrAbsen trunk     auto    auto    --         
+Eth1/52       L2 to Leaf202      xcvrAbsen trunk     auto    auto    --         
+Eth1/53       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/54       --                 xcvrAbsen 1         auto    auto    --         
+Po1           --                 noOperMem 1         auto    auto    --         
+Po2           --                 noOperMem 1         auto    auto    --         
+Po100         --                 noOperMem 1         auto    auto    --         
+Lo0           --                 connected routed    auto    auto    --         
+Lo2           --                 connected routed    auto    auto    --         
+Lo6           --                 connected routed    auto    auto    --         
+Lo7           --                 connected routed    auto    auto    --         
+Lo8           --                 connected routed    auto    auto    --         
+Lo9           --                 connected routed    auto    auto    --         
+Lo11          --                 connected routed    auto    auto    --         
+Lo13          --                 connected routed    auto    auto    --         
+Lo14          --                 connected routed    auto    auto    --         
+Lo15          --                 connected routed    auto    auto    --         
+Lo16          --                 connected routed    auto    auto    --         
+Lo17          --                 connected routed    auto    auto    --         
+Lo18          --                 connected routed    auto    auto    --         
+Lo19          --                 connected routed    auto    auto    --         
+Lo20          --                 connected routed    auto    auto    --         
+Lo22          --                 connected routed    auto    auto    --         
+Lo33          --                 connected routed    auto    auto    --         
+Lo43          --                 connected routed    auto    auto    --         
+Lo44          --                 connected routed    auto    auto    --         
+Lo50          --                 connected routed    auto    auto    --         
+Lo77          --                 connected routed    auto    auto    --         
+Lo99          --                 connected routed    auto    auto    --         
+Lo100         --                 connected routed    auto    auto    --         
+Lo101         --                 connected routed    auto    auto    --         
+Lo102         --                 connected routed    auto    auto    --         
+Lo103         --                 connected routed    auto    auto    --         
+Lo108         --                 connected routed    auto    auto    --         
+Lo109         --                 connected routed    auto    auto    --         
+Lo110         --                 connected routed    auto    auto    --         
+Lo113         --                 connected routed    auto    auto    --         
+Lo114         --                 connected routed    auto    auto    --         
+Lo120         --                 connected routed    auto    auto    --         
+Lo121         --                 connected routed    auto    auto    --         
+Lo123         --                 connected routed    auto    auto    --         
+Lo125         --                 connected routed    auto    auto    --         
+Lo126         --                 connected routed    auto    auto    --         
+Lo151         --                 connected routed    auto    auto    --         
+Lo152         --                 connected routed    auto    auto    --         
+Lo162         --                 connected routed    auto    auto    --         
+Lo170         --                 connected routed    auto    auto    --         
+Lo171         --                 connected routed    auto    auto    --         
+Lo172         --                 connected routed    auto    auto    --         
+Lo179         --                 connected routed    auto    auto    --         
+Lo180         --                 connected routed    auto    auto    --         
+Lo191         --                 connected routed    auto    auto    --         
+Lo192         --                 connected routed    auto    auto    --         
+Lo200         --                 disabled  routed    auto    auto    --         
+Lo203         --                 connected routed    auto    auto    --         
+Lo204         --                 connected routed    auto    auto    --         
+Lo233         --                 connected routed    auto    auto    --         
+Lo239         --                 connected routed    auto    auto    --         
+Lo242         --                 connected routed    auto    auto    --         
+Lo243         --                 connected routed    auto    auto    --         
+Lo244         --                 connected routed    auto    auto    --         
+Lo245         --                 connected routed    auto    auto    --         
+Lo246         --                 connected routed    auto    auto    --         
+Lo247         --                 connected routed    auto    auto    --         
+Lo248         --                 connected routed    auto    auto    --         
+Lo249         --                 connected routed    auto    auto    --         
+Lo252         --                 connected routed    auto    auto    --         
+Lo253         --                 connected routed    auto    auto    --         
+Lo254         --                 connected routed    auto    auto    --         
+Lo255         --                 connected routed    auto    auto    --         
+Lo256         --                 connected routed    auto    auto    --         
+Lo260         --                 connected routed    auto    auto    --         
+Lo261         --                 connected routed    auto    auto    --         
+Lo262         --                 connected routed    auto    auto    --         
+Lo263         --                 connected routed    auto    auto    --         
+Lo300         --                 connected routed    auto    auto    --         
+Lo301         --                 connected routed    auto    auto    --         
+Lo321         --                 connected routed    auto    auto    --         
+Lo333         --                 disabled  routed    auto    auto    --         
+Lo338         --                 connected routed    auto    auto    --         
+Lo339         --                 connected routed    auto    auto    --         
+Lo363         --                 connected routed    auto    auto    --         
+Lo367         --                 connected routed    auto    auto    --         
+Lo380         --                 connected routed    auto    auto    --         
+Lo420         --                 connected routed    auto    auto    --         
+Lo421         --                 connected routed    auto    auto    --         
+Lo422         --                 connected routed    auto    auto    --         
+Lo441         --                 disabled  routed    auto    auto    --         
+Lo453         --                 disabled  routed    auto    auto    --         
+Lo456         lvirag             disabled  routed    auto    auto    --         
+Lo457         lvirag             disabled  routed    auto    auto    --         
+Lo500         --                 connected routed    auto    auto    --         
+Lo501         --                 connected routed    auto    auto    --         
+Lo502         --                 connected routed    auto    auto    --         
+Lo520         --                 connected routed    auto    auto    --         
+Lo521         --                 connected routed    auto    auto    --         
+Lo522         --                 connected routed    auto    auto    --         
+Lo540         --                 connected routed    auto    auto    --         
+Lo640         --                 connected routed    auto    auto    --         
+Lo643         --                 connected routed    auto    auto    --         
+Lo649         --                 connected routed    auto    auto    --         
+Lo650         --                 connected routed    auto    auto    --         
+Lo651         --                 connected routed    auto    auto    --         
+Lo652         --                 connected routed    auto    auto    --         
+Lo659         --                 connected routed    auto    auto    --         
+Lo676         --                 connected routed    auto    auto    --         
+Lo677         --                 connected routed    auto    auto    --         
+Lo689         --                 connected routed    auto    auto    --         
+Lo720         --                 connected routed    auto    auto    --         
+Lo721         --                 connected routed    auto    auto    --         
+Lo732         --                 connected routed    auto    auto    --         
+Lo733         --                 connected routed    auto    auto    --         
+Lo740         --                 connected routed    auto    auto    --         
+Lo741         --                 connected routed    auto    auto    --         
+Lo742         --                 connected routed    auto    auto    --         
+Lo760         --                 connected routed    auto    auto    --         
+Lo765         --                 connected routed    auto    auto    --         
+Lo777         --                 connected routed    auto    auto    --         
+Lo789         --                 connected routed    auto    auto    --         
+Lo800         --                 connected routed    auto    auto    --         
+Lo801         --                 connected routed    auto    auto    --         
+Lo802         --                 connected routed    auto    auto    --         
+Lo803         --                 connected routed    auto    auto    --         
+Lo804         --                 connected routed    auto    auto    --         
+Lo805         --                 connected routed    auto    auto    --         
+Lo850         adstachu-Network1  disabled  routed    auto    auto    --         
+Lo851         adstachu-Network2  disabled  routed    auto    auto    --         
+Lo852         adstachu-Network3  disabled  routed    auto    auto    --         
+Lo853         adstachu-Network4  disabled  routed    auto    auto    --         
+Lo854         --                 connected routed    auto    auto    --         
+Lo883         --                 connected routed    auto    auto    --         
+Lo888         --                 connected routed    auto    auto    --         
+Lo900         --                 connected routed    auto    auto    --         
+Lo910         --                 connected routed    auto    auto    --         
+Lo911         --                 connected routed    auto    auto    --         
+Lo920         --                 connected routed    auto    auto    --         
+Lo921         --                 connected routed    auto    auto    --         
+Lo927         --                 connected routed    auto    auto    --         
+Lo929         --                 connected routed    auto    auto    --         
+Lo933         --                 connected routed    auto    auto    --         
+Lo941         --                 connected routed    auto    auto    --         
+Lo942         --                 connected routed    auto    auto    --         
+Lo1000        --                 connected routed    auto    auto    --         
+Lo1001        pcelarek_site1     connected routed    auto    auto    --         
+Lo1002        pcelarek_site2     connected routed    auto    auto    --         
+Lo1003        --                 connected routed    auto    auto    --         
+Lo1006        --                 connected routed    auto    auto    --         
+Lo1007        --                 connected routed    auto    auto    --         
+Lo1008        pcelarek_SIDRA_MV3 connected routed    auto    auto    --         
+Lo1009        pcelarek_SIDRA_MV2 connected routed    auto    auto    --         
+Lo1010        dvigilan_test_l3ou connected routed    auto    auto    --         
+Lo1011        pcelarek_NDI       connected routed    auto    auto    --         
+Lo1020        --                 connected routed    auto    auto    --         
+Lo1021        --                 connected routed    auto    auto    --         
+Vlan1         --                 down      routed    auto    auto    --
+Vlan2         --                 down      routed    auto    auto    --
+Vlan8         --                 connected routed    auto    auto    --
+Vlan9         --                 connected routed    auto    auto    --
+Vlan10        infra_ND           connected routed    auto    auto    --
+Vlan36        --                 down      routed    auto    auto    --
+Vlan50        --                 connected routed    auto    auto    --
+Vlan77        --                 down      routed    auto    auto    --
+Vlan97        --                 connected routed    auto    auto    --
+Vlan99        --                 connected routed    auto    auto    --
+Vlan100       --                 connected routed    auto    auto    --
+Vlan101       --                 connected routed    auto    auto    --
+Vlan107       --                 connected routed    auto    auto    --
+Vlan110       --                 connected routed    auto    auto    --
+Vlan120       --                 connected routed    auto    auto    --
+Vlan121       --                 connected routed    auto    auto    --
+Vlan122       --                 connected routed    auto    auto    --
+Vlan123       --                 connected routed    auto    auto    --
+Vlan124       --                 connected routed    auto    auto    --
+Vlan125       --                 connected routed    auto    auto    --
+Vlan126       --                 connected routed    auto    auto    --
+Vlan162       --                 connected routed    auto    auto    --
+Vlan180       --                 connected routed    auto    auto    --
+Vlan181       EPG_10.64.20.0_24  connected routed    auto    auto    --
+Vlan182       --                 connected routed    auto    auto    --
+Vlan183       --                 down      routed    auto    auto    --
+Vlan200       --                 connected routed    auto    auto    --
+Vlan201       --                 connected routed    auto    auto    --
+Vlan205       --                 connected routed    auto    auto    --
+Vlan239       --                 connected routed    auto    auto    --
+Vlan242       --                 connected routed    auto    auto    --
+Vlan243       --                 connected routed    auto    auto    --
+Vlan244       --                 connected routed    auto    auto    --
+Vlan245       --                 connected routed    auto    auto    --
+Vlan246       --                 connected routed    auto    auto    --
+Vlan247       --                 connected routed    auto    auto    --
+Vlan248       --                 connected routed    auto    auto    --
+Vlan249       --                 connected routed    auto    auto    --
+Vlan250       --                 connected routed    auto    auto    --
+Vlan251       --                 connected routed    auto    auto    --
+Vlan252       --                 connected routed    auto    auto    --
+Vlan253       --                 connected routed    auto    auto    --
+Vlan254       --                 connected routed    auto    auto    --
+Vlan255       --                 connected routed    auto    auto    --
+Vlan256       --                 connected routed    auto    auto    --
+Vlan257       --                 connected routed    auto    auto    --
+Vlan258       --                 connected routed    auto    auto    --
+Vlan259       --                 connected routed    auto    auto    --
+Vlan285       --                 connected routed    auto    auto    --
+Vlan286       --                 connected routed    auto    auto    --
+Vlan287       --                 connected routed    auto    auto    --
+Vlan288       --                 connected routed    auto    auto    --
+Vlan290       --                 connected routed    auto    auto    --
+Vlan299       --                 connected routed    auto    auto    --
+Vlan318       --                 connected routed    auto    auto    --
+Vlan321       --                 connected routed    auto    auto    --
+Vlan322       --                 connected routed    auto    auto    --
+Vlan323       --                 connected routed    auto    auto    --
+Vlan324       --                 connected routed    auto    auto    --
+Vlan325       --                 connected routed    auto    auto    --
+Vlan326       --                 connected routed    auto    auto    --
+Vlan327       --                 connected routed    auto    auto    --
+Vlan328       --                 connected routed    auto    auto    --
+Vlan329       --                 connected routed    auto    auto    --
+Vlan330       --                 connected routed    auto    auto    --
+Vlan331       --                 connected routed    auto    auto    --
+Vlan333       --                 connected routed    auto    auto    --
+Vlan334       --                 connected routed    auto    auto    --
+Vlan335       --                 connected routed    auto    auto    --
+Vlan336       --                 connected routed    auto    auto    --
+Vlan338       --                 connected routed    auto    auto    --
+Vlan339       --                 connected routed    auto    auto    --
+Vlan340       --                 connected routed    auto    auto    --
+Vlan361       --                 connected routed    auto    auto    --
+Vlan362       --                 connected routed    auto    auto    --
+Vlan363       --                 connected routed    auto    auto    --
+Vlan367       --                 connected routed    auto    auto    --
+Vlan369       --                 down      routed    auto    auto    --
+Vlan375       --                 connected routed    auto    auto    --
+Vlan376       --                 connected routed    auto    auto    --
+Vlan377       --                 connected routed    auto    auto    --
+Vlan378       --                 connected routed    auto    auto    --
+Vlan379       --                 connected routed    auto    auto    --
+Vlan400       --                 connected routed    auto    auto    --
+Vlan401       --                 connected routed    auto    auto    --
+Vlan402       --                 connected routed    auto    auto    --
+Vlan403       --                 down      routed    auto    auto    --
+Vlan415       --                 connected routed    auto    auto    --
+Vlan420       --                 connected routed    auto    auto    --
+Vlan440       lvirag-site-1      down      routed    auto    auto    --
+Vlan441       lvirag-site-1-eigr down      routed    auto    auto    --
+Vlan443       --                 down      routed    auto    auto    --
+Vlan450       lvirag-site-2      down      routed    auto    auto    --
+Vlan451       lvirag-site-2-eigr down      routed    auto    auto    --
+Vlan452       blue               down      routed    auto    auto    --
+Vlan453       red                down      routed    auto    auto    --
+Vlan454       lvirag_vrf_blue2   down      routed    auto    auto    --
+Vlan455       --                 down      routed    auto    auto    --
+Vlan456       --                 down      routed    auto    auto    --
+Vlan457       --                 down      routed    auto    auto    --
+Vlan460       adstachu-two       down      routed    auto    auto    --
+Vlan461       adstachu-two-host- down      routed    auto    auto    --
+Vlan500       --                 connected routed    auto    auto    --
+Vlan501       --                 connected routed    auto    auto    --
+Vlan503       --                 connected routed    auto    auto    --
+Vlan504       --                 connected routed    auto    auto    --
+Vlan505       --                 connected routed    auto    auto    --
+Vlan520       --                 connected routed    auto    auto    --
+Vlan521       --                 connected routed    auto    auto    --
+Vlan523       --                 connected routed    auto    auto    --
+Vlan530       --                 connected routed    auto    auto    --
+Vlan540       --                 connected routed    auto    auto    --
+Vlan541       --                 connected routed    auto    auto    --
+Vlan555       --                 connected routed    auto    auto    --
+Vlan556       --                 connected routed    auto    auto    --
+Vlan558       --                 connected routed    auto    auto    --
+Vlan559       --                 connected routed    auto    auto    --
+Vlan585       --                 connected routed    auto    auto    --
+Vlan590       --                 connected routed    auto    auto    --
+Vlan621       --                 connected routed    auto    auto    --
+Vlan632       "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan640       --                 connected routed    auto    auto    --
+Vlan641       --                 connected routed    auto    auto    --
+Vlan642       --                 connected routed    auto    auto    --
+Vlan643       --                 connected routed    auto    auto    --
+Vlan649       --                 connected routed    auto    auto    --
+Vlan650       --                 connected routed    auto    auto    --
+Vlan651       --                 connected routed    auto    auto    --
+Vlan655       --                 connected routed    auto    auto    --
+Vlan656       --                 connected routed    auto    auto    --
+Vlan658       --                 connected routed    auto    auto    --
+Vlan659       --                 connected routed    auto    auto    --
+Vlan666       --                 connected routed    auto    auto    --
+Vlan677       --                 connected routed    auto    auto    --
+Vlan720       --                 connected routed    auto    auto    --
+Vlan721       --                 connected routed    auto    auto    --
+Vlan722       --                 connected routed    auto    auto    --
+Vlan740       stturnbu-cbq-globa connected routed    auto    auto    --
+Vlan741       --                 connected routed    auto    auto    --
+Vlan742       --                 connected routed    auto    auto    --
+Vlan743       --                 connected routed    auto    auto    --
+Vlan760       --                 connected routed    auto    auto    --
+Vlan761       --                 connected routed    auto    auto    --
+Vlan763       --                 connected routed    auto    auto    --
+Vlan764       --                 connected routed    auto    auto    --
+Vlan765       --                 connected routed    auto    auto    --
+Vlan766       --                 connected routed    auto    auto    --
+Vlan767       --                 connected routed    auto    auto    --
+Vlan768       --                 connected routed    auto    auto    --
+Vlan769       --                 connected routed    auto    auto    --
+Vlan770       --                 connected routed    auto    auto    --
+Vlan771       "EP_LEGACY_TEST-FA down      routed    auto    auto    --
+Vlan772       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan773       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan777       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan800       --                 connected routed    auto    auto    --
+Vlan801       --                 connected routed    auto    auto    --
+Vlan802       --                 connected routed    auto    auto    --
+Vlan803       --                 connected routed    auto    auto    --
+Vlan804       --                 connected routed    auto    auto    --
+Vlan805       --                 connected routed    auto    auto    --
+Vlan828       --                 down      routed    auto    auto    --
+Vlan850       --                 down      routed    auto    auto    --
+Vlan852       --                 connected routed    auto    auto    --
+Vlan853       --                 connected routed    auto    auto    --
+Vlan854       --                 connected routed    auto    auto    --
+Vlan880       --                 connected routed    auto    auto    --
+Vlan881       --                 connected routed    auto    auto    --
+Vlan882       --                 connected routed    auto    auto    --
+Vlan883       --                 connected routed    auto    auto    --
+Vlan884       --                 connected routed    auto    auto    --
+Vlan885       --                 connected routed    auto    auto    --
+Vlan888       --                 connected routed    auto    auto    --
+Vlan920       --                 connected routed    auto    auto    --
+Vlan921       --                 connected routed    auto    auto    --
+Vlan922       --                 connected routed    auto    auto    --
+Vlan928       --                 connected routed    auto    auto    --
+Vlan940       --                 down      routed    auto    auto    --
+Vlan941       --                 connected routed    auto    auto    --
+Vlan998       "EP_Legacy_VRF_RED connected routed    auto    auto    --
+Vlan999       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan1000      pcelarek_L3OUT     connected routed    auto    auto    --
+Vlan1001      --                 connected routed    auto    auto    --
+Vlan1002      --                 connected routed    auto    auto    --
+Vlan1003      --                 connected routed    auto    auto    --
+Vlan1004      --                 connected routed    auto    auto    --
+Vlan1005      --                 connected routed    auto    auto    --
+Vlan1006      STATIC_L3OUT_SITE1 connected routed    auto    auto    --
+Vlan1007      BGP_L3OUT_SITE1_1  connected routed    auto    auto    --
+Vlan1008      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1009      --                 connected routed    auto    auto    --
+Vlan1010      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1011      pcelarek_NDI       connected routed    auto    auto    --
+Vlan1012      --                 connected routed    auto    auto    --
+Vlan1050      --                 connected routed    auto    auto    --
+Vlan1099      --                 connected routed    auto    auto    --
+Vlan1100      --                 connected routed    auto    auto    --
+Vlan1101      --                 connected routed    auto    auto    --
+Vlan1120      --                 connected routed    auto    auto    --
+Vlan1121      --                 connected routed    auto    auto    --
+Vlan1122      --                 connected routed    auto    auto    --
+Vlan1154      --                 connected routed    auto    auto    --
+Vlan1155      --                 connected routed    auto    auto    --
+Vlan1157      --                 down      routed    auto    auto    --
+Vlan1158      --                 connected routed    auto    auto    --
+Vlan1160      --                 down      routed    auto    auto    --
+Vlan1180      --                 connected routed    auto    auto    --
+Vlan1181      --                 connected routed    auto    auto    --
+Vlan1182      --                 connected routed    auto    auto    --
+Vlan1197      --                 down      routed    auto    auto    --
+Vlan1200      --                 connected routed    auto    auto    --
+Vlan1201      --                 connected routed    auto    auto    --
+Vlan1218      --                 connected routed    auto    auto    --
+Vlan1219      --                 connected routed    auto    auto    --
+Vlan1220      --                 connected routed    auto    auto    --
+Vlan1221      --                 connected routed    auto    auto    --
+Vlan1222      --                 connected routed    auto    auto    --
+Vlan1223      --                 connected routed    auto    auto    --
+Vlan1224      --                 connected routed    auto    auto    --
+Vlan1225      --                 connected routed    auto    auto    --
+Vlan1230      --                 connected routed    auto    auto    --
+Vlan1231      --                 connected routed    auto    auto    --
+Vlan1234      --                 down      routed    auto    auto    --
+Vlan1241      --                 connected routed    auto    auto    --
+Vlan1244      --                 down      routed    auto    auto    --
+Vlan1258      --                 connected routed    auto    auto    --
+Vlan1261      --                 connected routed    auto    auto    --
+Vlan1283      --                 connected routed    auto    auto    --
+Vlan1284      --                 connected routed    auto    auto    --
+Vlan1287      --                 connected routed    auto    auto    --
+Vlan1290      --                 connected routed    auto    auto    --
+Vlan1297      --                 connected routed    auto    auto    --
+Vlan1300      OSPF P2P           connected routed    auto    auto    --
+Vlan1302      BGP P2P            connected routed    auto    auto    --
+Vlan1303      STATIC P2P         connected routed    auto    auto    --
+Vlan1304      --                 connected routed    auto    auto    --
+Vlan1500      mduma-iaas1-sim    connected routed    auto    auto    --
+Vlan1510      mduma-iaas2-sim    connected routed    auto    auto    --
+Vlan1511      mduma-inet-sim     connected routed    auto    auto    --
+Vlan1517      mduma-mpls-sim     connected routed    auto    auto    --
+Vlan1561      --                 down      routed    auto    auto    --
+Vlan1600      --                 connected routed    auto    auto    --
+Vlan1601      --                 connected routed    auto    auto    --
+Vlan1602      --                 connected routed    auto    auto    --
+Vlan1603      --                 connected routed    auto    auto    --
+Vlan1604      --                 connected routed    auto    auto    --
+Vlan1609      --                 down      routed    auto    auto    --
+Vlan1699      --                 connected routed    auto    auto    --
+Vlan1800      --                 connected routed    auto    auto    --
+Vlan1801      --                 connected routed    auto    auto    --
+Vlan1880      --                 connected routed    auto    auto    --
+Vlan1885      --                 connected routed    auto    auto    --
+Vlan1900      --                 connected routed    auto    auto    --
+Vlan1901      --                 connected routed    auto    auto    --
+Vlan1902      --                 connected routed    auto    auto    --
+Vlan1903      --                 connected routed    auto    auto    --
+Vlan1916      --                 connected routed    auto    auto    --
+Vlan1917      --                 connected routed    auto    auto    --
+Vlan1918      --                 connected routed    auto    auto    --
+Vlan1919      --                 connected routed    auto    auto    --
+Vlan1921      --                 connected routed    auto    auto    --
+Vlan1922      --                 connected routed    auto    auto    --
+Vlan1923      --                 connected routed    auto    auto    --
+Vlan1924      --                 down      routed    auto    auto    --
+Vlan1925      --                 connected routed    auto    auto    --
+Vlan1927      --                 connected routed    auto    auto    --
+Vlan1928      --                 connected routed    auto    auto    --
+Vlan1929      --                 connected routed    auto    auto    --
+Vlan1930      --                 connected routed    auto    auto    --
+Vlan1931      --                 connected routed    auto    auto    --
+Vlan1932      --                 connected routed    auto    auto    --
+Vlan1933      --                 connected routed    auto    auto    --
+Vlan1934      --                 connected routed    auto    auto    --
+Vlan1935      --                 connected routed    auto    auto    --
+Vlan1961      --                 connected routed    auto    auto    --
+Vlan2001      --                 connected routed    auto    auto    --
+Vlan2111      --                 connected routed    auto    auto    --
+Vlan2202      "GW_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2222      --                 connected routed    auto    auto    --
+Vlan2322      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2323      host1              connected routed    auto    auto    --
+Vlan2324      host2              connected routed    auto    auto    --
+Vlan2325      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2326      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2328      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2329      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2330      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2331      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2332      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2600      --                 connected routed    auto    auto    --
+Vlan2601      --                 connected routed    auto    auto    --
+Vlan2613      --                 connected routed    auto    auto    --
+Vlan2615      --                 connected routed    auto    auto    --
+Vlan2616      --                 connected routed    auto    auto    --
+Vlan2617      --                 connected routed    auto    auto    --
+Vlan2620      --                 connected routed    auto    auto    --
+Vlan2621      --                 connected routed    auto    auto    --
+Vlan2622      --                 connected routed    auto    auto    --
+Vlan2623      --                 connected routed    auto    auto    --
+Vlan2624      --                 connected routed    auto    auto    --
+Vlan2630      --                 down      routed    auto    auto    --
+Vlan2645      --                 down      routed    auto    auto    --
+Vlan2650      --                 connected routed    auto    auto    --
+Vlan2701      "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2702      --                 down      routed    auto    auto    --
+Vlan2703      --                 down      routed    auto    auto    --
+Vlan2705      --                 connected routed    auto    auto    --
+Vlan2710      --                 connected routed    auto    auto    --
+Vlan2711      --                 connected routed    auto    auto    --
+Vlan2723      "GW_Legacy RED_272 connected routed    auto    auto    --
+Vlan2767      "GW_Legacy GREEN-N connected routed    auto    auto    --
+Vlan2894      --                 connected routed    auto    auto    --
+Vlan2895      "GW_LEGACY_TEST-NE connected routed    auto    auto    --
+Vlan2897      "GW_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan2931      "EP_Legacy ORANGE_ connected routed    auto    auto    --
+Vlan3333      "Any Prefix behind connected routed    auto    auto    --
+Vlan3334      "Specific Subnet b connected routed    auto    auto    --
+Vlan3335      "Specific Subnet b connected routed    auto    auto    --
+Vlan3336      "Specific Subnet b connected routed    auto    auto    --
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+KACI-C9372PX-1#</msg>
+<msg time="2025-07-17T19:51:46.703753" level="INFO">${output} = 
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+-----------------------------------------...</msg>
+<var>${output}</var>
+<doc>Consumes and returns everything available on the server output.</doc>
+<status status="PASS" start="2025-07-17T19:51:46.702642" elapsed="0.001140"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-07-17T19:51:46.704523" level="INFO">
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+mgmt0         --                 connected routed    full    1000    --         
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/2        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/3        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/4        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/5        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/6        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/7        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/8        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/9        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/10       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/11       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/12       infra_ND           connected trunk     full    10G     SFP-H10GB-ACU10M
+Eth1/13       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/14       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/15       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/16       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/17       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/18       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/19       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/20       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/21       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/22       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/23       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/24       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/25       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/26       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/27       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/28       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/29       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/30       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/31       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/32       L2 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/32.12    --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/33       L2 to Leaf 104 1/4 connected trunk     full    10G     SFP-H10GB-AOC2M
+Eth1/34       L3 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/34.1     --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/35       L3 to Leaf 104 1/4 connected 1         full    10G     SFP-H10GB-AOC2M
+Eth1/36       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/37       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/38       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/39       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/40       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/41       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/42       L3_to_Leaf101_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43       L3_to_Leaf102_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43.50    --                 connected routed    full    10G     10Gbase-SR-S
+Eth1/44       L3_to_Leaf-201_1/4 notconnec trunk     auto    auto    10Gbase-SR-S
+Eth1/45       --                 connected 1         full    10G     10Gbase-SR-S
+Eth1/46       --                 connected trunk     full    10G     SFP-H10GB-CU2M
+Eth1/47       L2 to Leaf201      connected trunk     full    10G     10Gbase-SR 
+Eth1/48       L2 to Leaf202      connected trunk     full    10G     10Gbase-SR 
+Eth1/49       L2 to Leaf101      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/50       L2 to Leaf102      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/51       L2 to Leaf201      xcvrAbsen trunk     auto    auto    --         
+Eth1/52       L2 to Leaf202      xcvrAbsen trunk     auto    auto    --         
+Eth1/53       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/54       --                 xcvrAbsen 1         auto    auto    --         
+Po1           --                 noOperMem 1         auto    auto    --         
+Po2           --                 noOperMem 1         auto    auto    --         
+Po100         --                 noOperMem 1         auto    auto    --         
+Lo0           --                 connected routed    auto    auto    --         
+Lo2           --                 connected routed    auto    auto    --         
+Lo6           --                 connected routed    auto    auto    --         
+Lo7           --                 connected routed    auto    auto    --         
+Lo8           --                 connected routed    auto    auto    --         
+Lo9           --                 connected routed    auto    auto    --         
+Lo11          --                 connected routed    auto    auto    --         
+Lo13          --                 connected routed    auto    auto    --         
+Lo14          --                 connected routed    auto    auto    --         
+Lo15          --                 connected routed    auto    auto    --         
+Lo16          --                 connected routed    auto    auto    --         
+Lo17          --                 connected routed    auto    auto    --         
+Lo18          --                 connected routed    auto    auto    --         
+Lo19          --                 connected routed    auto    auto    --         
+Lo20          --                 connected routed    auto    auto    --         
+Lo22          --                 connected routed    auto    auto    --         
+Lo33          --                 connected routed    auto    auto    --         
+Lo43          --                 connected routed    auto    auto    --         
+Lo44          --                 connected routed    auto    auto    --         
+Lo50          --                 connected routed    auto    auto    --         
+Lo77          --                 connected routed    auto    auto    --         
+Lo99          --                 connected routed    auto    auto    --         
+Lo100         --                 connected routed    auto    auto    --         
+Lo101         --                 connected routed    auto    auto    --         
+Lo102         --                 connected routed    auto    auto    --         
+Lo103         --                 connected routed    auto    auto    --         
+Lo108         --                 connected routed    auto    auto    --         
+Lo109         --                 connected routed    auto    auto    --         
+Lo110         --                 connected routed    auto    auto    --         
+Lo113         --                 connected routed    auto    auto    --         
+Lo114         --                 connected routed    auto    auto    --         
+Lo120         --                 connected routed    auto    auto    --         
+Lo121         --                 connected routed    auto    auto    --         
+Lo123         --                 connected routed    auto    auto    --         
+Lo125         --                 connected routed    auto    auto    --         
+Lo126         --                 connected routed    auto    auto    --         
+Lo151         --                 connected routed    auto    auto    --         
+Lo152         --                 connected routed    auto    auto    --         
+Lo162         --                 connected routed    auto    auto    --         
+Lo170         --                 connected routed    auto    auto    --         
+Lo171         --                 connected routed    auto    auto    --         
+Lo172         --                 connected routed    auto    auto    --         
+Lo179         --                 connected routed    auto    auto    --         
+Lo180         --                 connected routed    auto    auto    --         
+Lo191         --                 connected routed    auto    auto    --         
+Lo192         --                 connected routed    auto    auto    --         
+Lo200         --                 disabled  routed    auto    auto    --         
+Lo203         --                 connected routed    auto    auto    --         
+Lo204         --                 connected routed    auto    auto    --         
+Lo233         --                 connected routed    auto    auto    --         
+Lo239         --                 connected routed    auto    auto    --         
+Lo242         --                 connected routed    auto    auto    --         
+Lo243         --                 connected routed    auto    auto    --         
+Lo244         --                 connected routed    auto    auto    --         
+Lo245         --                 connected routed    auto    auto    --         
+Lo246         --                 connected routed    auto    auto    --         
+Lo247         --                 connected routed    auto    auto    --         
+Lo248         --                 connected routed    auto    auto    --         
+Lo249         --                 connected routed    auto    auto    --         
+Lo252         --                 connected routed    auto    auto    --         
+Lo253         --                 connected routed    auto    auto    --         
+Lo254         --                 connected routed    auto    auto    --         
+Lo255         --                 connected routed    auto    auto    --         
+Lo256         --                 connected routed    auto    auto    --         
+Lo260         --                 connected routed    auto    auto    --         
+Lo261         --                 connected routed    auto    auto    --         
+Lo262         --                 connected routed    auto    auto    --         
+Lo263         --                 connected routed    auto    auto    --         
+Lo300         --                 connected routed    auto    auto    --         
+Lo301         --                 connected routed    auto    auto    --         
+Lo321         --                 connected routed    auto    auto    --         
+Lo333         --                 disabled  routed    auto    auto    --         
+Lo338         --                 connected routed    auto    auto    --         
+Lo339         --                 connected routed    auto    auto    --         
+Lo363         --                 connected routed    auto    auto    --         
+Lo367         --                 connected routed    auto    auto    --         
+Lo380         --                 connected routed    auto    auto    --         
+Lo420         --                 connected routed    auto    auto    --         
+Lo421         --                 connected routed    auto    auto    --         
+Lo422         --                 connected routed    auto    auto    --         
+Lo441         --                 disabled  routed    auto    auto    --         
+Lo453         --                 disabled  routed    auto    auto    --         
+Lo456         lvirag             disabled  routed    auto    auto    --         
+Lo457         lvirag             disabled  routed    auto    auto    --         
+Lo500         --                 connected routed    auto    auto    --         
+Lo501         --                 connected routed    auto    auto    --         
+Lo502         --                 connected routed    auto    auto    --         
+Lo520         --                 connected routed    auto    auto    --         
+Lo521         --                 connected routed    auto    auto    --         
+Lo522         --                 connected routed    auto    auto    --         
+Lo540         --                 connected routed    auto    auto    --         
+Lo640         --                 connected routed    auto    auto    --         
+Lo643         --                 connected routed    auto    auto    --         
+Lo649         --                 connected routed    auto    auto    --         
+Lo650         --                 connected routed    auto    auto    --         
+Lo651         --                 connected routed    auto    auto    --         
+Lo652         --                 connected routed    auto    auto    --         
+Lo659         --                 connected routed    auto    auto    --         
+Lo676         --                 connected routed    auto    auto    --         
+Lo677         --                 connected routed    auto    auto    --         
+Lo689         --                 connected routed    auto    auto    --         
+Lo720         --                 connected routed    auto    auto    --         
+Lo721         --                 connected routed    auto    auto    --         
+Lo732         --                 connected routed    auto    auto    --         
+Lo733         --                 connected routed    auto    auto    --         
+Lo740         --                 connected routed    auto    auto    --         
+Lo741         --                 connected routed    auto    auto    --         
+Lo742         --                 connected routed    auto    auto    --         
+Lo760         --                 connected routed    auto    auto    --         
+Lo765         --                 connected routed    auto    auto    --         
+Lo777         --                 connected routed    auto    auto    --         
+Lo789         --                 connected routed    auto    auto    --         
+Lo800         --                 connected routed    auto    auto    --         
+Lo801         --                 connected routed    auto    auto    --         
+Lo802         --                 connected routed    auto    auto    --         
+Lo803         --                 connected routed    auto    auto    --         
+Lo804         --                 connected routed    auto    auto    --         
+Lo805         --                 connected routed    auto    auto    --         
+Lo850         adstachu-Network1  disabled  routed    auto    auto    --         
+Lo851         adstachu-Network2  disabled  routed    auto    auto    --         
+Lo852         adstachu-Network3  disabled  routed    auto    auto    --         
+Lo853         adstachu-Network4  disabled  routed    auto    auto    --         
+Lo854         --                 connected routed    auto    auto    --         
+Lo883         --                 connected routed    auto    auto    --         
+Lo888         --                 connected routed    auto    auto    --         
+Lo900         --                 connected routed    auto    auto    --         
+Lo910         --                 connected routed    auto    auto    --         
+Lo911         --                 connected routed    auto    auto    --         
+Lo920         --                 connected routed    auto    auto    --         
+Lo921         --                 connected routed    auto    auto    --         
+Lo927         --                 connected routed    auto    auto    --         
+Lo929         --                 connected routed    auto    auto    --         
+Lo933         --                 connected routed    auto    auto    --         
+Lo941         --                 connected routed    auto    auto    --         
+Lo942         --                 connected routed    auto    auto    --         
+Lo1000        --                 connected routed    auto    auto    --         
+Lo1001        pcelarek_site1     connected routed    auto    auto    --         
+Lo1002        pcelarek_site2     connected routed    auto    auto    --         
+Lo1003        --                 connected routed    auto    auto    --         
+Lo1006        --                 connected routed    auto    auto    --         
+Lo1007        --                 connected routed    auto    auto    --         
+Lo1008        pcelarek_SIDRA_MV3 connected routed    auto    auto    --         
+Lo1009        pcelarek_SIDRA_MV2 connected routed    auto    auto    --         
+Lo1010        dvigilan_test_l3ou connected routed    auto    auto    --         
+Lo1011        pcelarek_NDI       connected routed    auto    auto    --         
+Lo1020        --                 connected routed    auto    auto    --         
+Lo1021        --                 connected routed    auto    auto    --         
+Vlan1         --                 down      routed    auto    auto    --
+Vlan2         --                 down      routed    auto    auto    --
+Vlan8         --                 connected routed    auto    auto    --
+Vlan9         --                 connected routed    auto    auto    --
+Vlan10        infra_ND           connected routed    auto    auto    --
+Vlan36        --                 down      routed    auto    auto    --
+Vlan50        --                 connected routed    auto    auto    --
+Vlan77        --                 down      routed    auto    auto    --
+Vlan97        --                 connected routed    auto    auto    --
+Vlan99        --                 connected routed    auto    auto    --
+Vlan100       --                 connected routed    auto    auto    --
+Vlan101       --                 connected routed    auto    auto    --
+Vlan107       --                 connected routed    auto    auto    --
+Vlan110       --                 connected routed    auto    auto    --
+Vlan120       --                 connected routed    auto    auto    --
+Vlan121       --                 connected routed    auto    auto    --
+Vlan122       --                 connected routed    auto    auto    --
+Vlan123       --                 connected routed    auto    auto    --
+Vlan124       --                 connected routed    auto    auto    --
+Vlan125       --                 connected routed    auto    auto    --
+Vlan126       --                 connected routed    auto    auto    --
+Vlan162       --                 connected routed    auto    auto    --
+Vlan180       --                 connected routed    auto    auto    --
+Vlan181       EPG_10.64.20.0_24  connected routed    auto    auto    --
+Vlan182       --                 connected routed    auto    auto    --
+Vlan183       --                 down      routed    auto    auto    --
+Vlan200       --                 connected routed    auto    auto    --
+Vlan201       --                 connected routed    auto    auto    --
+Vlan205       --                 connected routed    auto    auto    --
+Vlan239       --                 connected routed    auto    auto    --
+Vlan242       --                 connected routed    auto    auto    --
+Vlan243       --                 connected routed    auto    auto    --
+Vlan244       --                 connected routed    auto    auto    --
+Vlan245       --                 connected routed    auto    auto    --
+Vlan246       --                 connected routed    auto    auto    --
+Vlan247       --                 connected routed    auto    auto    --
+Vlan248       --                 connected routed    auto    auto    --
+Vlan249       --                 connected routed    auto    auto    --
+Vlan250       --                 connected routed    auto    auto    --
+Vlan251       --                 connected routed    auto    auto    --
+Vlan252       --                 connected routed    auto    auto    --
+Vlan253       --                 connected routed    auto    auto    --
+Vlan254       --                 connected routed    auto    auto    --
+Vlan255       --                 connected routed    auto    auto    --
+Vlan256       --                 connected routed    auto    auto    --
+Vlan257       --                 connected routed    auto    auto    --
+Vlan258       --                 connected routed    auto    auto    --
+Vlan259       --                 connected routed    auto    auto    --
+Vlan285       --                 connected routed    auto    auto    --
+Vlan286       --                 connected routed    auto    auto    --
+Vlan287       --                 connected routed    auto    auto    --
+Vlan288       --                 connected routed    auto    auto    --
+Vlan290       --                 connected routed    auto    auto    --
+Vlan299       --                 connected routed    auto    auto    --
+Vlan318       --                 connected routed    auto    auto    --
+Vlan321       --                 connected routed    auto    auto    --
+Vlan322       --                 connected routed    auto    auto    --
+Vlan323       --                 connected routed    auto    auto    --
+Vlan324       --                 connected routed    auto    auto    --
+Vlan325       --                 connected routed    auto    auto    --
+Vlan326       --                 connected routed    auto    auto    --
+Vlan327       --                 connected routed    auto    auto    --
+Vlan328       --                 connected routed    auto    auto    --
+Vlan329       --                 connected routed    auto    auto    --
+Vlan330       --                 connected routed    auto    auto    --
+Vlan331       --                 connected routed    auto    auto    --
+Vlan333       --                 connected routed    auto    auto    --
+Vlan334       --                 connected routed    auto    auto    --
+Vlan335       --                 connected routed    auto    auto    --
+Vlan336       --                 connected routed    auto    auto    --
+Vlan338       --                 connected routed    auto    auto    --
+Vlan339       --                 connected routed    auto    auto    --
+Vlan340       --                 connected routed    auto    auto    --
+Vlan361       --                 connected routed    auto    auto    --
+Vlan362       --                 connected routed    auto    auto    --
+Vlan363       --                 connected routed    auto    auto    --
+Vlan367       --                 connected routed    auto    auto    --
+Vlan369       --                 down      routed    auto    auto    --
+Vlan375       --                 connected routed    auto    auto    --
+Vlan376       --                 connected routed    auto    auto    --
+Vlan377       --                 connected routed    auto    auto    --
+Vlan378       --                 connected routed    auto    auto    --
+Vlan379       --                 connected routed    auto    auto    --
+Vlan400       --                 connected routed    auto    auto    --
+Vlan401       --                 connected routed    auto    auto    --
+Vlan402       --                 connected routed    auto    auto    --
+Vlan403       --                 down      routed    auto    auto    --
+Vlan415       --                 connected routed    auto    auto    --
+Vlan420       --                 connected routed    auto    auto    --
+Vlan440       lvirag-site-1      down      routed    auto    auto    --
+Vlan441       lvirag-site-1-eigr down      routed    auto    auto    --
+Vlan443       --                 down      routed    auto    auto    --
+Vlan450       lvirag-site-2      down      routed    auto    auto    --
+Vlan451       lvirag-site-2-eigr down      routed    auto    auto    --
+Vlan452       blue               down      routed    auto    auto    --
+Vlan453       red                down      routed    auto    auto    --
+Vlan454       lvirag_vrf_blue2   down      routed    auto    auto    --
+Vlan455       --                 down      routed    auto    auto    --
+Vlan456       --                 down      routed    auto    auto    --
+Vlan457       --                 down      routed    auto    auto    --
+Vlan460       adstachu-two       down      routed    auto    auto    --
+Vlan461       adstachu-two-host- down      routed    auto    auto    --
+Vlan500       --                 connected routed    auto    auto    --
+Vlan501       --                 connected routed    auto    auto    --
+Vlan503       --                 connected routed    auto    auto    --
+Vlan504       --                 connected routed    auto    auto    --
+Vlan505       --                 connected routed    auto    auto    --
+Vlan520       --                 connected routed    auto    auto    --
+Vlan521       --                 connected routed    auto    auto    --
+Vlan523       --                 connected routed    auto    auto    --
+Vlan530       --                 connected routed    auto    auto    --
+Vlan540       --                 connected routed    auto    auto    --
+Vlan541       --                 connected routed    auto    auto    --
+Vlan555       --                 connected routed    auto    auto    --
+Vlan556       --                 connected routed    auto    auto    --
+Vlan558       --                 connected routed    auto    auto    --
+Vlan559       --                 connected routed    auto    auto    --
+Vlan585       --                 connected routed    auto    auto    --
+Vlan590       --                 connected routed    auto    auto    --
+Vlan621       --                 connected routed    auto    auto    --
+Vlan632       "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan640       --                 connected routed    auto    auto    --
+Vlan641       --                 connected routed    auto    auto    --
+Vlan642       --                 connected routed    auto    auto    --
+Vlan643       --                 connected routed    auto    auto    --
+Vlan649       --                 connected routed    auto    auto    --
+Vlan650       --                 connected routed    auto    auto    --
+Vlan651       --                 connected routed    auto    auto    --
+Vlan655       --                 connected routed    auto    auto    --
+Vlan656       --                 connected routed    auto    auto    --
+Vlan658       --                 connected routed    auto    auto    --
+Vlan659       --                 connected routed    auto    auto    --
+Vlan666       --                 connected routed    auto    auto    --
+Vlan677       --                 connected routed    auto    auto    --
+Vlan720       --                 connected routed    auto    auto    --
+Vlan721       --                 connected routed    auto    auto    --
+Vlan722       --                 connected routed    auto    auto    --
+Vlan740       stturnbu-cbq-globa connected routed    auto    auto    --
+Vlan741       --                 connected routed    auto    auto    --
+Vlan742       --                 connected routed    auto    auto    --
+Vlan743       --                 connected routed    auto    auto    --
+Vlan760       --                 connected routed    auto    auto    --
+Vlan761       --                 connected routed    auto    auto    --
+Vlan763       --                 connected routed    auto    auto    --
+Vlan764       --                 connected routed    auto    auto    --
+Vlan765       --                 connected routed    auto    auto    --
+Vlan766       --                 connected routed    auto    auto    --
+Vlan767       --                 connected routed    auto    auto    --
+Vlan768       --                 connected routed    auto    auto    --
+Vlan769       --                 connected routed    auto    auto    --
+Vlan770       --                 connected routed    auto    auto    --
+Vlan771       "EP_LEGACY_TEST-FA down      routed    auto    auto    --
+Vlan772       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan773       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan777       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan800       --                 connected routed    auto    auto    --
+Vlan801       --                 connected routed    auto    auto    --
+Vlan802       --                 connected routed    auto    auto    --
+Vlan803       --                 connected routed    auto    auto    --
+Vlan804       --                 connected routed    auto    auto    --
+Vlan805       --                 connected routed    auto    auto    --
+Vlan828       --                 down      routed    auto    auto    --
+Vlan850       --                 down      routed    auto    auto    --
+Vlan852       --                 connected routed    auto    auto    --
+Vlan853       --                 connected routed    auto    auto    --
+Vlan854       --                 connected routed    auto    auto    --
+Vlan880       --                 connected routed    auto    auto    --
+Vlan881       --                 connected routed    auto    auto    --
+Vlan882       --                 connected routed    auto    auto    --
+Vlan883       --                 connected routed    auto    auto    --
+Vlan884       --                 connected routed    auto    auto    --
+Vlan885       --                 connected routed    auto    auto    --
+Vlan888       --                 connected routed    auto    auto    --
+Vlan920       --                 connected routed    auto    auto    --
+Vlan921       --                 connected routed    auto    auto    --
+Vlan922       --                 connected routed    auto    auto    --
+Vlan928       --                 connected routed    auto    auto    --
+Vlan940       --                 down      routed    auto    auto    --
+Vlan941       --                 connected routed    auto    auto    --
+Vlan998       "EP_Legacy_VRF_RED connected routed    auto    auto    --
+Vlan999       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan1000      pcelarek_L3OUT     connected routed    auto    auto    --
+Vlan1001      --                 connected routed    auto    auto    --
+Vlan1002      --                 connected routed    auto    auto    --
+Vlan1003      --                 connected routed    auto    auto    --
+Vlan1004      --                 connected routed    auto    auto    --
+Vlan1005      --                 connected routed    auto    auto    --
+Vlan1006      STATIC_L3OUT_SITE1 connected routed    auto    auto    --
+Vlan1007      BGP_L3OUT_SITE1_1  connected routed    auto    auto    --
+Vlan1008      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1009      --                 connected routed    auto    auto    --
+Vlan1010      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1011      pcelarek_NDI       connected routed    auto    auto    --
+Vlan1012      --                 connected routed    auto    auto    --
+Vlan1050      --                 connected routed    auto    auto    --
+Vlan1099      --                 connected routed    auto    auto    --
+Vlan1100      --                 connected routed    auto    auto    --
+Vlan1101      --                 connected routed    auto    auto    --
+Vlan1120      --                 connected routed    auto    auto    --
+Vlan1121      --                 connected routed    auto    auto    --
+Vlan1122      --                 connected routed    auto    auto    --
+Vlan1154      --                 connected routed    auto    auto    --
+Vlan1155      --                 connected routed    auto    auto    --
+Vlan1157      --                 down      routed    auto    auto    --
+Vlan1158      --                 connected routed    auto    auto    --
+Vlan1160      --                 down      routed    auto    auto    --
+Vlan1180      --                 connected routed    auto    auto    --
+Vlan1181      --                 connected routed    auto    auto    --
+Vlan1182      --                 connected routed    auto    auto    --
+Vlan1197      --                 down      routed    auto    auto    --
+Vlan1200      --                 connected routed    auto    auto    --
+Vlan1201      --                 connected routed    auto    auto    --
+Vlan1218      --                 connected routed    auto    auto    --
+Vlan1219      --                 connected routed    auto    auto    --
+Vlan1220      --                 connected routed    auto    auto    --
+Vlan1221      --                 connected routed    auto    auto    --
+Vlan1222      --                 connected routed    auto    auto    --
+Vlan1223      --                 connected routed    auto    auto    --
+Vlan1224      --                 connected routed    auto    auto    --
+Vlan1225      --                 connected routed    auto    auto    --
+Vlan1230      --                 connected routed    auto    auto    --
+Vlan1231      --                 connected routed    auto    auto    --
+Vlan1234      --                 down      routed    auto    auto    --
+Vlan1241      --                 connected routed    auto    auto    --
+Vlan1244      --                 down      routed    auto    auto    --
+Vlan1258      --                 connected routed    auto    auto    --
+Vlan1261      --                 connected routed    auto    auto    --
+Vlan1283      --                 connected routed    auto    auto    --
+Vlan1284      --                 connected routed    auto    auto    --
+Vlan1287      --                 connected routed    auto    auto    --
+Vlan1290      --                 connected routed    auto    auto    --
+Vlan1297      --                 connected routed    auto    auto    --
+Vlan1300      OSPF P2P           connected routed    auto    auto    --
+Vlan1302      BGP P2P            connected routed    auto    auto    --
+Vlan1303      STATIC P2P         connected routed    auto    auto    --
+Vlan1304      --                 connected routed    auto    auto    --
+Vlan1500      mduma-iaas1-sim    connected routed    auto    auto    --
+Vlan1510      mduma-iaas2-sim    connected routed    auto    auto    --
+Vlan1511      mduma-inet-sim     connected routed    auto    auto    --
+Vlan1517      mduma-mpls-sim     connected routed    auto    auto    --
+Vlan1561      --                 down      routed    auto    auto    --
+Vlan1600      --                 connected routed    auto    auto    --
+Vlan1601      --                 connected routed    auto    auto    --
+Vlan1602      --                 connected routed    auto    auto    --
+Vlan1603      --                 connected routed    auto    auto    --
+Vlan1604      --                 connected routed    auto    auto    --
+Vlan1609      --                 down      routed    auto    auto    --
+Vlan1699      --                 connected routed    auto    auto    --
+Vlan1800      --                 connected routed    auto    auto    --
+Vlan1801      --                 connected routed    auto    auto    --
+Vlan1880      --                 connected routed    auto    auto    --
+Vlan1885      --                 connected routed    auto    auto    --
+Vlan1900      --                 connected routed    auto    auto    --
+Vlan1901      --                 connected routed    auto    auto    --
+Vlan1902      --                 connected routed    auto    auto    --
+Vlan1903      --                 connected routed    auto    auto    --
+Vlan1916      --                 connected routed    auto    auto    --
+Vlan1917      --                 connected routed    auto    auto    --
+Vlan1918      --                 connected routed    auto    auto    --
+Vlan1919      --                 connected routed    auto    auto    --
+Vlan1921      --                 connected routed    auto    auto    --
+Vlan1922      --                 connected routed    auto    auto    --
+Vlan1923      --                 connected routed    auto    auto    --
+Vlan1924      --                 down      routed    auto    auto    --
+Vlan1925      --                 connected routed    auto    auto    --
+Vlan1927      --                 connected routed    auto    auto    --
+Vlan1928      --                 connected routed    auto    auto    --
+Vlan1929      --                 connected routed    auto    auto    --
+Vlan1930      --                 connected routed    auto    auto    --
+Vlan1931      --                 connected routed    auto    auto    --
+Vlan1932      --                 connected routed    auto    auto    --
+Vlan1933      --                 connected routed    auto    auto    --
+Vlan1934      --                 connected routed    auto    auto    --
+Vlan1935      --                 connected routed    auto    auto    --
+Vlan1961      --                 connected routed    auto    auto    --
+Vlan2001      --                 connected routed    auto    auto    --
+Vlan2111      --                 connected routed    auto    auto    --
+Vlan2202      "GW_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2222      --                 connected routed    auto    auto    --
+Vlan2322      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2323      host1              connected routed    auto    auto    --
+Vlan2324      host2              connected routed    auto    auto    --
+Vlan2325      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2326      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2328      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2329      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2330      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2331      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2332      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2600      --                 connected routed    auto    auto    --
+Vlan2601      --                 connected routed    auto    auto    --
+Vlan2613      --                 connected routed    auto    auto    --
+Vlan2615      --                 connected routed    auto    auto    --
+Vlan2616      --                 connected routed    auto    auto    --
+Vlan2617      --                 connected routed    auto    auto    --
+Vlan2620      --                 connected routed    auto    auto    --
+Vlan2621      --                 connected routed    auto    auto    --
+Vlan2622      --                 connected routed    auto    auto    --
+Vlan2623      --                 connected routed    auto    auto    --
+Vlan2624      --                 connected routed    auto    auto    --
+Vlan2630      --                 down      routed    auto    auto    --
+Vlan2645      --                 down      routed    auto    auto    --
+Vlan2650      --                 connected routed    auto    auto    --
+Vlan2701      "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2702      --                 down      routed    auto    auto    --
+Vlan2703      --                 down      routed    auto    auto    --
+Vlan2705      --                 connected routed    auto    auto    --
+Vlan2710      --                 connected routed    auto    auto    --
+Vlan2711      --                 connected routed    auto    auto    --
+Vlan2723      "GW_Legacy RED_272 connected routed    auto    auto    --
+Vlan2767      "GW_Legacy GREEN-N connected routed    auto    auto    --
+Vlan2894      --                 connected routed    auto    auto    --
+Vlan2895      "GW_LEGACY_TEST-NE connected routed    auto    auto    --
+Vlan2897      "GW_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan2931      "EP_Legacy ORANGE_ connected routed    auto    auto    --
+Vlan3333      "Any Prefix behind connected routed    auto    auto    --
+Vlan3334      "Specific Subnet b connected routed    auto    auto    --
+Vlan3335      "Specific Subnet b connected routed    auto    auto    --
+Vlan3336      "Specific Subnet b connected routed    auto    auto    --
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+KACI-C9372PX-1# </msg>
+<arg>${output}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-07-17T19:51:46.704166" elapsed="0.001103"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<msg time="2025-07-17T19:51:46.706555" level="FAIL">'
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+mgmt0         --                 connected routed    full    1000    --         
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/2        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/3        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/4        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/5        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/6        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/7        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/8        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/9        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/10       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/11       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/12       infra_ND           connected trunk     full    10G     SFP-H10GB-ACU10M
+Eth1/13       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/14       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/15       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/16       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/17       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/18       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/19       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/20       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/21       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/22       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/23       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/24       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/25       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/26       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/27       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/28       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/29       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/30       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/31       lvirag_test        xcvrAbsen 1         auto    auto    --         
+Eth1/32       L2 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/32.12    --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/33       L2 to Leaf 104 1/4 connected trunk     full    10G     SFP-H10GB-AOC2M
+Eth1/34       L3 to Leaf 103 1/4 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/34.1     --                 connected routed    full    10G     SFP-H10GB-AOC2M
+Eth1/35       L3 to Leaf 104 1/4 connected 1         full    10G     SFP-H10GB-AOC2M
+Eth1/36       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/37       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/38       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/39       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/40       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/41       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/42       L3_to_Leaf101_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43       L3_to_Leaf102_1/46 connected routed    full    10G     10Gbase-SR-S
+Eth1/43.50    --                 connected routed    full    10G     10Gbase-SR-S
+Eth1/44       L3_to_Leaf-201_1/4 notconnec trunk     auto    auto    10Gbase-SR-S
+Eth1/45       --                 connected 1         full    10G     10Gbase-SR-S
+Eth1/46       --                 connected trunk     full    10G     SFP-H10GB-CU2M
+Eth1/47       L2 to Leaf201      connected trunk     full    10G     10Gbase-SR 
+Eth1/48       L2 to Leaf202      connected trunk     full    10G     10Gbase-SR 
+Eth1/49       L2 to Leaf101      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/50       L2 to Leaf102      connected trunk     full    40G     QSFP-40G-SR-BD
+Eth1/51       L2 to Leaf201      xcvrAbsen trunk     auto    auto    --         
+Eth1/52       L2 to Leaf202      xcvrAbsen trunk     auto    auto    --         
+Eth1/53       --                 xcvrAbsen 1         auto    auto    --         
+Eth1/54       --                 xcvrAbsen 1         auto    auto    --         
+Po1           --                 noOperMem 1         auto    auto    --         
+Po2           --                 noOperMem 1         auto    auto    --         
+Po100         --                 noOperMem 1         auto    auto    --         
+Lo0           --                 connected routed    auto    auto    --         
+Lo2           --                 connected routed    auto    auto    --         
+Lo6           --                 connected routed    auto    auto    --         
+Lo7           --                 connected routed    auto    auto    --         
+Lo8           --                 connected routed    auto    auto    --         
+Lo9           --                 connected routed    auto    auto    --         
+Lo11          --                 connected routed    auto    auto    --         
+Lo13          --                 connected routed    auto    auto    --         
+Lo14          --                 connected routed    auto    auto    --         
+Lo15          --                 connected routed    auto    auto    --         
+Lo16          --                 connected routed    auto    auto    --         
+Lo17          --                 connected routed    auto    auto    --         
+Lo18          --                 connected routed    auto    auto    --         
+Lo19          --                 connected routed    auto    auto    --         
+Lo20          --                 connected routed    auto    auto    --         
+Lo22          --                 connected routed    auto    auto    --         
+Lo33          --                 connected routed    auto    auto    --         
+Lo43          --                 connected routed    auto    auto    --         
+Lo44          --                 connected routed    auto    auto    --         
+Lo50          --                 connected routed    auto    auto    --         
+Lo77          --                 connected routed    auto    auto    --         
+Lo99          --                 connected routed    auto    auto    --         
+Lo100         --                 connected routed    auto    auto    --         
+Lo101         --                 connected routed    auto    auto    --         
+Lo102         --                 connected routed    auto    auto    --         
+Lo103         --                 connected routed    auto    auto    --         
+Lo108         --                 connected routed    auto    auto    --         
+Lo109         --                 connected routed    auto    auto    --         
+Lo110         --                 connected routed    auto    auto    --         
+Lo113         --                 connected routed    auto    auto    --         
+Lo114         --                 connected routed    auto    auto    --         
+Lo120         --                 connected routed    auto    auto    --         
+Lo121         --                 connected routed    auto    auto    --         
+Lo123         --                 connected routed    auto    auto    --         
+Lo125         --                 connected routed    auto    auto    --         
+Lo126         --                 connected routed    auto    auto    --         
+Lo151         --                 connected routed    auto    auto    --         
+Lo152         --                 connected routed    auto    auto    --         
+Lo162         --                 connected routed    auto    auto    --         
+Lo170         --                 connected routed    auto    auto    --         
+Lo171         --                 connected routed    auto    auto    --         
+Lo172         --                 connected routed    auto    auto    --         
+Lo179         --                 connected routed    auto    auto    --         
+Lo180         --                 connected routed    auto    auto    --         
+Lo191         --                 connected routed    auto    auto    --         
+Lo192         --                 connected routed    auto    auto    --         
+Lo200         --                 disabled  routed    auto    auto    --         
+Lo203         --                 connected routed    auto    auto    --         
+Lo204         --                 connected routed    auto    auto    --         
+Lo233         --                 connected routed    auto    auto    --         
+Lo239         --                 connected routed    auto    auto    --         
+Lo242         --                 connected routed    auto    auto    --         
+Lo243         --                 connected routed    auto    auto    --         
+Lo244         --                 connected routed    auto    auto    --         
+Lo245         --                 connected routed    auto    auto    --         
+Lo246         --                 connected routed    auto    auto    --         
+Lo247         --                 connected routed    auto    auto    --         
+Lo248         --                 connected routed    auto    auto    --         
+Lo249         --                 connected routed    auto    auto    --         
+Lo252         --                 connected routed    auto    auto    --         
+Lo253         --                 connected routed    auto    auto    --         
+Lo254         --                 connected routed    auto    auto    --         
+Lo255         --                 connected routed    auto    auto    --         
+Lo256         --                 connected routed    auto    auto    --         
+Lo260         --                 connected routed    auto    auto    --         
+Lo261         --                 connected routed    auto    auto    --         
+Lo262         --                 connected routed    auto    auto    --         
+Lo263         --                 connected routed    auto    auto    --         
+Lo300         --                 connected routed    auto    auto    --         
+Lo301         --                 connected routed    auto    auto    --         
+Lo321         --                 connected routed    auto    auto    --         
+Lo333         --                 disabled  routed    auto    auto    --         
+Lo338         --                 connected routed    auto    auto    --         
+Lo339         --                 connected routed    auto    auto    --         
+Lo363         --                 connected routed    auto    auto    --         
+Lo367         --                 connected routed    auto    auto    --         
+Lo380         --                 connected routed    auto    auto    --         
+Lo420         --                 connected routed    auto    auto    --         
+Lo421         --                 connected routed    auto    auto    --         
+Lo422         --                 connected routed    auto    auto    --         
+Lo441         --                 disabled  routed    auto    auto    --         
+Lo453         --                 disabled  routed    auto    auto    --         
+Lo456         lvirag             disabled  routed    auto    auto    --         
+Lo457         lvirag             disabled  routed    auto    auto    --         
+Lo500         --                 connected routed    auto    auto    --         
+Lo501         --                 connected routed    auto    auto    --         
+Lo502         --                 connected routed    auto    auto    --         
+Lo520         --                 connected routed    auto    auto    --         
+Lo521         --                 connected routed    auto    auto    --         
+Lo522         --                 connected routed    auto    auto    --         
+Lo540         --                 connected routed    auto    auto    --         
+Lo640         --                 connected routed    auto    auto    --         
+Lo643         --                 connected routed    auto    auto    --         
+Lo649         --                 connected routed    auto    auto    --         
+Lo650         --                 connected routed    auto    auto    --         
+Lo651         --                 connected routed    auto    auto    --         
+Lo652         --                 connected routed    auto    auto    --         
+Lo659         --                 connected routed    auto    auto    --         
+Lo676         --                 connected routed    auto    auto    --         
+Lo677         --                 connected routed    auto    auto    --         
+Lo689         --                 connected routed    auto    auto    --         
+Lo720         --                 connected routed    auto    auto    --         
+Lo721         --                 connected routed    auto    auto    --         
+Lo732         --                 connected routed    auto    auto    --         
+Lo733         --                 connected routed    auto    auto    --         
+Lo740         --                 connected routed    auto    auto    --         
+Lo741         --                 connected routed    auto    auto    --         
+Lo742         --                 connected routed    auto    auto    --         
+Lo760         --                 connected routed    auto    auto    --         
+Lo765         --                 connected routed    auto    auto    --         
+Lo777         --                 connected routed    auto    auto    --         
+Lo789         --                 connected routed    auto    auto    --         
+Lo800         --                 connected routed    auto    auto    --         
+Lo801         --                 connected routed    auto    auto    --         
+Lo802         --                 connected routed    auto    auto    --         
+Lo803         --                 connected routed    auto    auto    --         
+Lo804         --                 connected routed    auto    auto    --         
+Lo805         --                 connected routed    auto    auto    --         
+Lo850         adstachu-Network1  disabled  routed    auto    auto    --         
+Lo851         adstachu-Network2  disabled  routed    auto    auto    --         
+Lo852         adstachu-Network3  disabled  routed    auto    auto    --         
+Lo853         adstachu-Network4  disabled  routed    auto    auto    --         
+Lo854         --                 connected routed    auto    auto    --         
+Lo883         --                 connected routed    auto    auto    --         
+Lo888         --                 connected routed    auto    auto    --         
+Lo900         --                 connected routed    auto    auto    --         
+Lo910         --                 connected routed    auto    auto    --         
+Lo911         --                 connected routed    auto    auto    --         
+Lo920         --                 connected routed    auto    auto    --         
+Lo921         --                 connected routed    auto    auto    --         
+Lo927         --                 connected routed    auto    auto    --         
+Lo929         --                 connected routed    auto    auto    --         
+Lo933         --                 connected routed    auto    auto    --         
+Lo941         --                 connected routed    auto    auto    --         
+Lo942         --                 connected routed    auto    auto    --         
+Lo1000        --                 connected routed    auto    auto    --         
+Lo1001        pcelarek_site1     connected routed    auto    auto    --         
+Lo1002        pcelarek_site2     connected routed    auto    auto    --         
+Lo1003        --                 connected routed    auto    auto    --         
+Lo1006        --                 connected routed    auto    auto    --         
+Lo1007        --                 connected routed    auto    auto    --         
+Lo1008        pcelarek_SIDRA_MV3 connected routed    auto    auto    --         
+Lo1009        pcelarek_SIDRA_MV2 connected routed    auto    auto    --         
+Lo1010        dvigilan_test_l3ou connected routed    auto    auto    --         
+Lo1011        pcelarek_NDI       connected routed    auto    auto    --         
+Lo1020        --                 connected routed    auto    auto    --         
+Lo1021        --                 connected routed    auto    auto    --         
+Vlan1         --                 down      routed    auto    auto    --
+Vlan2         --                 down      routed    auto    auto    --
+Vlan8         --                 connected routed    auto    auto    --
+Vlan9         --                 connected routed    auto    auto    --
+Vlan10        infra_ND           connected routed    auto    auto    --
+Vlan36        --                 down      routed    auto    auto    --
+Vlan50        --                 connected routed    auto    auto    --
+Vlan77        --                 down      routed    auto    auto    --
+Vlan97        --                 connected routed    auto    auto    --
+Vlan99        --                 connected routed    auto    auto    --
+Vlan100       --                 connected routed    auto    auto    --
+Vlan101       --                 connected routed    auto    auto    --
+Vlan107       --                 connected routed    auto    auto    --
+Vlan110       --                 connected routed    auto    auto    --
+Vlan120       --                 connected routed    auto    auto    --
+Vlan121       --                 connected routed    auto    auto    --
+Vlan122       --                 connected routed    auto    auto    --
+Vlan123       --                 connected routed    auto    auto    --
+Vlan124       --                 connected routed    auto    auto    --
+Vlan125       --                 connected routed    auto    auto    --
+Vlan126       --                 connected routed    auto    auto    --
+Vlan162       --                 connected routed    auto    auto    --
+Vlan180       --                 connected routed    auto    auto    --
+Vlan181       EPG_10.64.20.0_24  connected routed    auto    auto    --
+Vlan182       --                 connected routed    auto    auto    --
+Vlan183       --                 down      routed    auto    auto    --
+Vlan200       --                 connected routed    auto    auto    --
+Vlan201       --                 connected routed    auto    auto    --
+Vlan205       --                 connected routed    auto    auto    --
+Vlan239       --                 connected routed    auto    auto    --
+Vlan242       --                 connected routed    auto    auto    --
+Vlan243       --                 connected routed    auto    auto    --
+Vlan244       --                 connected routed    auto    auto    --
+Vlan245       --                 connected routed    auto    auto    --
+Vlan246       --                 connected routed    auto    auto    --
+Vlan247       --                 connected routed    auto    auto    --
+Vlan248       --                 connected routed    auto    auto    --
+Vlan249       --                 connected routed    auto    auto    --
+Vlan250       --                 connected routed    auto    auto    --
+Vlan251       --                 connected routed    auto    auto    --
+Vlan252       --                 connected routed    auto    auto    --
+Vlan253       --                 connected routed    auto    auto    --
+Vlan254       --                 connected routed    auto    auto    --
+Vlan255       --                 connected routed    auto    auto    --
+Vlan256       --                 connected routed    auto    auto    --
+Vlan257       --                 connected routed    auto    auto    --
+Vlan258       --                 connected routed    auto    auto    --
+Vlan259       --                 connected routed    auto    auto    --
+Vlan285       --                 connected routed    auto    auto    --
+Vlan286       --                 connected routed    auto    auto    --
+Vlan287       --                 connected routed    auto    auto    --
+Vlan288       --                 connected routed    auto    auto    --
+Vlan290       --                 connected routed    auto    auto    --
+Vlan299       --                 connected routed    auto    auto    --
+Vlan318       --                 connected routed    auto    auto    --
+Vlan321       --                 connected routed    auto    auto    --
+Vlan322       --                 connected routed    auto    auto    --
+Vlan323       --                 connected routed    auto    auto    --
+Vlan324       --                 connected routed    auto    auto    --
+Vlan325       --                 connected routed    auto    auto    --
+Vlan326       --                 connected routed    auto    auto    --
+Vlan327       --                 connected routed    auto    auto    --
+Vlan328       --                 connected routed    auto    auto    --
+Vlan329       --                 connected routed    auto    auto    --
+Vlan330       --                 connected routed    auto    auto    --
+Vlan331       --                 connected routed    auto    auto    --
+Vlan333       --                 connected routed    auto    auto    --
+Vlan334       --                 connected routed    auto    auto    --
+Vlan335       --                 connected routed    auto    auto    --
+Vlan336       --                 connected routed    auto    auto    --
+Vlan338       --                 connected routed    auto    auto    --
+Vlan339       --                 connected routed    auto    auto    --
+Vlan340       --                 connected routed    auto    auto    --
+Vlan361       --                 connected routed    auto    auto    --
+Vlan362       --                 connected routed    auto    auto    --
+Vlan363       --                 connected routed    auto    auto    --
+Vlan367       --                 connected routed    auto    auto    --
+Vlan369       --                 down      routed    auto    auto    --
+Vlan375       --                 connected routed    auto    auto    --
+Vlan376       --                 connected routed    auto    auto    --
+Vlan377       --                 connected routed    auto    auto    --
+Vlan378       --                 connected routed    auto    auto    --
+Vlan379       --                 connected routed    auto    auto    --
+Vlan400       --                 connected routed    auto    auto    --
+Vlan401       --                 connected routed    auto    auto    --
+Vlan402       --                 connected routed    auto    auto    --
+Vlan403       --                 down      routed    auto    auto    --
+Vlan415       --                 connected routed    auto    auto    --
+Vlan420       --                 connected routed    auto    auto    --
+Vlan440       lvirag-site-1      down      routed    auto    auto    --
+Vlan441       lvirag-site-1-eigr down      routed    auto    auto    --
+Vlan443       --                 down      routed    auto    auto    --
+Vlan450       lvirag-site-2      down      routed    auto    auto    --
+Vlan451       lvirag-site-2-eigr down      routed    auto    auto    --
+Vlan452       blue               down      routed    auto    auto    --
+Vlan453       red                down      routed    auto    auto    --
+Vlan454       lvirag_vrf_blue2   down      routed    auto    auto    --
+Vlan455       --                 down      routed    auto    auto    --
+Vlan456       --                 down      routed    auto    auto    --
+Vlan457       --                 down      routed    auto    auto    --
+Vlan460       adstachu-two       down      routed    auto    auto    --
+Vlan461       adstachu-two-host- down      routed    auto    auto    --
+Vlan500       --                 connected routed    auto    auto    --
+Vlan501       --                 connected routed    auto    auto    --
+Vlan503       --                 connected routed    auto    auto    --
+Vlan504       --                 connected routed    auto    auto    --
+Vlan505       --                 connected routed    auto    auto    --
+Vlan520       --                 connected routed    auto    auto    --
+Vlan521       --                 connected routed    auto    auto    --
+Vlan523       --                 connected routed    auto    auto    --
+Vlan530       --                 connected routed    auto    auto    --
+Vlan540       --                 connected routed    auto    auto    --
+Vlan541       --                 connected routed    auto    auto    --
+Vlan555       --                 connected routed    auto    auto    --
+Vlan556       --                 connected routed    auto    auto    --
+Vlan558       --                 connected routed    auto    auto    --
+Vlan559       --                 connected routed    auto    auto    --
+Vlan585       --                 connected routed    auto    auto    --
+Vlan590       --                 connected routed    auto    auto    --
+Vlan621       --                 connected routed    auto    auto    --
+Vlan632       "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan640       --                 connected routed    auto    auto    --
+Vlan641       --                 connected routed    auto    auto    --
+Vlan642       --                 connected routed    auto    auto    --
+Vlan643       --                 connected routed    auto    auto    --
+Vlan649       --                 connected routed    auto    auto    --
+Vlan650       --                 connected routed    auto    auto    --
+Vlan651       --                 connected routed    auto    auto    --
+Vlan655       --                 connected routed    auto    auto    --
+Vlan656       --                 connected routed    auto    auto    --
+Vlan658       --                 connected routed    auto    auto    --
+Vlan659       --                 connected routed    auto    auto    --
+Vlan666       --                 connected routed    auto    auto    --
+Vlan677       --                 connected routed    auto    auto    --
+Vlan720       --                 connected routed    auto    auto    --
+Vlan721       --                 connected routed    auto    auto    --
+Vlan722       --                 connected routed    auto    auto    --
+Vlan740       stturnbu-cbq-globa connected routed    auto    auto    --
+Vlan741       --                 connected routed    auto    auto    --
+Vlan742       --                 connected routed    auto    auto    --
+Vlan743       --                 connected routed    auto    auto    --
+Vlan760       --                 connected routed    auto    auto    --
+Vlan761       --                 connected routed    auto    auto    --
+Vlan763       --                 connected routed    auto    auto    --
+Vlan764       --                 connected routed    auto    auto    --
+Vlan765       --                 connected routed    auto    auto    --
+Vlan766       --                 connected routed    auto    auto    --
+Vlan767       --                 connected routed    auto    auto    --
+Vlan768       --                 connected routed    auto    auto    --
+Vlan769       --                 connected routed    auto    auto    --
+Vlan770       --                 connected routed    auto    auto    --
+Vlan771       "EP_LEGACY_TEST-FA down      routed    auto    auto    --
+Vlan772       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan773       "EP_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan777       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan800       --                 connected routed    auto    auto    --
+Vlan801       --                 connected routed    auto    auto    --
+Vlan802       --                 connected routed    auto    auto    --
+Vlan803       --                 connected routed    auto    auto    --
+Vlan804       --                 connected routed    auto    auto    --
+Vlan805       --                 connected routed    auto    auto    --
+Vlan828       --                 down      routed    auto    auto    --
+Vlan850       --                 down      routed    auto    auto    --
+Vlan852       --                 connected routed    auto    auto    --
+Vlan853       --                 connected routed    auto    auto    --
+Vlan854       --                 connected routed    auto    auto    --
+Vlan880       --                 connected routed    auto    auto    --
+Vlan881       --                 connected routed    auto    auto    --
+Vlan882       --                 connected routed    auto    auto    --
+Vlan883       --                 connected routed    auto    auto    --
+Vlan884       --                 connected routed    auto    auto    --
+Vlan885       --                 connected routed    auto    auto    --
+Vlan888       --                 connected routed    auto    auto    --
+Vlan920       --                 connected routed    auto    auto    --
+Vlan921       --                 connected routed    auto    auto    --
+Vlan922       --                 connected routed    auto    auto    --
+Vlan928       --                 connected routed    auto    auto    --
+Vlan940       --                 down      routed    auto    auto    --
+Vlan941       --                 connected routed    auto    auto    --
+Vlan998       "EP_Legacy_VRF_RED connected routed    auto    auto    --
+Vlan999       "EP_Legacy GREEN-N connected routed    auto    auto    --
+Vlan1000      pcelarek_L3OUT     connected routed    auto    auto    --
+Vlan1001      --                 connected routed    auto    auto    --
+Vlan1002      --                 connected routed    auto    auto    --
+Vlan1003      --                 connected routed    auto    auto    --
+Vlan1004      --                 connected routed    auto    auto    --
+Vlan1005      --                 connected routed    auto    auto    --
+Vlan1006      STATIC_L3OUT_SITE1 connected routed    auto    auto    --
+Vlan1007      BGP_L3OUT_SITE1_1  connected routed    auto    auto    --
+Vlan1008      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1009      --                 connected routed    auto    auto    --
+Vlan1010      pcelarek_SIDRA_MV3 connected routed    auto    auto    --
+Vlan1011      pcelarek_NDI       connected routed    auto    auto    --
+Vlan1012      --                 connected routed    auto    auto    --
+Vlan1050      --                 connected routed    auto    auto    --
+Vlan1099      --                 connected routed    auto    auto    --
+Vlan1100      --                 connected routed    auto    auto    --
+Vlan1101      --                 connected routed    auto    auto    --
+Vlan1120      --                 connected routed    auto    auto    --
+Vlan1121      --                 connected routed    auto    auto    --
+Vlan1122      --                 connected routed    auto    auto    --
+Vlan1154      --                 connected routed    auto    auto    --
+Vlan1155      --                 connected routed    auto    auto    --
+Vlan1157      --                 down      routed    auto    auto    --
+Vlan1158      --                 connected routed    auto    auto    --
+Vlan1160      --                 down      routed    auto    auto    --
+Vlan1180      --                 connected routed    auto    auto    --
+Vlan1181      --                 connected routed    auto    auto    --
+Vlan1182      --                 connected routed    auto    auto    --
+Vlan1197      --                 down      routed    auto    auto    --
+Vlan1200      --                 connected routed    auto    auto    --
+Vlan1201      --                 connected routed    auto    auto    --
+Vlan1218      --                 connected routed    auto    auto    --
+Vlan1219      --                 connected routed    auto    auto    --
+Vlan1220      --                 connected routed    auto    auto    --
+Vlan1221      --                 connected routed    auto    auto    --
+Vlan1222      --                 connected routed    auto    auto    --
+Vlan1223      --                 connected routed    auto    auto    --
+Vlan1224      --                 connected routed    auto    auto    --
+Vlan1225      --                 connected routed    auto    auto    --
+Vlan1230      --                 connected routed    auto    auto    --
+Vlan1231      --                 connected routed    auto    auto    --
+Vlan1234      --                 down      routed    auto    auto    --
+Vlan1241      --                 connected routed    auto    auto    --
+Vlan1244      --                 down      routed    auto    auto    --
+Vlan1258      --                 connected routed    auto    auto    --
+Vlan1261      --                 connected routed    auto    auto    --
+Vlan1283      --                 connected routed    auto    auto    --
+Vlan1284      --                 connected routed    auto    auto    --
+Vlan1287      --                 connected routed    auto    auto    --
+Vlan1290      --                 connected routed    auto    auto    --
+Vlan1297      --                 connected routed    auto    auto    --
+Vlan1300      OSPF P2P           connected routed    auto    auto    --
+Vlan1302      BGP P2P            connected routed    auto    auto    --
+Vlan1303      STATIC P2P         connected routed    auto    auto    --
+Vlan1304      --                 connected routed    auto    auto    --
+Vlan1500      mduma-iaas1-sim    connected routed    auto    auto    --
+Vlan1510      mduma-iaas2-sim    connected routed    auto    auto    --
+Vlan1511      mduma-inet-sim     connected routed    auto    auto    --
+Vlan1517      mduma-mpls-sim     connected routed    auto    auto    --
+Vlan1561      --                 down      routed    auto    auto    --
+Vlan1600      --                 connected routed    auto    auto    --
+Vlan1601      --                 connected routed    auto    auto    --
+Vlan1602      --                 connected routed    auto    auto    --
+Vlan1603      --                 connected routed    auto    auto    --
+Vlan1604      --                 connected routed    auto    auto    --
+Vlan1609      --                 down      routed    auto    auto    --
+Vlan1699      --                 connected routed    auto    auto    --
+Vlan1800      --                 connected routed    auto    auto    --
+Vlan1801      --                 connected routed    auto    auto    --
+Vlan1880      --                 connected routed    auto    auto    --
+Vlan1885      --                 connected routed    auto    auto    --
+Vlan1900      --                 connected routed    auto    auto    --
+Vlan1901      --                 connected routed    auto    auto    --
+Vlan1902      --                 connected routed    auto    auto    --
+Vlan1903      --                 connected routed    auto    auto    --
+Vlan1916      --                 connected routed    auto    auto    --
+Vlan1917      --                 connected routed    auto    auto    --
+Vlan1918      --                 connected routed    auto    auto    --
+Vlan1919      --                 connected routed    auto    auto    --
+Vlan1921      --                 connected routed    auto    auto    --
+Vlan1922      --                 connected routed    auto    auto    --
+Vlan1923      --                 connected routed    auto    auto    --
+Vlan1924      --                 down      routed    auto    auto    --
+Vlan1925      --                 connected routed    auto    auto    --
+Vlan1927      --                 connected routed    auto    auto    --
+Vlan1928      --                 connected routed    auto    auto    --
+Vlan1929      --                 connected routed    auto    auto    --
+Vlan1930      --                 connected routed    auto    auto    --
+Vlan1931      --                 connected routed    auto    auto    --
+Vlan1932      --                 connected routed    auto    auto    --
+Vlan1933      --                 connected routed    auto    auto    --
+Vlan1934      --                 connected routed    auto    auto    --
+Vlan1935      --                 connected routed    auto    auto    --
+Vlan1961      --                 connected routed    auto    auto    --
+Vlan2001      --                 connected routed    auto    auto    --
+Vlan2111      --                 connected routed    auto    auto    --
+Vlan2202      "GW_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2222      --                 connected routed    auto    auto    --
+Vlan2322      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2323      host1              connected routed    auto    auto    --
+Vlan2324      host2              connected routed    auto    auto    --
+Vlan2325      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2326      sciobanu-vlan-pool connected routed    auto    auto    --
+Vlan2328      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2329      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2330      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2331      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2332      sciobanu-vlan-pool down      routed    auto    auto    --
+Vlan2600      --                 connected routed    auto    auto    --
+Vlan2601      --                 connected routed    auto    auto    --
+Vlan2613      --                 connected routed    auto    auto    --
+Vlan2615      --                 connected routed    auto    auto    --
+Vlan2616      --                 connected routed    auto    auto    --
+Vlan2617      --                 connected routed    auto    auto    --
+Vlan2620      --                 connected routed    auto    auto    --
+Vlan2621      --                 connected routed    auto    auto    --
+Vlan2622      --                 connected routed    auto    auto    --
+Vlan2623      --                 connected routed    auto    auto    --
+Vlan2624      --                 connected routed    auto    auto    --
+Vlan2630      --                 down      routed    auto    auto    --
+Vlan2645      --                 down      routed    auto    auto    --
+Vlan2650      --                 connected routed    auto    auto    --
+Vlan2701      "EP_Legacy GREEN-C connected routed    auto    auto    --
+Vlan2702      --                 down      routed    auto    auto    --
+Vlan2703      --                 down      routed    auto    auto    --
+Vlan2705      --                 connected routed    auto    auto    --
+Vlan2710      --                 connected routed    auto    auto    --
+Vlan2711      --                 connected routed    auto    auto    --
+Vlan2723      "GW_Legacy RED_272 connected routed    auto    auto    --
+Vlan2767      "GW_Legacy GREEN-N connected routed    auto    auto    --
+Vlan2894      --                 connected routed    auto    auto    --
+Vlan2895      "GW_LEGACY_TEST-NE connected routed    auto    auto    --
+Vlan2897      "GW_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan2931      "EP_Legacy ORANGE_ connected routed    auto    auto    --
+Vlan3333      "Any Prefix behind connected routed    auto    auto    --
+Vlan3334      "Specific Subnet b connected routed    auto    auto    --
+Vlan3335      "Specific Subnet b connected routed    auto    auto    --
+Vlan3336      "Specific Subnet b connected routed    auto    auto    --
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+KACI-C9372PX-1# ' contains 'xcvrAbsen'</msg>
+<arg>${output}</arg>
+<arg>xcvrAbsen</arg>
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<status status="FAIL" start="2025-07-17T19:51:46.705487" elapsed="0.002839">'
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+mgmt0         --                 connected routed    full    1000    --         
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/2        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/3        --                 xcvrAbsen 1         auto    auto    --         
+    [ Message content over the limit has been removed. ]
+Vlan2710      --                 connected routed    auto    auto    --
+Vlan2711      --                 connected routed    auto    auto    --
+Vlan2723      "GW_Legacy RED_272 connected routed    auto    auto    --
+Vlan2767      "GW_Legacy GREEN-N connected routed    auto    auto    --
+Vlan2894      --                 connected routed    auto    auto    --
+Vlan2895      "GW_LEGACY_TEST-NE connected routed    auto    auto    --
+Vlan2897      "GW_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan2931      "EP_Legacy ORANGE_ connected routed    auto    auto    --
+Vlan3333      "Any Prefix behind connected routed    auto    auto    --
+Vlan3334      "Specific Subnet b connected routed    auto    auto    --
+Vlan3335      "Specific Subnet b connected routed    auto    auto    --
+Vlan3336      "Specific Subnet b connected routed    auto    auto    --
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+
+KACI-C9372PX-1# ' contains 'xcvrAbsen'</status>
+</kw>
+<kw name="Write" owner="SSHLibrary">
+<arg>exit</arg>
+<doc>Writes the given ``text`` on the remote machine and appends a newline.</doc>
+<status status="NOT RUN" start="2025-07-17T19:51:46.708527" elapsed="0.000017"/>
+</kw>
+<kw name="Close Connection" owner="SSHLibrary">
+<doc>Closes the current connection.</doc>
+<status status="NOT RUN" start="2025-07-17T19:51:46.708608" elapsed="0.000010"/>
+</kw>
+<status status="FAIL" start="2025-07-17T19:51:40.364457" elapsed="6.344312">'
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+mgmt0         --                 connected routed    full    1000    --         
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+Eth1/1        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/2        --                 xcvrAbsen 1         auto    auto    --         
+Eth1/3        --                 xcvrAbsen 1         auto    auto    --         
+    [ Message content over the limit has been removed. ]
+Vlan2710      --                 connected routed    auto    auto    --
+Vlan2711      --                 connected routed    auto    auto    --
+Vlan2723      "GW_Legacy RED_272 connected routed    auto    auto    --
+Vlan2767      "GW_Legacy GREEN-N connected routed    auto    auto    --
+Vlan2894      --                 connected routed    auto    auto    --
+Vlan2895      "GW_LEGACY_TEST-NE connected routed    auto    auto    --
+Vlan2897      "GW_LEGACY_TEST-CL connected routed    auto    auto    --
+Vlan2931      "EP_Legacy ORANGE_ connected routed    auto    auto    --
+Vlan3333      "Any Prefix behind connected routed    auto    auto    --
+Vlan3334      "Specific Subnet b connected routed    auto    auto    --
+Vlan3335      "Specific Subnet b connected routed    auto    auto    --
+Vlan3336      "Specific Subnet b connected routed    auto    auto    --
+
+--------------------------------------------------------------------------------
+Port          Name               Status    Vlan      Duplex  Speed   Type
+--------------------------------------------------------------------------------
+
+KACI-C9372PX-1# ' contains 'xcvrAbsen'</status>
+</test>
+<status status="FAIL" start="2025-07-17T19:51:40.284254" elapsed="6.433878"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="2.Verify Interface Status" id="s1" pass="0" fail="1" skip="0">2.Verify Interface Status</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
