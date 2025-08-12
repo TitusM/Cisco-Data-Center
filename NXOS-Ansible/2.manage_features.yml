@@ -1,0 +1,24 @@
+---
+- name: Ensure that NX-OS features are enabled or disabled as required
+  hosts: nexus
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+
+  vars:
+    nxos_features:
+      - { feature: lacp, state: disabled }
+      - { feature: ospf, state: enabled }
+      - { feature: pim, state: enabled }
+      - { feature: vn-segment-vlan-based, state: enabled}
+      - { feature: nv overlay, state: enabled}
+      - { feature: bgp, state: enabled }
+      - { feature: vpc, state: enabled}
+
+
+
+  tasks:
+    - name: Configure NX-OS feature states
+      cisco.nxos.nxos_feature:
+        feature: "{{ item.feature }}"
+        state: "{{ item.state }}"
+      loop: "{{ nxos_features }}"
