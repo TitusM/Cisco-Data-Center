@@ -10,10 +10,10 @@ This repository contains lab configurations for Cisco Data Center technologies, 
 ## 🧩 Sections & Features
 
 - **🏢 ACI (Application Centric Infrastructure)**
-  - Configurations, troubleshooting, and automation _(Infrastructure as Code using Terraform)_.
+  - ACI Configurations, troubleshooting, and automation _(Infrastructure as Code using Terraform)_.
 
 - **🌐 VXLAN**
-  - Labs covering VXLAN deployment, configuration and troubleshooting.
+  - ACI Configurations, troubleshooting, and automation _(Infrastructure as Code using Ansible)_.
 
 - **🔗 Data Center Layer 2 Networking**
   - Labs and configs focusing on L2 switching and protocols.
@@ -25,6 +25,7 @@ This repository contains lab configurations for Cisco Data Center technologies, 
 
 - 🖥️ Cisco Data Center platforms _(NX-OS, ACI, Nexus Dashboard)_
 - 🛠️ Terraform _(Infrastructure as Code for ACI automation)_
+- 🛠️ Ansible _(Infrastructure as Code for VXLAN automation)_
 
 ## 🏁 Getting Started
 
