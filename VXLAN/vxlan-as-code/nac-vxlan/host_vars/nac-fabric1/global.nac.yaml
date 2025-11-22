@@ -6,12 +6,12 @@ vxlan:
     type: VXLAN_EVPN
   global:
     ibgp:
-      bgp_asn: "65001"
+      bgp_asn: "65000"
       route_reflectors: 2
-      anycast_gateway_mac: 12:34:56:78:90:00
+      anycast_gateway_mac: 20:20:00:00:00:aa
       dns_servers:
-        - ip_address: 10.0.0.2
+        - ip_address: 198.18.133.1
           vrf: management
       ntp_servers:
-        - ip_address: 10.55.0.2
+        - ip_address: 198.18.128.1
           vrf: management

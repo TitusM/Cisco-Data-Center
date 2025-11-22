@@ -2,39 +2,39 @@
 vxlan:
   topology:
     switches:
-      - name: netascode-spine1
-        serial_number: 99H2TUPCVFK
+      - name: Site1-BGW1
+        serial_number: 95QFH798XXP
+        role: border_gateway
+        management:
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.106
+      - name: Site1-S1
+        serial_number: 9WPZ6EK2N4Q
         role: spine
         management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.21
-      - name: netascode-spine2
-        serial_number: 941L30Q8ZYI
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.104
+      - name: Site1-S2
+        serial_number: 9PFMZ2WYJ03
         role: spine
         management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.22
-      - name: netascode-leaf1
-        serial_number: 9LWGEUPJOCM
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.105
+      - name: Site1-L1
+        serial_number: 9ELO0K25KT1
         role: leaf
         management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.11
-      - name: netascode-leaf2
-        serial_number: 9YEXD0OHA7Z
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.101
+      - name: Site1-L2
+        serial_number: 99EU5FVUYAB
         role: leaf
         management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.12
-      - name: netascode-leaf3
-        serial_number: 9M2TXMZ7D3N
-        role: leaf
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.102
+      - name: Site1-BL1
+        serial_number: 9OFF8FA8MUK
+        role: border
         management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.13
-      - name: netascode-leaf4
-        serial_number: 982YGMKUY2B
-        role: leaf
-        management:
-          default_gateway_v4: 10.1.1.1
-          management_ipv4_address: 10.1.1.14
+          default_gateway_v4: 198.18.4.1
+          management_ipv4_address: 198.18.4.103
