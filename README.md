@@ -13,10 +13,13 @@ This repository contains lab configurations for Cisco Data Center technologies, 
   - ACI Configurations, troubleshooting, and automation _(Infrastructure as Code using Terraform)_.
 
 - **🌐 VXLAN**
-  - ACI Configurations, troubleshooting, and automation _(Infrastructure as Code using Ansible)_.
+  - VXLAN Configurations, troubleshooting, and automation _(Infrastructure as Code using Ansible)_.
 
 - **🔗 Data Center Layer 2 Networking**
-  - Labs and configs focusing on L2 switching and protocols.
+  - Labs and configs focusing on L2 switching.
+ 
+- **🔗 Data Center Layer 3 Networking**
+  - Labs and configs focusing on L3 routing.
 
 - **🛡️ Network Security**
   - Data Center AAA and security-related labs.
@@ -33,8 +36,6 @@ This repository contains lab configurations for Cisco Data Center technologies, 
 
 - 🟦 Access to a Cisco ACI fabric _(with APIC)_
 - 🟧 Access to Cisco Modeling Labs [(CML)](https://developer.cisco.com/modeling-labs/)
-- 🟪 Terraform installed ([Install Guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli))
-- 🟨 Valid Terraform provider for Cisco ACI
 
 ### ▶️ Usage (for ACI automation labs)
 
