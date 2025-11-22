@@ -1,0 +1,23 @@
+vxlan:
+  topology:
+    switches:
+      - name: Site1-L1
+        interfaces:
+          - name: e1/5
+            mode: access
+            description: 'Access Interface to Server-1'
+            enabled: true
+            mtu: default
+            speed: auto
+            spanning_tree_portfast: true
+            enable_bpdu_guard: true
+      - name: Site1-L2
+        interfaces:
+          - name: e1/5
+            mode: access
+            description: 'Access Interface to Server-2'
+            enabled: true
+            mtu: default
+            speed: auto
+            spanning_tree_portfast: true
+            enable_bpdu_guard: true

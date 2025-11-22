@@ -1,0 +1,9 @@
+---
+
+all:
+  children:
+    ndfc:
+      hosts:
+        nac-fabric1:
+         # ansible_host: "{{ lookup('ansible.builtin.env', 'ND_HOST') }}"
+          ansible_host: 198.18.4.2
