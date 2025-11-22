@@ -1,5 +1,4 @@
-# Cisco-Data Center
-# 🚀 Cisco Data Center
+# 🚀 Cisco Data Center Labs
 
 ![Labs](https://img.shields.io/badge/Data%20Center-Labs-blue)
 ![Cisco](https://img.shields.io/badge/Cisco-ACI%2C%20VXLAN%2C%20Nexus-informational)
@@ -12,10 +11,9 @@ This repository contains lab configurations for Cisco Data Center technologies, 
 
 - **🏢 ACI (Application Centric Infrastructure)**
   - Configurations, troubleshooting, and automation _(Infrastructure as Code using Terraform)_.
-  - Labs include initial fabric deployment, vPC configuration, and Nexus as Code integration.
 
 - **🌐 VXLAN**
-  - Labs covering VXLAN deployment and configuration.
+  - Labs covering VXLAN deployment, configuration and troubleshooting.
 
 - **🔗 Data Center Layer 2 Networking**
   - Labs and configs focusing on L2 switching and protocols.
