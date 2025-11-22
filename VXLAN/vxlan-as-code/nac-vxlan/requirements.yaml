@@ -1,0 +1,14 @@
+# requirements.yml
+collections:
+  - name: community.general
+    version: 10.1.0
+  - name: ansible.posix
+    version: 2.0.0
+  - name: ansible.utils
+    version: 5.1.2
+  - name: ansible.netcommon
+    version: 7.1.0
+  - name: cisco.dcnm
+    version: 3.9.1
+  - name: cisco.nac_dc_vxlan
+    version: 0.5.1

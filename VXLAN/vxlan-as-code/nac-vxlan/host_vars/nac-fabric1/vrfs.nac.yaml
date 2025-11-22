@@ -1,0 +1,19 @@
+---
+vxlan:
+  overlay:
+    vrfs:
+      - name: PROD_VRF
+        vrf_id: 50000
+        vlan_id: 2000
+        vrf_attach_group: all
+    vrf_attach_groups:
+      - name: all
+        switches:
+          - hostname: Site1-L1
+          - hostname: Site1-L2
+      - name: leaf1
+        switches:
+          - hostname: Site1-L1
+      - name: leaf2
+        switches:
+          - hostname: Site1-L2

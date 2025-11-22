@@ -1,0 +1,17 @@
+---
+# Updated for v0.5.1: Using vxlan.global.ibgp structure for iBGP EVPN fabric
+vxlan:
+  fabric:
+    name: nac-fabric1
+    type: VXLAN_EVPN
+  global:
+    ibgp:
+      bgp_asn: "65000"
+      route_reflectors: 2
+      anycast_gateway_mac: 20:20:00:00:00:aa
+      dns_servers:
+        - ip_address: 198.18.133.1
+          vrf: management
+      ntp_servers:
+        - ip_address: 198.18.128.1
+          vrf: management

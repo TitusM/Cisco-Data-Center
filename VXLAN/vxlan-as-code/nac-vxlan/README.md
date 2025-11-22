@@ -1,7 +1,5 @@
 # Ansible NDFC VXLAN Example Repository
 
-> **Note:** This README was adopted from [https://github.com/netascode/ansible-dc-vxlan-example](https://github.com/netascode/ansible-dc-vxlan-example)
-
 This repository is designed to build the skeleton for the [Network as Code DC VXLAN Ansible Galaxy Collection](https://galaxy.ansible.com/ui/repo/published/cisco/nac_dc_vxlan/). Cloning this repository will create a working structure that can be extended to automate your Cisco Nexus Data Center network using Nexus Dashboard Fabric Controller (NDFC).
 
 ## Setting up environment for the collection
@@ -57,7 +55,7 @@ If you wish to install the Galaxy Collection inside the repository you are creat
 ansible-galaxy collection install -p collections/ansible_collections/ -r requirements.yaml
 ```
 
-You will need to then configure your ansible.cfg file to point to the correct collection location.
+You will need to then configure your ansible.cfg file to point to the correct collection location. 
 
 This sets the correct path for all the Python modules and libraries in the virtual environment that was created. If you look in that directory you will find the collections package locations. Below is the base `ansible.cfg` file. You will need to adjust the `collections_path` to your environment paths:
 
@@ -79,7 +77,7 @@ bin_ansible_callbacks = True
 
 ### Step 7 - Verify the installation
 
-Verify that the ansible configuration file is being read and all the paths are correct inside of this virtual environment.
+Verify that the ansible configuration file is being read and all the paths are correct inside of this virtual environment. 
 
 ```bash
 ansible --version
@@ -195,7 +193,7 @@ Role: [cisco.nac_dc_vxlan.validate](https://github.com/netascode/ansible-dc-vxla
 
 The `validate` role ensures that the data model is correct and that the data model can be processed by the subsequent roles. The validate role reads all the files in the `host_vars` directory and create a single data model in memory for execution.
 
-As part of the VXLAN as Code service from Cisco, you will also be able to utilize the semantic validation feature to make sure that the data model matches the intended expected values. This is a powerful feature that allows you to ensure that the data model is correct before it is deployed to the network. Additonally the validate role allows creation of rules that can be used to prevent operators from making specific configurations that are not allowed in the network. These can be as simple as enforcing proper naming conventions to more complex rules for interconnectivity issues that should be avoided. These rules are coded in Python and can be constructed as part of the Services as Code offer.
+As part of the VXLAN as Code service from Cisco, you will also be able to utilize the semantic validation feature to make sure that the data model matches the intended expected values. This is a powerful feature that allows you to ensure that the data model is correct before it is deployed to the network. Additonally the validate role allows creation of rules that can be used to prevent operators from making specific configurations that are not allowed in the network. These can be as simple as enforcing proper naming conventions to more complex rules for interconnectivity issues that should be avoided. These rules are coded in Python and can be constructed as part of the Services as Code offer. 
 
 ### Create role
 
@@ -235,7 +233,7 @@ multisite_network_delete_mode: false
 multisite_vrf_delete_mode: false
 ```
 
-**Note:** These variables are set to `false` by default to avoid accidental removal of configuration from NDFC that might impact the network.
+**Note:** These variables are set to `false` by default to avoid accidental removal of configuration from NDFC that might impact the network. 
 
 ### Advantages of the roles in the workflow
 

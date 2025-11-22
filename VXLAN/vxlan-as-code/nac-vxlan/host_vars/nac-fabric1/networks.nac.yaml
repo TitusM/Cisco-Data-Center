@@ -1,0 +1,37 @@
+---
+vxlan:
+  overlay:
+    networks:
+      - name: PROD_1_NET
+        vrf_name: PROD_VRF
+        net_id: 30000
+        vlan_id: 2300
+        vlan_name: PROD_1_NET
+        gw_ip_address: "192.168.11.1/24"
+        network_attach_group: leaf1
+      - name: PROD_2_NET
+        vrf_name: PROD_VRF
+        net_id: 30001
+        vlan_id: 2301
+        vlan_name: PROD_2_NET
+        gw_ip_address: "192.168.12.1/24"
+        network_attach_group: leaf2
+    network_attach_groups:
+      - name: all
+        switches:
+          - hostname: Site1-L1
+            ports:
+              - Ethernet1/5
+          - hostname: Site1-L2
+            ports:
+              - Ethernet1/5
+      - name: leaf1
+        switches:
+          - hostname: Site1-L1
+            ports:
+              - Ethernet1/5
+      - name: leaf2
+        switches:
+          - hostname: Site1-L2
+            ports:
+              - Ethernet1/5
