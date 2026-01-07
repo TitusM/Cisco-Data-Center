@@ -1,0 +1,22 @@
+---
+# vars file for spine
+features:
+  - { feature: bgp }
+  - { feature: pim }
+  - { feature: ospf }
+  - { feature: lldp }
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0
+
+asn: 65001
+
+address_families:
+  - { afi: l2vpn, safi: evpn }
+
+bgp_neighbors:
+  - { remote_as: 65001, neighbor: 1.1.1.1, update_source: Loopback0 }
+  - { remote_as: 65001, neighbor: 2.2.2.2, update_source: Loopback0 }
+
+rp_address: 34.34.34.34
