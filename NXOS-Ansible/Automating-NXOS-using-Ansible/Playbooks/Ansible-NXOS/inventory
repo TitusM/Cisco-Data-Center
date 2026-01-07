@@ -1,0 +1,11 @@
+[spine]
+S1-SPINE1 ansible_host=<ip-address>
+S1-SPINE2 ansible_host=<ip-address>
+
+[leaf]
+S1-LEAF1 ansible_host=<ip-address>
+S1-LEAF2 ansible_host=<ip-address>
+
+[bgw]
+S1-BGW1 ansible_host=<ip-address>
+S1-BGW2 ansible_host=<ip-address>
