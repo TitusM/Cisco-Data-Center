@@ -55,6 +55,12 @@
         sparse: true
     loop: "{{ l3interfaces }}"
 
+-  name: CONFIGURE PIM RP ADDRESS
+   cisco.nxos.nxos_pim_rp_address:
+        rp_address: "{{ rp_address }}"
+        state: present
+
+
 -   name: ENABLE NV OVERLAY EVPN
     cisco.nxos.nxos_evpn_global:
         nv_overlay_evpn: true

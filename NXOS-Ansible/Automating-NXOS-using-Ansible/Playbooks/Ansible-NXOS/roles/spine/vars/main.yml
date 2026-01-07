@@ -10,6 +10,11 @@ ospf_process_id: UNDERLAY
 
 ospf_area: 0
 
+rp_address: 34.34.34.34
+s1_spine1_loopback1: 33.33.33.33
+s1_spine2_loopback1: 44.44.44.44
+
+
 asn: 65001
 
 address_families:
@@ -19,4 +24,3 @@ bgp_neighbors:
   - { remote_as: 65001, neighbor: 1.1.1.1, update_source: Loopback0 }
   - { remote_as: 65001, neighbor: 2.2.2.2, update_source: Loopback0 }
 
-rp_address: 34.34.34.34

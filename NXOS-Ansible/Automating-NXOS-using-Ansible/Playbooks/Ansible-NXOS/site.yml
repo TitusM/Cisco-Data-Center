@@ -1,0 +1,29 @@
+---
+#main playbook file
+
+- name: Configure Leafs 
+  gather_facts: false
+  connection: local
+  tags: leaf
+
+  hosts: leaf
+  roles:
+    - role: leaf 
+
+- name: Configure Spines
+  gather_facts: false
+  connection: local
+  tags: spine
+
+  hosts: spine
+  roles:
+    - role: spine
+
+- name: Configure BGWs
+  gather_facts: false
+  connection: local
+  tags: bgw
+
+  hosts: bgw
+  roles:
+    - role: bgw

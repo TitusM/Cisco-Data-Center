@@ -1,7 +1,0 @@
----
-# Shared variables for all spine switches
-
-# PIM Anycast RP Configuration
-rp_address: 34.34.34.34
-s1_spine1_loopback1: 33.33.33.33
-s1_spine2_loopback1: 44.44.44.44
