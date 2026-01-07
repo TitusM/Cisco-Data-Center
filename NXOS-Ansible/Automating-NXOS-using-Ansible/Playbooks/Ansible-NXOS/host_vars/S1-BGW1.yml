@@ -1,0 +1,13 @@
+---
+# vars file for S1-BGW1
+
+router_id: 5.5.5.5
+
+l3interfaces:
+  - { interface: loopback0, addr: 5.5.5.5, mask: 32, description: "S1-BGW1 Loopback0" }
+  - { interface: loopback1, addr: 55.55.55.55, mask: 32, description: "S1-BGW1 Loopback1" }
+  - { interface: loopback100, addr: 56.56.56.56, mask: 32, description: "MULTI-SITE INTERFACE (VIP VTEP)" }
+  - { interface: Ethernet1/98, addr: 10.1.1.9, mask: 31, description: "S1-BGW1 TO S1-SPINE1" }
+  - { interface: Ethernet1/99, addr: 10.1.1.13, mask: 31, description: "S1-BGW1 TO S1-SPINE2" }
+ #- { interface: Ethernet1/98, addr: 10.1.1.9, mask: 31, description: "S1-BGW1 TO S1-BGW1" }
+ # - { interface: Ethernet1/99, addr: 10.1.1.10, mask: 31, description: "S1-BGW1 TO S1-BGW2" }

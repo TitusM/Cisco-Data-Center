@@ -1,0 +1,12 @@
+---
+# vars file for S1-SPINE2
+
+router_id: 4.4.4.4
+
+l3interfaces:
+  - { interface: loopback0, addr: 4.4.4.4, mask: 32, description: "S1-SPINE2 Loopback0" }
+  - { interface: loopback1, addr: 44.44.44.44, mask: 32, description: "S1-SPINE2 Loopback1" }
+  - { interface: Ethernet1/2, addr: 10.1.1.3, mask: 31, description: "S1-SPINE2 TO S1-LEAF1" }
+  - { interface: Ethernet1/97, addr: 10.1.1.7, mask: 31, description: "S1-SPINE2 TO S1-LEAF2" }
+  - { interface: Ethernet1/99, addr: 10.1.1.12, mask: 31, description: "S1-SPINE2 TO S1-BGW1" }
+  - { interface: Ethernet1/98, addr: 10.1.1.14, mask: 31, description: "S1-SPINE2 TO S1-BGW2" }
