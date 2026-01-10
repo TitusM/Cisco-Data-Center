@@ -1,0 +1,10 @@
+---
+# vars file for S2-LEAF1
+
+router_id: 1.0.0.1
+
+l3interfaces:
+  - { interface: loopback0, addr: 1.0.01, mask: 32, description: "S2-LEAF1 Loopback0" }
+  - { interface: loopback1, addr: 11.0.0.11, mask: 32, description: "S2-LEAF1 Loopback1" }
+  - { interface: Ethernet1/32, addr: 20.2.2.0, mask: 31, description: "S2-LEAF1 TO S2-SPINE1" }
+  - { interface: Ethernet1/34, addr: 20.2.2.2, mask: 31, description: "S2-LEAF1 TO S2-SPINE2" }
