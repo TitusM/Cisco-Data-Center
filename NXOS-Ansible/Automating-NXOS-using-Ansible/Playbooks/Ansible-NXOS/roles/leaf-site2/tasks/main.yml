@@ -1,3 +1,212 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for leaf-site2
+-   name: ENABLE FEATURES
+    cisco.nxos.nxos_feature:
+        feature: "{{item.feature }}"
+    loop: "{{ features }}"
+
+-   name: ENABLE FEATURES
+    cisco.nxos.nxos_config:
+        lines: "feature nv overlay"
+
+-   name: CONFIGURE LAYER 3 INTERFACES
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            description: "{{ item.description }}"
+            enabled: true
+            mtu: "{{ 9216 if 'loopback' not in item.interface | lower else omit }}"
+    loop: "{{ l3interfaces }}"
+
+-   name: CONFIGURE INTERFACE IP ADDR
+    cisco.nxos.nxos_l3_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            ipv4:
+            -   address: "{{ item.addr }}/{{ item.mask }}"
+    loop: "{{ l3interfaces }}"
+    
+-   name: CONFIGURE OSPF PROCESS
+    cisco.nxos.nxos_ospfv2:
+        config:
+          processes:
+            - process_id: "{{ ospf_process_id }}"
+              router_id: "{{ router_id }}"
+        state: merged
+
+-   name: ASSOCIATE INTERFACES WITH OSPF PROCESS
+    cisco.nxos.nxos_ospf_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            address_family:
+            -   afi: ipv4
+                processes:
+                -   process_id: "{{ ospf_process_id }}"
+                    area:
+                        area_id: "{{ ospf_area }}"
+                network: "{{ 'point-to-point' if 'loopback' not in item.interface | lower else omit }}"
+    loop: "{{ l3interfaces }}"
+
+-   name: CONFIGURE PIM INTERFACES
+    cisco.nxos.nxos_pim_interface:
+        interface: "{{ item.interface }}"
+        sparse: true
+    loop: "{{ l3interfaces }}"
+
+-  name: CONFIGURE PIM RP ADDRESS
+   cisco.nxos.nxos_pim_rp_address:
+        rp_address: "{{ rp_address }}"
+        state: present
+
+-   name: ENABLE NV OVERLAY EVPN
+    cisco.nxos.nxos_evpn_global:
+        nv_overlay_evpn: true
+
+
+-   name: CONFIGURE BGP ASN, ROUTER ID, AND NEIGHBORS
+    cisco.nxos.nxos_bgp_global:
+        config:
+            as_number: "{{ asn }}"
+            router_id: "{{ router_id }}"
+            neighbors:
+            -   neighbor_address: "{{ item.neighbor }}"
+                remote_as: "{{ item.remote_as }}"
+                update_source: "{{ item.update_source }}"
+        state: merged
+    loop: "{{ bgp_neighbors }}"
+
+-   name: CONFIGURE BGP NEIGHBOR AFI, SAFI, COMMUNITY, and RR
+    cisco.nxos.nxos_bgp_neighbor_address_family:
+        config:
+            as_number: "{{ asn }}"
+            neighbors:
+            -   neighbor_address: "{{ item.neighbor }}"
+                address_family:
+                -   afi: l2vpn
+                    safi: evpn
+                    send_community:
+                        both: true
+                   # route_reflector_client: true
+    loop: "{{ bgp_neighbors }}"
+
+-   name: CONFIGURE VLAN TO VNI MAPPING
+    cisco.nxos.nxos_vlans:
+        config:
+        -   vlan_id: "{{ item.vlan_id }}"
+            mapped_vni: "{{ item.vni_id }}"
+    with_items:
+    - "{{ vlans_l2vni }}"
+    - "{{ vlans_l3vni }}"
+
+  
+-   name: CONFIGURE TENANT VRFs
+    cisco.nxos.nxos_vrf:
+        vrf: "{{ item.vrf }}"
+        vni: "{{ item.vni_id }}"
+        rd: auto
+        state: present
+    loop: "{{ vrfs }}"
+
+-   name: CONFIGURE TENANT VRFs (cont'd)
+    cisco.nxos.nxos_vrf_af:
+        vrf: "{{ item.vrf }}"
+        afi: ipv4
+        route_target_both_auto_evpn: true
+        state: present
+    loop: "{{ vrfs }}"
+
+-   name: CONFIGURE VXLAN VTEP NVE INTERFACE
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: nve1
+            enabled: true
+        state: merged
+
+-   name: CONFIGURE VXLAN VTEP NVE INTERFACE FOR EVPN CONTROL PLANE
+    cisco.nxos.nxos_vxlan_vtep:
+        interface: nve1
+        host_reachability: true
+        source_interface: Loopback1
+        state: present
+
+-   name: CONFIGURE VXLAN VTEP NVE INTERFACE L2VNI MAPPING
+    cisco.nxos.nxos_vxlan_vtep_vni:
+        interface: nve1
+        vni: "{{ item.vni_id }}"
+        #ingress_replication: bgp
+        multicast_group: "{{ item.mcast_grp }}"
+        #suppress_arp: true
+    loop: "{{ vlans_l2vni }}"
+
+-   name: CONFIGURE VXLAN VTEP NVE INTERFACE L3VNI MAPPING
+    cisco.nxos.nxos_vxlan_vtep_vni:
+        interface: nve1
+        vni: "{{ item.vni_id }}"
+        assoc_vrf: true
+    loop: "{{ vlans_l3vni }}"
+
+-   name: CONFIGURE L2 EVPN VRFs
+    cisco.nxos.nxos_evpn_vni:
+        vni: "{{ item.vni_id }}"
+        route_distinguisher: auto
+        route_target_both: auto
+    loop: "{{ vlans_l2vni }}"
+
+-   name: CONFIGURE TENANT VRFs UNDER BGP PROCESS
+    cisco.nxos.nxos_bgp_address_family:
+        config:
+            as_number: "{{ asn }}"
+            address_family:
+            -   afi: "{{ item.afi }}"
+                safi: "{{ item.safi }}"
+                vrf: "{{ item.vrf }}"
+                advertise_l2vpn_evpn: true
+    loop: "{{ vrfs }}"
+
+-   name: CONFIGURE ANYCAST GW MAC
+    cisco.nxos.nxos_overlay_global:
+        anycast_gateway_mac: "1234.5678.9000"
+
+-   name: CONFIGURE SVIs THAT ARE MAPPED TO VNIs
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: "Vlan{{ item.vlan_id }}"
+            enabled: true
+    with_items:
+    - "{{ vlans_l2vni }}"
+    - "{{ vlans_l3vni }}"
+
+-   name: ASSOCIATE INTERFACES TO TENANT VRF
+    cisco.nxos.nxos_vrf_interface:
+        vrf: "{{ item.vrf }}"
+        interface: "vlan{{ item.vlan_id }}"
+    with_items:
+    - "{{ vlans_l2vni }}"
+    - "{{ vlans_l3vni }}"
+
+-   name: ENABLE ANYCAST GW UNDER L2VNI SVI
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: "Vlan{{ item.vlan_id }}"
+            fabric_forwarding_anycast_gateway: true
+    loop: "{{ vlans_l2vni }}"
+
+-   name: CONFIGURE IP FORWARD UNDER L3VNI SVI
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: "vlan{{ item.vlan_id }}"
+            ip_forward: true
+    loop: "{{ vlans_l3vni }}"
+
+-   name: CONFIGURE IP ADDRESS TO L2VNI SVI
+    cisco.nxos.nxos_l3_interfaces:
+        config:
+        -   name: "Vlan{{ item.vlan_id }}"
+            ipv4:
+            -   address: "{{ item.addr }}/{{ item.mask }}"
+    loop: "{{ vlans_l2vni }}"
+
+-   name: SAVE RUN CONFIG TO STARTUP CONFIG
+    cisco.nxos.nxos_config:
+        save_when: always

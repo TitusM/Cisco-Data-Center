@@ -1,3 +1,82 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for bgw-site2
+-   name: ENABLE FEATURES
+    cisco.nxos.nxos_feature:
+        feature: "{{item.feature }}"
+    loop: "{{ features }}"
+
+-   name: ENABLE FEATURES
+    cisco.nxos.nxos_config:
+        lines: "feature nv overlay"
+
+-   name: CONFIGURE LAYER 3 INTERFACES
+    cisco.nxos.nxos_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            description: "{{ item.description }}"
+            enabled: true
+            mtu: "{{ 9216 if 'loopback' not in item.interface | lower else omit }}"
+    loop: "{{ l3interfaces }}"
+
+
+-   name: CONFIGURE INTERFACE IP ADDR
+    cisco.nxos.nxos_l3_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            ipv4:
+            -   address: "{{ item.addr }}/{{ item.mask }}"
+    loop: "{{ l3interfaces }}"
+
+-   name: CONFIGURE OSPF PROCESS
+    cisco.nxos.nxos_ospfv2:
+        config:
+          processes:
+            - process_id: "{{ ospf_process_id }}"
+              router_id: "{{ router_id }}"
+        state: merged
+
+-   name: ASSOCIATE INTERFACES WITH OSPF PROCESS
+    cisco.nxos.nxos_ospf_interfaces:
+        config:
+        -   name: "{{ item.interface }}"
+            address_family:
+            -   afi: ipv4
+                processes:
+                -   process_id: "{{ ospf_process_id }}"
+                    area:
+                        area_id: "{{ ospf_area }}"
+                network: "{{ 'point-to-point' if 'loopback' not in item.interface | lower else omit }}"
+    loop: "{{ l3interfaces }}"
+
+-   name: CONFIGURE PIM INTERFACES
+    cisco.nxos.nxos_pim_interface:
+        interface: "{{ item.interface }}"
+        sparse: true
+    loop: "{{ l3interfaces }}"
+
+-  name: CONFIGURE PIM RP ADDRESS
+   cisco.nxos.nxos_pim_rp_address:
+        rp_address: "{{ rp_address }}"
+        state: present
+
+
+-   name: ENABLE NV OVERLAY EVPN
+    cisco.nxos.nxos_evpn_global:
+        nv_overlay_evpn: true
+
+-  name: CONFIGURE MSITE BGW SITE-ID
+   cisco.nxos.nxos_config:
+        lines:
+            - "delay-restore time 300"
+        parents:
+            - "evpn multisite border-gateway {{ bgw_site_id }}"
+
+-   name: CONFIGURE MSITE FABRIC TRACKING
+    cisco.nxos.nxos_config:
+        lines:
+            - "evpn multisite fabric-tracking"
+        parents:
+            - "interface {{ item.interface }}"
+    loop: "{{ l3interfaces }}"
+    when: "'loopback' not in item.interface | lower"

@@ -1,3 +1,26 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for bgw-site2
+features:
+  - { feature: bgp }
+  - { feature: ospf }
+  - { feature: pim }
+  - { feature: lldp }
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0
+
+bgw_site_id: 2
+
+asn: 65002
+
+address_families:
+  - { afi: l2vpn, safi: evpn }
+  - { afi: ipv4, safi: unicast }
+
+bgp_neighbors:
+  - { remote_as: 65002, neighbor: 3.0.0.3, update_source: Loopback0 }
+  - { remote_as: 65002, neighbor: 4.0.0.4, update_source: Loopback0 }
+
+rp_address: 34.0.0.34

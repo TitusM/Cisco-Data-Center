@@ -1,3 +1,27 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for spine-site2
+features:
+  - { feature: bgp }
+  - { feature: pim }
+  - { feature: ospf }
+  - { feature: lldp }
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0
+
+rp_address: 34.0.0.34
+s2_spine1_loopback1: 33.0.0.33
+s2_spine2_loopback1: 44.0.0.44
+
+
+asn: 65002
+
+address_families:
+  - { afi: l2vpn, safi: evpn }
+
+bgp_neighbors:
+  - { remote_as: 65002, neighbor: 1.0.0.1, update_source: Loopback0 }
+  - { remote_as: 65002, neighbor: 2.0.0.2, update_source: Loopback0 }
+

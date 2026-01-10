@@ -1,3 +1,37 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # vars file for leaf-site2
+features:
+  - { feature: bgp }
+  - { feature: interface-vlan }
+  - { feature: ospf }
+  - { feature: pim }
+  - { feature: vnseg_vlan } 
+  - { feature: lldp }
+
+ospf_process_id: UNDERLAY
+
+ospf_area: 0
+
+asn: 65002
+
+address_families:
+  - { afi: l2vpn, safi: evpn }
+  - { afi: ipv4, safi: unicast }
+
+bgp_neighbors:
+  - { remote_as: 65002, neighbor: 3.0.0.3, update_source: Loopback0 }
+  - { remote_as: 65002, neighbor: 4.0.0.4, update_source: Loopback0 }
+
+rp_address: 34.0.0.34
+
+vlans_l2vni:
+  - { vlan_id: 11, vni_id: 10011, addr: 100.0.11.1, mask: 24, mcast_grp: 239.0.0.11, vrf: Tenant-1 }
+  - { vlan_id: 12, vni_id: 10012, addr: 100.0.12.1, mask: 24, mcast_grp: 239.0.0.12, vrf: Tenant-1 }
+
+
+vlans_l3vni:
+  - { vlan_id: 10, vni_id: 50000, vrf: Tenant-1 }
+
+vrfs:
+  - { vrf: Tenant-1, vni_id: 50000, afi: ipv4, safi: unicast }
