@@ -47,7 +47,9 @@ nav:
       - "Standalone Lab · Configure a Service Profile": ucs-san/14-service-profile-standalone.md
       - "Standalone Lab · Configure Basic Identity Pools": ucs-san/15-identity-pools-standalone.md
   - NX-OS: nx-os/index.md
-  - ACI: aci/index.md
+  - ACI:
+      - Overview: aci/index.md
+      - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
 markdown_extensions:
