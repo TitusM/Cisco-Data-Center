@@ -1,9 +1,5 @@
 # Configure a Cisco UCS Service Profile
 
-**Titus Majeza**
-
-([https://www.linkedin.com/in/titus-majeza/](https://www.linkedin.com/in/titus-majeza/))
-
 For more labs visit my GitHub repo: [https://github.com/TitusM/Cisco-Data-Center](https://github.com/TitusM/Cisco-Data-Center)
 
 !!! note
@@ -308,4 +304,6 @@ For more labs visit my GitHub repo: [https://github.com/TitusM/Cisco-Data-Center
 
 **Cisco U courses:**
 
-1. Understanding Cisco Network Automation Essentials | DEVNAE
+1. Understanding Cisco Data Center Foundations | DCFNDU
+2. Implementing and Operating Cisco Data Center Core Technologies | DCCOR
+3. Troubleshooting Cisco Data Center Infrastructure | DCIT
