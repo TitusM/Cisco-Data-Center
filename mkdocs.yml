@@ -19,10 +19,10 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.sections
     - navigation.top
     - navigation.indexes
     - navigation.footer
+    - navigation.collapse
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -52,6 +52,7 @@ nav:
   - ACI:
       - Overview: aci/index.md
       - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md
+      - Multi-Pod Fabric Bring Up – from Scratch!: aci/multipod-fabric-bring-up.md
       - Multi-Site Configuration: aci/multi-site-bring-up.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
