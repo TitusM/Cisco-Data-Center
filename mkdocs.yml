@@ -30,22 +30,24 @@ theme:
 nav:
   - Home: index.md
   - UCS & SAN:
-      - Overview: ucs-san/00-overview.md
-      - 01 · Pre-Lab Checklist: ucs-san/01-pre-lab.md
-      - 02 · Compute Policies: ucs-san/02-compute-policies.md
-      - 03 · SAN/LAN Uplinks: ucs-san/03-uplinks.md
-      - 04 · Port Modes: ucs-san/04-port-modes.md
-      - 05 · FC and FCoE: ucs-san/05-fc-fcoe.md
-      - 06 · Zoning: ucs-san/06-zoning.md
-      - 07 · NPV / NPIV: ucs-san/07-npv-npiv.md
-      - 08 · Trunking: ucs-san/08-trunking.md
-      - 09 · PortChannel: ucs-san/09-portchannel.md
-      - 10 · Load Balancing: ucs-san/10-load-balancing.md
-      - 11 · SAN Boot Verification: ucs-san/11-san-boot-verification.md
-      - 12 · Troubleshooting Drill: ucs-san/12-troubleshooting-drill.md
-      - Appendix: ucs-san/13-appendix.md
-      - "Standalone Lab · Configure a Service Profile": ucs-san/14-service-profile-standalone.md
-      - "Standalone Lab · Configure Basic Identity Pools": ucs-san/15-identity-pools-standalone.md
+      - End-to-End Guided Lab:
+          - Overview: ucs-san/00-overview.md
+          - Pre-Lab Checklist: ucs-san/01-pre-lab.md
+          - 01 · Compute Policies: ucs-san/02-compute-policies.md
+          - 02 · SAN/LAN Uplinks: ucs-san/03-uplinks.md
+          - 03 · Port Modes: ucs-san/04-port-modes.md
+          - 04 · FC and FCoE: ucs-san/05-fc-fcoe.md
+          - 05 · Zoning: ucs-san/06-zoning.md
+          - 06 · NPV / NPIV: ucs-san/07-npv-npiv.md
+          - 07 · Trunking: ucs-san/08-trunking.md
+          - 08 · PortChannel: ucs-san/09-portchannel.md
+          - 09 · Load Balancing: ucs-san/10-load-balancing.md
+          - 10 · SAN Boot Verification: ucs-san/11-san-boot-verification.md
+          - 11 · Troubleshooting Drill: ucs-san/12-troubleshooting-drill.md
+          - Appendix: ucs-san/13-appendix.md
+      - Standalone Labs:
+          - Configure a Service Profile: ucs-san/14-service-profile-standalone.md
+          - Configure Basic Identity Pools: ucs-san/15-identity-pools-standalone.md
   - NX-OS: nx-os/index.md
   - ACI:
       - Overview: aci/index.md

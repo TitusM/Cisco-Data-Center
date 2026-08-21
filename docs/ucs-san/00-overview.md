@@ -52,7 +52,9 @@ Keep these consistent across every module so zoning, trunking, and verification 
 | vHBAs | vHBA0 → VSAN 100 (boot), vHBA2 → VSAN 101 (data) | vHBA1 → VSAN 200 (boot), vHBA3 → VSAN 201 (data) |
 | UCSM domain | Fabric A = Primary FI | Fabric B = Subordinate FI |
 | Device alias suffix | `-fa` | `-fb` |
-| VLAN Group name | `VG-Data` (VLAN 10) — pinned primary to FI-A uplink | `VG-Mgmt` (VLAN 11) — pinned primary to FI-B uplink |
+| VLAN Group name | `VG-Data` (VLAN 10) — conceptual example, see Module 2.4* | `VG-Mgmt` (VLAN 11) — conceptual example, see Module 2.4* |
+
+\* Both VLANs stay shared and trunked to both fabrics in this lab's actual design — see Module 2.4 for why an actual VLAN Group association isn't built against this lab's own redundant uplinks.
 
 !!! note "Why VSANs split into Boot/Data but VLANs don't"
     A single vHBA can only ever belong to one VSAN, so accessing a second VSAN on the same fabric means a second vHBA, not a wider allowed-list on the first one. That's the opposite of how one Ethernet vNIC can trunk several VLANs at once — worth having straight before Module 1's templates, since it's a common point of confusion between the LAN and SAN sides.
