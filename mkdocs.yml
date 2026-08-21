@@ -1,0 +1,59 @@
+site_name: CCIE Data Center Guided Labs
+site_url: https://titusm.github.io/Cisco-Data-Center/
+repo_url: https://github.com/TitusM/Cisco-Data-Center
+repo_name: TitusM/Cisco-Data-Center
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - UCS & SAN:
+      - Overview: ucs-san/00-overview.md
+      - 01 · Pre-Lab Checklist: ucs-san/01-pre-lab.md
+      - 02 · Compute Policies: ucs-san/02-compute-policies.md
+      - 03 · SAN/LAN Uplinks: ucs-san/03-uplinks.md
+      - 04 · Port Modes: ucs-san/04-port-modes.md
+      - 05 · FC and FCoE: ucs-san/05-fc-fcoe.md
+      - 06 · Zoning: ucs-san/06-zoning.md
+      - 07 · NPV / NPIV: ucs-san/07-npv-npiv.md
+      - 08 · Trunking: ucs-san/08-trunking.md
+      - 09 · PortChannel: ucs-san/09-portchannel.md
+      - 10 · Load Balancing: ucs-san/10-load-balancing.md
+      - 11 · SAN Boot Verification: ucs-san/11-san-boot-verification.md
+      - 12 · Troubleshooting Drill: ucs-san/12-troubleshooting-drill.md
+      - Appendix: ucs-san/13-appendix.md
+  - NX-OS: nx-os/index.md
+  - ACI: aci/index.md
+  - VXLAN EVPN: vxlan-evpn/index.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
