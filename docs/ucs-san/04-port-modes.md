@@ -25,16 +25,18 @@ If your FI or N5K-3/N5K-4 use unified/flex ports (e.g. 6248UP, 5548UP/5596UP), c
 - **FI:** Equipment > Fixed Module (or Expansion Module) > **Configure Unified Ports**. The reboot scope depends on which module you change: a change on the **fixed module reboots the entire Fabric Interconnect** — roughly an 8-minute outage for all data traffic through that FI — while a change on an **expansion module only reboots that module**, about a 1-minute interruption limited to its own ports. Plan a maintenance window sized for the fixed-module case if that's what you're touching.
 - **N5K:**
 
-```text
-slot 1 port 1-4 type fc
-```
+??? "Commands"
+    ```text
+    slot 1 port 1-4 type fc
+    ```
 
 then `copy running-config startup-config` and reload the module. Confirm with:
 
-```text
-show port-resource module 1
-show interface brief
-```
+??? "Commands"
+    ```text
+    show port-resource module 1
+    show interface brief
+    ```
 
 !!! question "Check yourself"
     Why do unified port conversions require a reload, while simply changing an existing FC port from F to E mode does not? And why is converting a few ports on an FI's fixed module a bigger deal, operationally, than the same conversion on an expansion module?

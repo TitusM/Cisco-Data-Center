@@ -12,39 +12,43 @@ On a factory-default Nexus 5000, the boot process drops you into the interactive
 
 Confirm the result is genuinely blank before moving on — with one exception. This pod's baseline has **NPIV already enabled on N5K-3/N5K-4** before you touch anything, so don't expect (or write-erase away) a truly feature-less state on those two switches:
 
-```text
-show vlan brief        ! should show only VLAN 1
-show vsan               ! should show only VSAN 1 (SAN switches only)
-show feature | include enabled   ! N5K-1/N5K-2: nothing beyond platform defaults — vpc, fcoe off
-                                  ! N5K-3/N5K-4: npiv already enabled (pod baseline) — everything else off
-show running-config | include feature
-```
+??? "Commands"
+    ```text
+    show vlan brief        ! should show only VLAN 1
+    show vsan               ! should show only VSAN 1 (SAN switches only)
+    show feature | include enabled   ! N5K-1/N5K-2: nothing beyond platform defaults — vpc, fcoe off
+                                      ! N5K-3/N5K-4: npiv already enabled (pod baseline) — everything else off
+    show running-config | include feature
+    ```
 
 !!! warning "N5K-3, N5K-4 — confirm, don't configure, NPIV"
     Because this pod ships with `feature npiv` already turned on for the SAN switches, this is a verification step, not a build step — toggling a feature that's already live risks bouncing existing FLOGIs for no reason. Confirm it's on before you rely on it anywhere downstream (Module 2's F-port trunk needs it already enabled the moment that trunk comes up, and Module 6 verifies it in depth):
 
-```text
-! N5K-3, N5K-4 — confirm only
-show feature | include npiv     ! expect: npiv    1        enabled
-show running-config | include npiv
-```
+??? "Commands"
+    ```text
+    ! N5K-3, N5K-4 — confirm only
+    show feature | include npiv     ! expect: npiv    1        enabled
+    show running-config | include npiv
+    ```
 
 If it comes back **disabled** on either switch — pod baseline wasn't applied, or someone reset it — enable it now rather than waiting for Module 2 to surface the failure indirectly:
 
-```text
-! N5K-3, N5K-4 — fallback only, if the confirm step above showed npiv disabled
-feature npiv
-```
+??? "Commands"
+    ```text
+    ! N5K-3, N5K-4 — fallback only, if the confirm step above showed npiv disabled
+    feature npiv
+    ```
 
 **Enable the remaining base features each switch will need**, since none of them are on by default and later modules assume they already are:
 
-```text
-! N5K-3, N5K-4 (SAN switches)
-feature fcoe          ! only if this pod uses FCoE rather than native FC uplinks
+??? "Commands"
+    ```text
+    ! N5K-3, N5K-4 (SAN switches)
+    feature fcoe          ! only if this pod uses FCoE rather than native FC uplinks
 
-! N5K-1, N5K-2 (LAN switches)
-feature vpc            ! only if you're building vPC to the FIs (Module 8)
-```
+    ! N5K-1, N5K-2 (LAN switches)
+    feature vpc            ! only if you're building vPC to the FIs (Module 8)
+    ```
 
 ## 1.2 FI-A, FI-B — Cluster Setup
 
@@ -56,33 +60,35 @@ A factory-default Fabric Interconnect also boots into an interactive setup wizar
 
 **Verify the cluster from the NX-OS-style CLI.** Connect to the cluster VIP (SSH or console) and confirm both FIs are up and which one is primary:
 
-```text
-FI-A# show cluster state
-Cluster Id: 0x4432f72a371511de-0xb97c000de1b1ada4
+??? "Commands"
+    ```text
+    FI-A# show cluster state
+    Cluster Id: 0x4432f72a371511de-0xb97c000de1b1ada4
 
-A: UP, PRIMARY
-B: UP, SUBORDINATE
+    A: UP, PRIMARY
+    B: UP, SUBORDINATE
 
-HA READY
-```
+    HA READY
+    ```
 
 The commands `show fabric-interconnect {a | b} detail` and `show system detail` display the IP addresses for the management interfaces and the virtual IP address, respectively, of the cluster:
 
-```text
-FI-A# show fabric-interconnect a detail
-Fabric Interconnect:
-    ID: A
-    OOB IP Addr: 10.10.10.11
-    OOB Gateway: 10.10.10.1
-    OOB Netmask: 255.255.255.0
-    ...
+??? "Commands"
+    ```text
+    FI-A# show fabric-interconnect a detail
+    Fabric Interconnect:
+        ID: A
+        OOB IP Addr: 10.10.10.11
+        OOB Gateway: 10.10.10.1
+        OOB Netmask: 255.255.255.0
+        ...
 
-FI-A# show system detail
-System:
-    Name: Nexus-DC-1-UCS
-    Virtual IP Addr: 10.10.10.10
-    ...
-```
+    FI-A# show system detail
+    System:
+        Name: Nexus-DC-1-UCS
+        Virtual IP Addr: 10.10.10.10
+        ...
+    ```
 
 !!! danger "HA NOT READY"
     If `show cluster state` reports **HA NOT READY**, stop here and check the L1/L2 cluster links between the two FIs before proceeding — a healthy L1/L2 connection is a prerequisite for everything that follows in Module 1.

@@ -12,10 +12,11 @@
 
 `show npv status` is a real command, but it reports whether *this device* is acting as an NPV edge — it's what you run on the FI (Task 6.2), not on the core switch. On N5K-3/N5K-4 (which just has the NPIV *feature* enabled, not NPV mode), confirm the feature is on and prove it's working by checking that the fabric actually accepted multiple FCIDs over a single F port:
 
-```text
-show feature | include npiv
-show flogi database vsan 100
-```
+??? "Commands"
+    ```text
+    show feature | include npiv
+    show flogi database vsan 100
+    ```
 
 Multiple pWWN entries all logged in via the *same* physical interface is the real proof NPIV is functioning — a feature flag being "enabled" doesn't by itself confirm anything actually used it yet.
 
@@ -23,19 +24,21 @@ Multiple pWWN entries all logged in via the *same* physical interface is the rea
 
 The FI itself, in End Host Mode, is functioning as the NPV device. From the FI's NX-OS-like CLI:
 
-```text
-show npv flogi-table
-show npv internal info
-```
+??? "Commands"
+    ```text
+    show npv flogi-table
+    show npv internal info
+    ```
 
 You should see one row per downstream vHBA, all funneling through the same uplink FCID.
 
 ## 7.4 Task 6.3 — Verify at the Core
 
-```text
-show flogi database vsan 100
-show fcns database vsan 100
-```
+??? "Commands"
+    ```text
+    show flogi database vsan 100
+    show fcns database vsan 100
+    ```
 
 Confirm multiple pWWNs (one per blade vHBA) all logged in via the *same* interface (the FI uplink) — this is NPIV in action, and it's the single clearest piece of exam-relevant evidence you can screenshot for your own notes.
 
