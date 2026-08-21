@@ -31,7 +31,7 @@ Already touched in Module 2.1 — revisit it here specifically for trunk *negoti
     ! Toward FI-B
     interface Ethernet1/2
       switchport mode trunk
-      switchport trunk allowed vlan 20,21
+      switchport trunk allowed vlan 10,11
       spanning-tree port type edge trunk
     ```
 

@@ -271,22 +271,20 @@ In the GUI: **Servers > Service Profiles**, confirm Assoc State = `associated`, 
 !!! question "Check yourself"
     What happens to already-associated profiles if you edit an *updating* vNIC template's VLAN list versus editing an *initial* template? Be able to explain the propagation difference out loud.
 
-### Worked Example: Unbinding a Service Profile to Make a One-Off Change
+??? "📚 Worked Example — Unbinding a Service Profile to Make a One-Off Change"
+    **Scenario:** `SPT-ESX-SANBoot` is an **Updating Template** (Task 1.5, by design), so every profile generated from it in this task — `Blade01`, `Blade02`, and so on — stays permanently bound to it: change the template later and every bound profile picks up that change automatically. Now suppose you need to make a change on **`Blade02` only** — a one-off BIOS tweak while you diagnose something, a different boot LUN ID for a single test blade, whatever — without that change propagating to `Blade01` and every other profile sharing the template. A bound profile won't let you do this directly.
 
-**Scenario:** `SPT-ESX-SANBoot` is an **Updating Template** (Task 1.5, by design), so every profile generated from it in this task — `Blade01`, `Blade02`, and so on — stays permanently bound to it: change the template later and every bound profile picks up that change automatically. Now suppose you need to make a change on **`Blade02` only** — a one-off BIOS tweak while you diagnose something, a different boot LUN ID for a single test blade, whatever — without that change propagating to `Blade01` and every other profile sharing the template. A bound profile won't let you do this directly.
+    **Why the direct edit doesn't work:** Cisco's own documentation is explicit about what binding actually means: *"you can only change the configuration of a bound service profile through the associated template."* While a profile is bound, UCSM treats the template as the single source of truth — if you try to edit a template-controlled field directly on the bound profile, either the field is not editable, or UCSM reconfigures the profile back to match the template the next time it reconciles. Binding isn't a one-time copy; it's a standing link.
 
-**Why the direct edit doesn't work:** Cisco's own documentation is explicit about what binding actually means: *"you can only change the configuration of a bound service profile through the associated template."* While a profile is bound, UCSM treats the template as the single source of truth — if you try to edit a template-controlled field directly on the bound profile, either the field is not editable, or UCSM reconfigures the profile back to match the template the next time it reconciles. Binding isn't a one-time copy; it's a standing link.
+    **Fix — unbind the one profile you need to diverge:**
 
-**Fix — unbind the one profile you need to diverge:**
+    1. **Servers > Service Profiles > [org] > `Blade02`.**
+    2. **Work pane > General tab.**
+    3. **Actions area > Unbind from the Template.**
+    4. Confirm **Yes** on the dialog.
 
-1. **Servers > Service Profiles > [org] > `Blade02`.**
-2. **Work pane > General tab.**
-3. **Actions area > Unbind from the Template.**
-4. Confirm **Yes** on the dialog.
+    **CLI equivalent**, for the same result:
 
-**CLI equivalent**, for the same result:
-
-??? "Commands"
     ```text
     scope org
     scope service-profile Blade02
@@ -294,7 +292,7 @@ In the GUI: **Servers > Service Profiles**, confirm Assoc State = `associated`, 
     commit-buffer
     ```
 
-**What actually changes:** unbinding only removes the link to the parent template — it does **not** revert or clear anything. `Blade02` keeps every setting and resource it already had (VLANs, VSANs, boot policy, pools, everything from the last time it matched the template) and simply becomes a **static, independent service profile** from that point on. You can now edit `Blade02` directly, and — just as important — the reverse is now also true: if you go back and change `SPT-ESX-SANBoot` itself, `Blade02` no longer picks up that change, while `Blade01` (still bound) does. That asymmetry is the actual trade-off, not a side effect: unbinding buys per-profile flexibility at the cost of that one profile falling out of the template's future updates until you explicitly **Bind to a Template** again (same General tab, **Actions > Bind to a Template**).
+    **What actually changes:** unbinding only removes the link to the parent template — it does **not** revert or clear anything. `Blade02` keeps every setting and resource it already had (VLANs, VSANs, boot policy, pools, everything from the last time it matched the template) and simply becomes a **static, independent service profile** from that point on. You can now edit `Blade02` directly, and — just as important — the reverse is now also true: if you go back and change `SPT-ESX-SANBoot` itself, `Blade02` no longer picks up that change, while `Blade01` (still bound) does. That asymmetry is the actual trade-off, not a side effect: unbinding buys per-profile flexibility at the cost of that one profile falling out of the template's future updates until you explicitly **Bind to a Template** again (same General tab, **Actions > Bind to a Template**).
 
 **Verify:** **Servers > Service Profiles > `Blade02` > General**, confirm the template reference field is now empty and the fields you needed to change are editable directly.
 

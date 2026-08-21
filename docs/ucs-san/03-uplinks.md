@@ -2,6 +2,16 @@
 
 **Objective:** get traffic off the Fabric Interconnects and onto both the LAN switches and the SAN switches, correctly typed as uplink ports.
 
+Cisco documents three distinct Ethernet uplink roles on a Fabric Interconnect — don't treat them as interchangeable, since UCSM configures and licenses each differently:[^role]
+
+| Role | Carries | Used in this module for |
+|---|---|---|
+| **Ethernet uplink** | LAN/Ethernet traffic only | Task 2.1, toward N5K-1/N5K-2 |
+| **FCoE uplink** | Fibre Channel encapsulated in Ethernet, toward an upstream FCoE-capable switch | Task 4.5's alternative FCoE path (`05-fc-fcoe.md`), not this pod's default |
+| **Unified uplink** | Both Ethernet and FC/FCoE traffic on one physical port | Not used in this lab's topology — its N5K-1/2 (LAN) and N5K-3/4 (SAN) roles are already split onto separate physical uplinks |
+
+[^role]: [Cisco UCS Manager Network Management Guide, Release 6.0 — LAN Ports and Port Channels](https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/GUI-User-Guides/Network-Mgmt/4-2/b_UCSM_Network_Mgmt_Guide_4_2/b_UCSM_Network_Mgmt_Guide_chapter_01000.html)
+
 ## 3.1 Task 2.1 — Ethernet (LAN) Uplinks
 
 ![LAN aspect of Nexus DC-1: N5K-1/N5K-2, FI-A/FI-B, and Host highlighted](../assets/topology-lan.png)
@@ -85,25 +95,43 @@ You should see the FI's WWPN(s) FLOGI into the fabric as soon as the link and VS
 
 ## 3.4 Task 2.4 — VLAN Groups
 
-**Objective:** organize related VLANs into a named, reusable object and pin that whole set to a preferred uplink, instead of managing each VLAN's uplink assignment one at a time.
+**Objective:** understand VLAN Groups for what Cisco actually documents them as — a mechanism for controlling *which uplinks carry which VLANs*, not a load-balancing or preferred-path tool.
 
-A **VLAN Group** (UCSM: **LAN > LAN Cloud > VLAN Groups**) is a container of VLANs that can be assigned to one or more uplink ports or uplink port channels as a single unit. It doesn't replace VLANs or trunking — it's a management and traffic-engineering layer on top of them. Since VLAN 10 and 11 are both shared and trunked to both fabrics' uplinks for redundancy (Task 2.1), a VLAN Group here isn't used to keep one VLAN off a given uplink — it's used to give each VLAN a *preferred, primary* path, so normal-condition traffic splits predictably across the two uplinks instead of being left to hash unpredictably.
+A **VLAN Group** (UCSM: **LAN > LAN Cloud > VLAN Groups**) associates a set of VLANs with specific uplink Ethernet ports or uplink port channels. Cisco's own documented behavior is explicit and important to get right: once a VLAN Group is associated with a chosen set of uplinks, **any uplink not selected for that association stops supporting the VLANs in that group.** This is a restriction, not a preference — there is no "primary path with failover to an unselected uplink" behavior built into the VLAN Group construct itself.[^1]
 
-1. **Create the groups:** a VLAN Group can only contain VLANs that already exist as objects under **LAN > LAN Cloud > VLANs** — Module 1, Task 1.1 already created both you need, so this task is purely about grouping and pinning. Right-click **VLAN Groups > Create VLAN Group** twice: `VG-Data` with member VLAN 10, and `VG-Mgmt` with member VLAN 11.
-2. **Pin each group to a preferred uplink:** in the same wizard (or by editing the group afterward), assign `VG-Data` to the uplink port/port-channel facing FI-A as its primary path, and `VG-Mgmt` to the uplink facing FI-B as its primary path, under **LAN Uplink Ports** / **Port Channels**. This is a preference, not an exclusion — both VLANs stay trunked on both uplinks (Task 2.1), so either one still fails over to the other uplink if its pinned path goes down.
-3. **Match the N5K side:** the trunk `allowed vlan` list on both N5K-1/N5K-2 interfaces (Task 2.1) should already permit VLAN 10 and 11 on both physical interfaces — a VLAN Group pin doesn't need a matching restriction on the N5K allowed-list the way a hard-segregation design would, since both VLANs are legitimately allowed on both trunks:
+Because this lab's own VLAN 10/11 are deliberately shared and trunked identically to both Fabric A and Fabric B uplinks (§0.3, Task 2.1) — not split per fabric — actually associating a VLAN Group with only one fabric's uplink here would remove that VLAN from the other fabric's uplink entirely, which is the opposite of this lab's redundancy design. So this task does **not** build a VLAN Group against this lab's real uplinks. Instead:
 
-??? "Commands"
+??? "🔍 Deep Dive — Upstream Disjoint Layer-2 Networks"
+    VLAN Groups exist for topologies where the FI's two fabrics genuinely face **different, disjoint upstream Layer-2 networks** — not the shared/redundant design this lab uses. Conceptually:
+
     ```text
-    ! N5K-1/N5K-2 — both VLANs are legitimately allowed on both interfaces;
-    ! the VLAN Group pin only affects which uplink the FI/UCSM side prefers as primary
-    interface Ethernet1/1
-      switchport trunk allowed vlan 10,11
-    interface Ethernet1/2
-      switchport trunk allowed vlan 10,11
+    Upstream Network A
+          |
+        N5K-A
+          |
+     FI uplink A
+          |
+     VLANs assigned to Network A
     ```
 
-**Verify:** **LAN > LAN Cloud > VLAN Groups**, confirm each group's member VLAN and its pinned uplink; cross-check with `show interface trunk` on N5K-1/N5K-2 that VLAN 10 and 11 both appear on both physical interfaces — that's expected here, unlike a hard-segregated design.
+    ```text
+    Upstream Network B
+          |
+        N5K-B
+          |
+     FI uplink B
+          |
+     VLANs assigned to Network B
+    ```
+
+    Here, VLAN Groups ensure the VLANs that only exist on Network A's side are associated only with FI uplink A, and likewise for Network B — because Network A and Network B don't share a Layer-2 domain, a VLAN valid on one has no business appearing on the other's uplink at all. This is what Cisco calls disjoint Layer-2 networking, and it's the actual production use case VLAN Groups solve.[^2]
+
+    This lab's topology is **not** disjoint Layer-2 — N5K-1 and N5K-2 both sit in the same shared LAN domain, and VLAN 10/11 are intentionally common to both. If you want hands-on practice with a real VLAN Group association, you'd need a second, genuinely separate upstream network to point one fabric's uplink at — not something to build against this pod's actual N5K-1/N5K-2 pair.
+
+**Verify (conceptual only, given the above):** **LAN > LAN Cloud > VLAN Groups** — if a VLAN Group is ever associated with a subset of this lab's uplinks, confirm on the N5K side with `show interface trunk` that the *unselected* uplink's allowed-VLAN behavior for that group's VLANs actually reflects the restriction — don't assume the VLAN still passes there.
 
 !!! question "Check yourself"
-    If VLAN Group pinning only sets a *preferred* path rather than an exclusive one, what would you actually expect to change if you shut down `VG-Data`'s pinned uplink — and how would you confirm VLAN 10's traffic failed over rather than simply stopped?
+    If VLAN Group `VG-Data` (VLAN 10) is associated only with the FI-A-facing uplink, what happens to VLAN 10 traffic that would otherwise have used the FI-B-facing uplink — does it fail over, or does that uplink simply stop supporting VLAN 10? What does that imply about using VLAN Groups on a fabric pair that's supposed to stay redundant, like this lab's own VLAN 10/11?
+
+[^1]: [Cisco UCS Manager Network Management Guide, Release 6.0 — VLANs / VLAN Groups](https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/GUI-User-Guides/Network-Mgmt/4-2/b_UCSM_Network_Mgmt_Guide_4_2/b_UCSM_Network_Mgmt_Guide_chapter_0110.html): an uplink not selected for association with a VLAN Group stops supporting VLANs that are members of that group.
+[^2]: [Cisco UCS Manager Network Management Guide Using the CLI — Upstream Disjointed Layer-2 Networks](https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/CLI-User-Guides/Network-Mgmt/4-2/b_cli_ucsm_network_management_guide_4_2/b_CLI_UCSM_Network_Management_Guide_chapter_01010.html)

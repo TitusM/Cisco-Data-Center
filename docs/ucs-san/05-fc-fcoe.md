@@ -3,7 +3,16 @@
 ![SAN aspect of Nexus DC-1: N5K-3/N5K-4, FI-A/FI-B, UCS-B, and Storage highlighted](../assets/topology-san.png)
 *SAN aspect of Nexus DC-1: N5K-3/N5K-4, FI-A/FI-B, UCS-B, and Storage highlighted*
 
-**Objective:** stand up the actual SAN data path through UCS Manager, in both native-FC and FCoE flavors, and prove blades can FLOGI. This is the same SAN-side path highlighted above, from the blade's vHBAs through the FIs to the SAN core switches and the array.
+**Objective:** stand up the actual SAN data path through UCS Manager and prove blades can FLOGI. This is the same SAN-side path highlighted above, from the blade's vHBAs through the FIs to the SAN core switches and the array.
+
+**This module builds one of two possible SAN uplink designs — pick the one that matches your actual FI-to-N5K cabling, not both:**
+
+- **Path A — Native Fibre Channel (this pod's default, built in Tasks 4.1–4.4 below).** The FI's FC uplink ports connect directly to N5K-3/N5K-4's F ports over native FC — no FCoE VLAN, no `vfc` binding, and no Ethernet encapsulation involved on the SAN path at all. This is the path `03-uplinks.md` §3.3 (N5K-side F ports) and this module's Tasks 4.1–4.4 assume by default.
+- **Path B — FCoE (Task 4.5, alternative).** The FI's uplink is instead an FCoE uplink (Ethernet-encapsulated FC) toward an FCoE-capable N5K, using the VLAN 1000/1001/2000/2001 ↔ VSAN mapping in §5.2 and the `vfc`/FIP-snooping config in Task 4.5. Use this only if your pod's physical uplink is actually cabled and licensed for FCoE instead of native FC.
+
+Do not configure both against the same physical uplink — they're alternative implementations of the same SAN connectivity requirement, not additive layers. Also note Cisco explicitly prohibits overlap between LAN VLAN IDs and FCoE VLAN IDs on a Fabric Interconnect: this guide's LAN VLANs (10, 11) and FCoE VLANs (1000, 1001, 2000, 2001) are chosen with that non-overlap in mind — don't reuse an FCoE VLAN ID as a LAN VLAN ID or vice versa if you change either numbering scheme.[^overlap]
+
+[^overlap]: [Cisco UCS Manager Network Management Guide, Release 6.0 — LAN Ports and Port Channels](https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/ucs-manager/GUI-User-Guides/Network-Mgmt/4-2/b_UCSM_Network_Mgmt_Guide_4_2/b_UCSM_Network_Mgmt_Guide_chapter_01000.html)
 
 ## 5.1 Task 4.1 — Global FC Switching Mode
 
