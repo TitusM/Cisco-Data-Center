@@ -1,0 +1,1170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://titusm.github.io/Cisco-Data-Center/ucs-san/11-san-boot-verification/">
+      
+      
+        <link rel="prev" href="../10-load-balancing/">
+      
+      
+        <link rel="next" href="../12-troubleshooting-drill/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>11 · SAN Boot Verification - CCIE Data Center Guided Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-module-10-end-to-end-verification-and-san-boot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CCIE Data Center Guided Labs" class="md-header__button md-logo" aria-label="CCIE Data Center Guided Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCIE Data Center Guided Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11 · SAN Boot Verification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TitusM/Cisco-Data-Center" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TitusM/Cisco-Data-Center
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CCIE Data Center Guided Labs" class="md-nav__button md-logo" aria-label="CCIE Data Center Guided Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CCIE Data Center Guided Labs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TitusM/Cisco-Data-Center" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TitusM/Cisco-Data-Center
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UCS & SAN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UCS & SAN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-pre-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Pre-Lab Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-compute-policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Compute Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-uplinks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · SAN/LAN Uplinks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-port-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Port Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-fc-fcoe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · FC and FCoE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-zoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Zoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-npv-npiv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · NPV / NPIV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-trunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-portchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · PortChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · SAN Boot Verification
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · SAN Boot Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-task-101-watch-it-actually-boot-from-san" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Task 10.1 — Watch It Actually Boot from SAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-suggested-failure-injection-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Suggested Failure Injection Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-task-102-traffic-monitoring-session-span-on-a-boot-vhba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Task 10.2 — Traffic Monitoring Session (SPAN) on a Boot vHBA
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-troubleshooting-drill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Troubleshooting Drill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-appendix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nx-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NX-OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ACI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vxlan-evpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VXLAN EVPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-task-101-watch-it-actually-boot-from-san" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Task 10.1 — Watch It Actually Boot from SAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-suggested-failure-injection-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Suggested Failure Injection Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-task-102-traffic-monitoring-session-span-on-a-boot-vhba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Task 10.2 — Traffic Monitoring Session (SPAN) on a Boot vHBA
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="11-module-10-end-to-end-verification-and-san-boot">11. Module 10 — End-to-End Verification and SAN Boot<a class="headerlink" href="#11-module-10-end-to-end-verification-and-san-boot" title="Permanent link">&para;</a></h1>
+<p><img alt="Nexus DC-1 full topology: the complete path a boot I/O traverses, from UCS-B through FI-A/FI-B to N5K-3/N5K-4 and Storage" src="../../assets/topology-full.png" />
+<em>Nexus DC-1 full topology: the complete path a boot I/O traverses, from UCS-B through FI-A/FI-B to N5K-3/N5K-4 and Storage</em></p>
+<p><strong>This is the payoff module.</strong> Everything from Module 1 onward was building toward one thing: a blade that actually boots its OS from the SAN LUN. Walk the path hop by hop first — don't skip straight to powering on the blade, because if boot fails you want to already know which of these seven links is broken rather than guessing from a blank console.</p>
+<ol>
+<li><strong>Blade → vHBA:</strong> <code>show service-profile status</code> — associated, no faults.</li>
+<li><strong>vHBA → FI:</strong> confirm vHBA appears under the correct FI/fabric in UCSM Equipment tab.</li>
+<li><strong>FI → Core:</strong> <code>show npv flogi-table</code> (FI) matches <code>show flogi database</code> (N5K-3/N5K-4).</li>
+<li><strong>Core → Storage:</strong> <code>show fcns database</code> shows both the blade's WWPN and the storage target's WWPN in the same VSAN.</li>
+<li><strong>Zoning:</strong> <code>show zoneset active</code> includes a zone joining that exact WWPN pair (Module 5).</li>
+<li><strong>Storage → LUN presentation:</strong> array-side masking shows boot LUN 0 presented to exactly that WWPN, on both fabrics.</li>
+<li><strong>Boot policy sanity:</strong> the service profile's Boot Policy (Module 1, Task 1.3) lists the same target WWPN/LUN you just confirmed in steps 4–6 — a boot policy pointing at the wrong WWPN is a common self-inflicted failure that has nothing to do with the fabric.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">If you have no access to the array's management plane</p>
+<p>Steps 6 and 7 above are the two places a pre-provisioned pod most commonly breaks in a way you can't directly diagnose. If zoning, FLOGI, and NPIV all check out (steps 1–5) and boot still fails, suspect a WWPN mismatch between your Module 1 WWPN pool and whatever the array was actually pre-masked to — see the note in <a href="../06-zoning/">Module 5 — Zoning</a>.</p>
+</div>
+<h2 id="111-task-101-watch-it-actually-boot-from-san">11.1 Task 10.1 — Watch It Actually Boot from SAN<a class="headerlink" href="#111-task-101-watch-it-actually-boot-from-san" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Launch the KVM console:</strong> <strong>Servers &gt; Service Profiles &gt; [name] &gt; KVM Console</strong>, then power-cycle the blade (Boot Server) if it isn't already up.</li>
+<li><strong>Watch POST for the FC boot target.</strong> During boot, the adapter's option ROM (or the server's boot device list) should enumerate the FC boot target(s) you configured — confirm it shows the array's WWPN and LUN 0, not "No bootable device found." If it hangs here, go back to steps 1–7 above before touching anything else; this is the single most informative moment in the whole lab, because it tells you definitively whether the SAN path is actually live.</li>
+<li><strong>Confirm the OS boots from the LUN, not local disk.</strong> If the LUN was pre-imaged, watch it load the OS normally. If it's blank, run the OS installer now and target the presented SAN LUN as the install destination — a successful install-to-SAN-LUN and subsequent reboot from it is the strongest possible proof this lab's objective was met.</li>
+<li><strong>From inside the OS, confirm the boot disk is FC-attached</strong>, not local — e.g. <code>lsblk</code> / disk manager showing the LUN over an FC HBA, not a local RAID controller.</li>
+<li><strong>OS multipath:</strong> confirm two active paths to the boot LUN, one per fabric, using the OS's native multipath tool (e.g. <code>multipath -ll</code> on Linux, MPIO on Windows). This is what actually uses the redundancy every prior module built — Fabric A failing should not take the blade down, only drop it to one path.</li>
+<li><strong>Confirm the data LUN too, from inside the OS.</strong> The boot LUN only exercises vHBA0/vHBA1 (VSAN 100/200) — once the OS is up, confirm it also sees the second LUN presented over vHBA2/vHBA3 (VSAN 101/201, zoned back in Module 5) as an additional disk. This is the one piece of the day's build that booting successfully doesn't already prove, since the OS never needs the data LUN just to start.</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If POST shows the FC boot target correctly but the OS installer/bootloader still can't see the LUN as a valid install/boot disk, is that more likely a SAN-side problem (zoning/masking) or a host-side problem (missing FC HBA driver in the OS)? What's the one piece of evidence from step 2 that already rules one of those out?</p>
+</div>
+<h2 id="112-suggested-failure-injection-tests">11.2 Suggested Failure Injection Tests<a class="headerlink" href="#112-suggested-failure-injection-tests" title="Permanent link">&para;</a></h2>
+<p>Once SAN boot is confirmed working, break things on purpose and re-verify recovery — this is where CCIE-level understanding actually gets tested, and it's also the fastest way to prove the redundancy you built actually does something:</p>
+<ul>
+<li>Shut the FC uplink on Fabric A only — confirm Fabric B path keeps the boot LUN reachable, multipath drops to one active path, and (if you reboot the blade) it still boots successfully over Fabric B alone.</li>
+<li>Shut one member of an Ethernet port channel — confirm the channel stays up with the remaining member(s), <code>show port-channel summary</code> reflects reduced membership.</li>
+<li>Fail over the subordinate FI's cluster role — confirm UCSM management stays reachable via the surviving FI's VIP, and data plane for associated blades — including the booted OS's access to its SAN LUN — is undisturbed (since data traffic doesn't transit the cluster interconnect).</li>
+</ul>
+<h2 id="113-task-102-traffic-monitoring-session-span-on-a-boot-vhba">11.3 Task 10.2 — Traffic Monitoring Session (SPAN) on a Boot vHBA<a class="headerlink" href="#113-task-102-traffic-monitoring-session-span-on-a-boot-vhba" title="Permanent link">&para;</a></h2>
+<p><strong>Objective:</strong> go one level deeper than "the boot worked" and actually watch the FC frames — FLOGI, PRLI, and the SCSI I/O to LUN 0 — that made it work, by mirroring <code>vHBA0</code>'s traffic to an analyzer.</p>
+<p>Cisco UCS Manager calls this feature <strong>Traffic Monitoring</strong>, and it's the same concept as SPAN (Switched Port Analyzer) on a regular switch: copy traffic from one or more <strong>source</strong> ports to a dedicated <strong>destination</strong> port, non-disruptively, for a network/FC analyzer to capture. It doesn't touch the traffic itself — the blade keeps booting normally whether or not a session is active — so there's no risk to the SAN boot you just proved in Task 10.1.</p>
+<p><strong>Why <code>vHBA0</code> specifically:</strong> a <strong>service profile vHBA</strong> is one of the documented source types for a Fibre Channel traffic monitoring session. <code>vHBA0</code> is the Fabric A <strong>boot</strong> vHBA (VSAN 100) from Module 1 — mirroring it is what actually lets you see the FLOGI/PLOGI exchange and the boot LUN's SCSI traffic on the wire, rather than just inferring it worked from <code>show flogi database</code> and a successful OS boot.</p>
+<p><strong>Guidelines worth knowing before you build this</strong> (Cisco documents these explicitly — most first attempts trip over one of them):</p>
+<ul>
+<li>The type of <strong>destination</strong> port determines the session type. For a Fibre Channel session, the destination must be an <strong>FC uplink port</strong> — an unused one, since it stops passing normal fabric traffic once it becomes a SPAN destination.</li>
+<li>All sources and the destination must sit on the <strong>same Fabric Interconnect</strong>. You can't mirror a Fabric A vHBA's traffic to a destination port hanging off FI-B.</li>
+<li>A vHBA can be a source for an Ethernet <strong>or</strong> a Fibre Channel monitoring session, but <strong>not both at the same time</strong>.</li>
+<li>Up to <strong>16 monitoring sessions</strong> can be created and stored per FI, but only <strong>4 can be active simultaneously</strong> — Ethernet and FC sessions both count against that same limit.</li>
+<li>A session is <strong>disabled by default</strong> when created; nothing is mirrored until you explicitly activate it.</li>
+</ul>
+<p><strong>Build the session on FI-A</strong> (SAN &gt; Traffic Monitoring Sessions):</p>
+<ol>
+<li><strong>SAN &gt; Traffic Monitoring Sessions &gt; FI-A &gt; right-click &gt; Create Traffic Monitoring Session.</strong></li>
+<li><strong>Name</strong> it <code>Span-vHBA0-Boot</code>, <strong>Admin State = Disabled</strong> for now (activate it explicitly once sources are attached — don't rely on creating it "hot"), <strong>Destination</strong> = an unused FC uplink port on FI-A, <strong>Admin Speed</strong> = Auto unless your analyzer needs a fixed rate.</li>
+<li><strong>Click OK.</strong></li>
+<li><strong>Add the source:</strong> select the new session &gt; <strong>General tab &gt; Sources area</strong>, expand the <strong>vHBA</strong> source type, click <strong>+ (Add Monitoring Session Source)</strong>, select <code>vHBA0</code> from the list, <strong>OK</strong>, then <strong>Save Changes</strong>.</li>
+<li><strong>Activate it:</strong> back on the session's <strong>General tab &gt; Properties area</strong>, set <strong>Admin State = Enabled</strong>, <strong>Save Changes</strong>.</li>
+</ol>
+<p><strong>Verify:</strong> with the session active and the blade powered on (or rebooting), the analyzer connected to the destination FC uplink port should show FLOGI/FDISC frames from <code>vHBA0</code>'s WWPN, followed by PRLI and SCSI Read/Write commands against LUN 0 once the OS starts issuing I/O — this is the packet-level confirmation behind everything Task 10.1 verified indirectly through UCSM and NX-OS <code>show</code> commands.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>The vHBA source list under this session's Sources area also lets you add <code>vHBA2</code> (the Fabric A <strong>data</strong> vHBA). If you add it to this same session alongside <code>vHBA0</code>, what exactly changes about what the analyzer sees — and does that still count as a single session against the 4-active-session limit, or two?</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../10-load-balancing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 10 · Load Balancing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                10 · Load Balancing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-troubleshooting-drill/" class="md-footer__link md-footer__link--next" aria-label="Next: 12 · Troubleshooting Drill">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                12 · Troubleshooting Drill
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

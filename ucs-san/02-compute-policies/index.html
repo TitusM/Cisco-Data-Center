@@ -1,0 +1,1643 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://titusm.github.io/Cisco-Data-Center/ucs-san/02-compute-policies/">
+      
+      
+        <link rel="prev" href="../01-pre-lab/">
+      
+      
+        <link rel="next" href="../03-uplinks/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>02 · Compute Policies - CCIE Data Center Guided Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-module-1-compute-policies-profiles-and-templates-41a" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CCIE Data Center Guided Labs" class="md-header__button md-logo" aria-label="CCIE Data Center Guided Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CCIE Data Center Guided Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 · Compute Policies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TitusM/Cisco-Data-Center" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TitusM/Cisco-Data-Center
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CCIE Data Center Guided Labs" class="md-nav__button md-logo" aria-label="CCIE Data Center Guided Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CCIE Data Center Guided Labs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TitusM/Cisco-Data-Center" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TitusM/Cisco-Data-Center
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UCS & SAN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UCS & SAN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-pre-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Pre-Lab Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Compute Policies
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Compute Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-task-10-chassis-discovery-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Task 1.0 — Chassis Discovery Policy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Task 1.0 — Chassis Discovery Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fabric-interconnect-information-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fabric Interconnect Information Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-task-11-create-base-network-objects-vlans-and-vsans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Task 1.1 — Create Base Network Objects (VLANs and VSANs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-task-12-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Task 1.2 — Pools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Task 1.2 — Pools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm-console-management-ip-pool-ext-mgmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KVM Console — Management IP Pool (ext-mgmt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-task-13-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Task 1.3 — Policies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Task 1.3 — Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boot-policy-san-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Policy (SAN Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-disk-configuration-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Disk Configuration Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-task-14-vnic-and-vhba-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Task 1.4 — vNIC and vHBA Templates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Task 1.4 — vNIC and vHBA Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adapter-policy-on-the-vhbas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter Policy on the vHBAs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-task-15-service-profile-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Task 1.5 — Service Profile Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-task-16-instantiate-and-associate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Task 1.6 — Instantiate and Associate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 Task 1.6 — Instantiate and Associate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-unbinding-a-service-profile-to-make-a-one-off-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked Example: Unbinding a Service Profile to Make a One-Off Change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-uplinks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · SAN/LAN Uplinks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-port-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Port Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-fc-fcoe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · FC and FCoE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-zoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Zoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-npv-npiv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · NPV / NPIV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-trunking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Trunking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-portchannel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · PortChannel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-load-balancing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-san-boot-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 · SAN Boot Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-troubleshooting-drill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 · Troubleshooting Drill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-appendix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nx-os/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NX-OS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ACI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vxlan-evpn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VXLAN EVPN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-task-10-chassis-discovery-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Task 1.0 — Chassis Discovery Policy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Task 1.0 — Chassis Discovery Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fabric-interconnect-information-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fabric Interconnect Information Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-task-11-create-base-network-objects-vlans-and-vsans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Task 1.1 — Create Base Network Objects (VLANs and VSANs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-task-12-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Task 1.2 — Pools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Task 1.2 — Pools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm-console-management-ip-pool-ext-mgmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KVM Console — Management IP Pool (ext-mgmt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-task-13-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Task 1.3 — Policies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Task 1.3 — Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boot-policy-san-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Policy (SAN Boot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-disk-configuration-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Disk Configuration Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-task-14-vnic-and-vhba-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Task 1.4 — vNIC and vHBA Templates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Task 1.4 — vNIC and vHBA Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adapter-policy-on-the-vhbas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter Policy on the vHBAs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-task-15-service-profile-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Task 1.5 — Service Profile Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-task-16-instantiate-and-associate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Task 1.6 — Instantiate and Associate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 Task 1.6 — Instantiate and Associate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example-unbinding-a-service-profile-to-make-a-one-off-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked Example: Unbinding a Service Profile to Make a One-Off Change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2-module-1-compute-policies-profiles-and-templates-41a">2. Module 1 — Compute Policies, Profiles, and Templates (4.1.a)<a class="headerlink" href="#2-module-1-compute-policies-profiles-and-templates-41a" title="Permanent link">&para;</a></h1>
+<p><img alt="Compute aspect of Nexus DC-1: UCS-B chassis and FI-A/FI-B highlighted" src="../../assets/topology-compute.png" />
+<em>Compute aspect of Nexus DC-1: UCS-B chassis and FI-A/FI-B highlighted</em></p>
+<p><strong>Objective:</strong> build every reusable building block UCS Manager needs before a service profile can be associated to a UCS-B blade, then instantiate a profile from a template. Everything in this module lives on the highlighted devices above — the UCS-B chassis and the two Fabric Interconnects — before any of it reaches the LAN or SAN switches.</p>
+<h2 id="21-task-10-chassis-discovery-policy">2.1 Task 1.0 — Chassis Discovery Policy<a class="headerlink" href="#21-task-10-chassis-discovery-policy" title="Permanent link">&para;</a></h2>
+<p><strong>Objective:</strong> set this before anything else in the module — until the chassis is fully discovered, UCS-B blades don't exist as poolable inventory, so pools and profiles have nothing to attach to.</p>
+<p><strong>Step 0 — the chassis-facing ports start with no role at all.</strong> On a fresh FI, every physical port shows <strong>Unconfigured</strong> in the Equipment tab (you confirmed this in section 1.3). Chassis discovery cannot begin until the ports facing each IOM are explicitly set to <strong>Server Port</strong>: right-click the port(s) under <strong>Equipment &gt; Fabric Interconnects &gt; Fixed Module &gt; Ethernet Ports &gt; Configure as Server Port</strong>. Only once these are Server Ports does the Chassis Discovery Policy below have anything to act on.</p>
+<p>Chassis Discovery Policy is a <strong>global policy</strong> (<strong>Equipment &gt; Policies &gt; Global Policies &gt; Chassis/FEX Discovery Policy</strong>), not a per-chassis setting. It tells UCSM how many IOM-to-FI links per chassis to expect before it treats the chassis as fully discovered:</p>
+<ul>
+<li><strong>Action</strong> — the number of links (1, 2, 4, or 8, depending on IOM/FI model) UCSM should expect from <em>each</em> IOM. The platform default is <strong>1 Link</strong>.</li>
+<li><strong>Link Grouping Preference</strong> — <strong>None</strong> (each link discovered/managed individually) or <strong>Port Channel</strong> (links from one IOM bundle into a single port channel to the FI). Port Channel is the recommended setting whenever more than one link per IOM is cabled, since it gives you the port-channel resiliency and load-balancing behavior from Modules 8–9 on the chassis-to-FI links themselves.</li>
+</ul>
+<p><strong>Why this matters, concretely:</strong> the default of 1 Link means UCSM only needs to see <em>one</em> functioning IOM-to-FI link to call the chassis discovered — it will not automatically bring up additional cabled links just because they're physically present. If your UCS-B chassis has, say, two links per IOM cabled to each FI but the policy still says 1 Link, the extra link per IOM sits unused until you act. The inverse failure mode is just as real: if the policy is set to 4 Links and a chassis only has fewer than four links cabled per IOM, UCSM will not recognize that chassis at all.</p>
+<ol>
+<li><strong>Set the policy to match your cabling:</strong> <strong>Equipment &gt; Policies &gt; Global Policies</strong>, set Action to match your actual per-IOM link count (this topology's diagram shows the UCS-B chassis cabled with multiple links per IOM to each FI, so confirm your real cable count here rather than assuming the 1-Link default). Set Link Grouping Preference to <strong>Port Channel</strong> if more than one link per IOM is cabled.</li>
+<li><strong>Acknowledge the chassis</strong> now that Server Ports are set and the policy matches your cabling — on a chassis being discovered for the first time this happens automatically. If you change the policy <em>after</em> a chassis was already discovered under the old setting, Cisco's own guidance is to <strong>acknowledge the individual IO Modules</strong> (<strong>Equipment &gt; Chassis &gt; Chassis N &gt; IO Modules &gt; [module] &gt; General &gt; Acknowledge</strong>) rather than the whole chassis, since that picks up the new link count with less disruption. Full <strong>Reacknowledge Chassis</strong> (<strong>Equipment &gt; Chassis &gt; Chassis N &gt; General &gt; Reacknowledge Chassis</strong>) is the more disruptive fallback — it disconnects and rebuilds the entire chassis-to-FI connection from scratch, with a transient chassis/server flap, and is really only needed if acknowledging the IO Modules individually doesn't resolve it.</li>
+<li><strong>Confirm completion</strong> via the <strong>Overall Status</strong> field on the chassis's General tab — it should read <strong>OK</strong> once discovery (or reacknowledgment) finishes and all expected links are up.</li>
+</ol>
+<p><strong>Verify:</strong></p>
+<div class="highlight"><pre><span></span><code>show chassis detail
+show fex-connectivity        ! or equivalent under Equipment &gt; Chassis &gt; IO Modules, depending on platform
+</code></pre></div>
+<p>In the GUI: <strong>Equipment &gt; Chassis &gt; IO Modules</strong>, confirm the expected number of links per IOM shows <strong>Up</strong>, and that they're bundled into a port channel if Link Grouping Preference was set to Port Channel.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>You cable two links per IOM but leave the discovery policy at the 1-Link default. What exactly happens to the second link — does UCSM report an error, or does it just sit unused — and what's the one action that fixes it without re-cabling anything?</p>
+</div>
+<h3 id="fabric-interconnect-information-policy">Fabric Interconnect Information Policy<a class="headerlink" href="#fabric-interconnect-information-policy" title="Permanent link">&para;</a></h3>
+<p>While you're in <strong>Equipment &gt; Policies &gt; Global Policies</strong>, it's worth setting one more global policy that has nothing to do with chassis discovery but lives on the same screen: the <strong>Info Policy</strong>. It controls whether UCSM discovers and displays the upstream switches connected to the fabric interconnect — the SAN, LAN, and LLDP neighbors seen on its uplink ports. This is purely visibility, not connectivity: leaving it disabled doesn't break any uplink, LAN, or SAN function elsewhere in this guide, but it does mean the neighbor information UCSM would otherwise show you simply isn't collected.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You must enable the Info Policy on the fabric interconnect before UCSM will show you SAN, LAN, or LLDP neighbor details for that FI — with it disabled (the default), those neighbor panes stay empty even though the physical links are up and passing traffic fine.</p>
+</div>
+<p><strong>Configuring the Info Policy:</strong></p>
+<ol>
+<li>Navigate to <strong>Equipment &gt; Policies &gt; Global Policies</strong>.</li>
+<li>In the <strong>Info Policy</strong> group, choose one of:<ul>
+<li><strong>Disabled</strong> — the information policy is off. This is the default.</li>
+<li><strong>Enabled</strong> — UCSM discovers and displays the FI's upstream SAN/LAN/LLDP neighbors.</li>
+</ul>
+</li>
+<li>Click <strong>Save Changes</strong>.</li>
+</ol>
+<p><strong>Verify:</strong> with Info Policy enabled, <strong>Equipment &gt; Fabric Interconnects &gt; FI-A (or FI-B) &gt; Neighbors</strong> (or the LAN/SAN/LLDP neighbor tabs, depending on UCSM version) should populate with the directly connected N5K uplink switch once the corresponding uplink port is up — useful later in Module 2 for confirming an uplink actually landed on the switch you think it did, without leaving UCSM to check the N5K side.</p>
+<h2 id="22-task-11-create-base-network-objects-vlans-and-vsans">2.2 Task 1.1 — Create Base Network Objects (VLANs and VSANs)<a class="headerlink" href="#22-task-11-create-base-network-objects-vlans-and-vsans" title="Permanent link">&para;</a></h2>
+<p><strong>Objective:</strong> define the VLAN and VSAN IDs the rest of this module's pools and templates need to reference, before anything tries to select them from a dropdown that would otherwise be empty.</p>
+<p>On a fresh UCSM, the only objects that exist are the defaults — <strong>VLAN 1</strong> and <strong>VSAN 1</strong> — and neither should be repurposed for production data traffic (VLAN 1 stays the untagged/native default; VSAN 1 stays the FI's default zone). This guide uses two shared VLANs and two VSANs per fabric (see 0.3) rather than a single ID of each, so create all six IDs now, before Task 1.4 (vNIC/vHBA templates) needs to select from them:</p>
+<ol>
+<li><strong>LAN &gt; LAN Cloud &gt; VLANs &gt; Add</strong>, create two VLANs: <strong>10</strong> (<code>Data</code>) and <strong>11</strong> (<code>Mgmt</code>). Both are shared — trunked to both Fabric A and Fabric B uplinks rather than split per fabric — so you only need one pair, not one per fabric. Leave them unassigned to any uplink for now — that assignment happens in Module 2, Task 2.1.</li>
+<li><strong>SAN &gt; SAN Cloud &gt; VSANs &gt; Add</strong>, create four VSANs: <strong>100</strong> (<code>SAN-A-Boot</code>, FCoE VLAN 1000) and <strong>101</strong> (<code>SAN-A-Data</code>, FCoE VLAN 1001) on Fabric A; <strong>200</strong> (<code>SAN-B-Boot</code>, FCoE VLAN 2000) and <strong>201</strong> (<code>SAN-B-Data</code>, FCoE VLAN 2001) on Fabric B. Again, assigning these to actual FC/FCoE uplink ports happens later, in Module 4.</li>
+<li>This UCSM-side object is independent of the <strong>N5K-local VLAN/VSAN database</strong> on N5K-1–4 — creating these here does not create them on N5K-1/N5K-2 or N5K-3/N5K-4. Each platform keeps its own database; you'll create the matching N5K-side entries in Module 2 (Tasks 2.1 and 2.3). Both sides must agree on every numeric ID — that agreement, not the object's existence in only one place, is what makes trunking and FLOGI work end to end.</li>
+</ol>
+<p><strong>Verify:</strong> <strong>LAN &gt; LAN Cloud &gt; VLANs</strong> shows VLAN 1, 10, 11; <strong>SAN &gt; SAN Cloud &gt; VSANs</strong> shows VSAN 1, 100, 101, 200, 201.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If you skip this task and go straight to creating the vNIC/vHBA templates in Task 1.4, what exactly happens when you try to select a VLAN or VSAN for them? And why does reaching VSAN 101 need a whole second vHBA, while reaching VLAN 11 just needs one more entry in an existing vNIC's allowed list?</p>
+</div>
+<h2 id="23-task-12-pools">2.3 Task 1.2 — Pools<a class="headerlink" href="#23-task-12-pools" title="Permanent link">&para;</a></h2>
+<p><strong>Literature review — Identity Pools.</strong></p>
+<p><img alt="Identity Pools overview: MAC Pools, WWNN Pools, WWPN Pools, and UUID Pools all feed a service profile's identity" src="../../assets/identity-pools-overview.png" />
+<em>Identity Pools overview: MAC Pools, WWNN Pools, WWPN Pools, and UUID Pools all feed a service profile's identity</em></p>
+<p>These four pool types sit under <strong>Identity Pools</strong> conceptually; in the UCSM GUI they're created individually under <strong>Servers &gt; Pools</strong> (MAC/UUID/Server) and <strong>SAN &gt; Pools</strong> (WWNN/WWPN). A service profile or service profile template simply references a pool for each identity type rather than hard-coding an address — which is also what makes the pools a prerequisite for Task 1.4's vNIC/vHBA templates and Task 1.5's service profile template.</p>
+<p>Create, in <strong>Servers &gt; Pools</strong>:</p>
+<ul>
+<li><strong>UUID Suffix Pool</strong> — e.g. <code>UUID-Pool-A</code>, seed <code>0000-000000000001</code>, size 16.</li>
+<li><strong>Server Pool</strong> — e.g. <code>Blade-Pool</code>, populate with qualifying UCS-B blades (use a Server Pool Policy Qualification if you want automatic membership by CPU/memory/adapter). Note this pool will be empty until Task 1.0's chassis discovery actually surfaces blades to add.</li>
+<li><strong>MAC Pool</strong> — one per fabric: <code>MAC-Pool-A</code> (e.g. <code>00:25:B5:0A:00:00</code>), <code>MAC-Pool-B</code> (e.g. <code>00:25:B5:0B:00:00</code>). Keeping the byte that encodes fabric (<code>0A</code>/<code>0B</code>) makes packet captures self-documenting later.</li>
+<li><strong>WWNN Pool</strong> — <code>WWNN-Pool</code>, one pool node-wide (a node has one WWNN regardless of fabric).</li>
+<li><strong>WWPN Pool</strong> — one per fabric: <code>WWPN-Pool-A</code>, <code>WWPN-Pool-B</code>. Each fabric's pool now needs to supply <em>two</em> vHBAs per blade (boot + data, see Task 1.4), so size it accordingly — e.g. 16 addresses covers 8 blades' worth of boot+data vHBAs on that fabric.</li>
+</ul>
+<h3 id="kvm-console-management-ip-pool-ext-mgmt">KVM Console — Management IP Pool (<code>ext-mgmt</code>)<a class="headerlink" href="#kvm-console-management-ip-pool-ext-mgmt" title="Permanent link">&para;</a></h3>
+<p><strong>Objective:</strong> give every blade's CIMC a management IP address before you need to open a KVM console to watch it POST, install an OS, or troubleshoot a boot that isn't working — none of which you can do blind.</p>
+<p>Every server in a UCS domain needs one or more management IP addresses assigned to its <strong>CIMC</strong> (Cisco Integrated Management Controller) — either directly, or via a pool — because that's the address Cisco UCS Manager uses for all external access terminating in the CIMC: <strong>KVM console</strong>, Serial over LAN, and IPMI. Without one, "launch KVM" has nothing to connect to, independent of whether the blade's data-plane networking (VLANs, VSANs, zoning) is working at all.</p>
+<p>Two address families exist, and this lab only needs one of them:</p>
+<ul>
+<li><strong>Out-of-band (OOB)</strong> — traffic reaches the CIMC via the FI's dedicated management port, completely separate from the fabric uplinks this whole guide has been building. This is what the lab should use: KVM access shouldn't depend on the same data-plane trunks and port-channels you're deliberately breaking and fixing in later modules.</li>
+<li><strong>Inband</strong> — traffic reaches the CIMC via a fabric uplink port instead, drawn from a VLAN and pool assigned to the service profile. Skip this for the lab; it's the right choice in production when you don't want a dedicated OOB management network, but it ties KVM reachability to the same uplinks Module 7's trunking drills intentionally break.</li>
+</ul>
+<p>Cisco UCS Manager ships a default OOB management IP pool named <strong><code>ext-mgmt</code></strong> — a collection of external IPv4/IPv6 addresses UCSM hands out to CIMCs automatically. On a fresh domain it's empty, which is exactly the "blank" state this guide assumes, so populating it is a Task 1.2 activity, not something you can defer.</p>
+<p><strong>Populate the pool:</strong></p>
+<ol>
+<li><strong>LAN &gt; Pools &gt; [root or your org] &gt; IP Pools &gt; right-click IP Pool <code>ext-mgmt</code> &gt; Create Block of IP Addresses.</strong></li>
+<li>Fill in the block: <strong>From</strong> / <strong>To</strong> (a contiguous range sized for at least as many addresses as <code>Blade-Pool</code> above — one CIMC per blade), <strong>Subnet</strong>, <strong>Default Gateway</strong>, <strong>Primary DNS</strong>, <strong>Secondary DNS</strong>.</li>
+<li><strong>Click OK.</strong></li>
+</ol>
+<p><strong>Constraints worth knowing before you fill in that dialog</strong> (this is where most first attempts fail):</p>
+<ul>
+<li>Every address in this pool must sit in the <strong>same IPv4 subnet</strong> (or share the same IPv6 prefix) as the fabric interconnects' own management IP — this pool is not routed independently.</li>
+<li>The pool must <strong>not</strong> contain any address already assigned as a <em>static</em> management IP to some other server or service profile; UCSM rejects the overlap.</li>
+<li>If a server or service profile already has a <strong>static</strong> address assigned from <code>ext-mgmt</code>, you cannot repurpose those specific addresses without first clearing that static assignment.</li>
+</ul>
+<p><strong>Nothing above assigns an address to a blade yet</strong> — creating the block only stocks the pool. Association is what actually draws one out: once Task 1.6 associates a service profile from the Updating Template with a blade, that blade's CIMC pulls its OOB address from this pool automatically, no separate per-blade step required. If you ever need to check or force it manually instead, it's under <strong>Equipment &gt; Chassis &gt; Chassis N &gt; Servers &gt; [blade] &gt; Inventory &gt; CIMC tab &gt; Use Outband Pooled Management IP.</strong></p>
+<p><strong>Verify:</strong> after Task 1.6's association, <strong>Equipment &gt; Chassis &gt; Chassis N &gt; Servers &gt; [blade] &gt; Inventory &gt; CIMC</strong> shows an assigned IPv4 address drawn from this pool's range; <strong>Servers &gt; Service Profiles &gt; [name] &gt; General</strong> shows the same address under Management IP Address. From there, right-click the service profile (or the server in Equipment) and <strong>Launch KVM Console</strong> should reach the blade's screen — this is your first real look at whether a blade is even POSTing, well before Module 10's SAN boot proof needs it.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If you associate a service profile to a blade before this pool has any free addresses left in it, what happens to that association — does it fail outright, succeed without a management IP, or queue and retry? And separately: why does this guide deliberately use the OOB pool instead of an inband one, given that inband is also a documented, supported option?</p>
+</div>
+<h2 id="24-task-13-policies">2.4 Task 1.3 — Policies<a class="headerlink" href="#24-task-13-policies" title="Permanent link">&para;</a></h2>
+<p>Create, in <strong>Servers &gt; Policies</strong>:</p>
+<ul>
+<li><strong>BIOS Policy</strong> — disable unused boot devices, set CPU performance profile as required by the lab scenario.</li>
+<li><strong>Boot Policy</strong> — SAN Boot; built out in full in its own subsection immediately below, since it's the policy the entire lab's capstone objective depends on.</li>
+<li><strong>Local Disk Configuration Policy</strong> — built out in full in its own subsection below, right after Boot Policy; the mode you pick here has a sharper effect on association than the one-line summary above suggests.</li>
+<li><strong>Maintenance Policy</strong> — set to <code>user-ack</code> so profile changes don't silently reboot a blade mid-lab.</li>
+<li><strong>Adapter Policy</strong> — leave at platform default (<code>VMWare</code>/<code>Linux</code>/<code>Windows</code>) unless the lab scenario specifies OS-specific tuning.</li>
+<li><strong>Power Control Policy</strong>, <strong>Scrub Policy</strong> — defaults are fine; know where they live for the exam.</li>
+</ul>
+<h3 id="boot-policy-san-boot">Boot Policy (SAN Boot)<a class="headerlink" href="#boot-policy-san-boot" title="Permanent link">&para;</a></h3>
+<p><strong>Objective:</strong> build the one policy the entire session's capstone depends on — everything from Module 5 onward exists to make a blade associated with this policy actually boot.</p>
+<p>A <strong>Boot Policy</strong> (<strong>Servers &gt; Policies &gt; Boot Policies</strong>) overrides the server's BIOS boot order and determines which device the server boots from, the location it boots from, and the order boot devices are tried. Cisco's own guidance is to create a <strong>named, global boot policy</strong> you can attach to multiple service profiles or templates, rather than a local boot policy tied to one service profile — this lab creates one named policy (<code>Boot-SANBoot</code>) and reuses it from the Updating Service Profile Template in Task 1.5, so a later fix applies everywhere at once.</p>
+<p><strong>Why SAN boot specifically:</strong> Cisco recommends SAN boot over local-disk or LAN boot for exactly the property this lab is built around — service profile mobility. Because the OS image lives on the array rather than on the blade, moving the service profile to different hardware (or re-associating after a blade failure) boots the new blade from the identical image, so the network sees the same server. That mobility is also <em>why</em> Module 10's SAN boot proof matters as the capstone: it's demonstrating the one thing this whole design exists to provide.</p>
+<p><strong>Create the policy:</strong></p>
+<ol>
+<li><strong>Servers &gt; Policies &gt; [root or your org] &gt; right-click Boot Policies &gt; Create Boot Policy.</strong></li>
+<li><strong>Name it</strong> <code>Boot-SANBoot</code> — 1–16 alphanumeric characters; no spaces; hyphen, underscore, colon, and period are the only punctuation allowed, and the name can't be changed once saved.</li>
+<li><strong>Reboot on Boot Order Change</strong> — leave unchecked for this lab. Be aware this checkbox only controls <em>reordering</em> an existing entry: on servers with a non-Cisco VIC adapter, adding, deleting, or reordering a <strong>SAN device</strong> in the boot order always triggers a reboot when the policy is saved, regardless of this setting.</li>
+<li><strong>Enforce vNIC/vHBA/iSCSI Name</strong> — check this. With it checked, UCSM validates that the vHBA names you reference below (<code>vHBA0</code>, <code>vHBA1</code>) actually exist with those exact names in the service profile, and flags a configuration error if they don't — catching a Task 1.5 typo immediately instead of at boot time.</li>
+<li><strong>Boot Mode</strong> — <strong>Legacy</strong>, unless your blade/adapter generation requires UEFI (UEFI is mandatory on newer M7+ server generations; check your actual hardware before assuming Legacy).</li>
+<li><strong>Add the SAN boot entries</strong> — expand the <strong>vHBAs</strong> area and use <strong>Add SAN Boot</strong> twice:<ul>
+<li><strong>Add SAN Boot</strong> → vHBA name <code>vHBA0</code>, Type = <strong>Primary</strong> → <strong>OK</strong>.</li>
+<li>With <code>vHBA0</code> still selected, <strong>Add SAN Boot Target</strong> → Boot Target LUN <code>0</code>, Boot Target WWPN = the storage array's <strong>Fabric A</strong> target port WWPN, Type = <strong>Primary</strong> → <strong>OK</strong>.</li>
+<li><strong>Add SAN Boot</strong> → vHBA name <code>vHBA1</code>, Type = <strong>Secondary</strong> → <strong>OK</strong>.</li>
+<li>With <code>vHBA1</code> selected, <strong>Add SAN Boot Target</strong> → Boot Target LUN <code>0</code>, Boot Target WWPN = the storage array's <strong>Fabric B</strong> target port WWPN, Type = <strong>Primary</strong> → <strong>OK</strong>.</li>
+<li>Get the array's actual target WWPNs from its own management tool, or from <code>show fcns database</code> once the array has logged into the fabric — don't guess them.</li>
+</ul>
+</li>
+<li><strong>Click OK</strong> to save the policy.</li>
+</ol>
+<p>Boot only ever uses the <strong>Boot</strong> VSANs from 0.3's numbering: <code>vHBA0</code> rides VSAN 100 (Fabric A), <code>vHBA1</code> rides VSAN 200 (Fabric B). The <strong>Data</strong> VSANs (101/201) hold a second LUN you'll zone in Module 5 for practice — that LUN is never in this boot policy, because a boot policy only ever points at the LUN(s) it should try to boot from, not every LUN the blade can see once it's up.</p>
+<div class="admonition warning">
+<p class="admonition-title">This policy alone will not produce a working boot</p>
+<p>A blade associated with this boot policy sits at "no bootable device" (or keeps retrying) until Module 5's zoning and the array's LUN masking both reference the exact same WWPN/LUN pair used here. That's expected at this stage of the guide, not a fault — Module 10 is where you come back to this exact policy and prove the boot actually completes end to end.</p>
+</div>
+<p><strong>Verify:</strong> <strong>Servers &gt; Policies &gt; Boot Policies &gt; Boot-SANBoot</strong>, confirm both SAN Boot entries show under vHBAs with the correct Primary/Secondary order and target WWPN/LUN. Once a service profile using this policy is associated (Task 1.6), <strong>Servers &gt; Service Profiles &gt; [name] &gt; General &gt; Boot Order Details</strong> shows the same order — that tab reflects the <em>actual</em> boot order the server will attempt, which is worth comparing against the policy any time the two seem to disagree.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If the primary SAN boot path (<code>vHBA0</code> → Fabric A target) is unreachable at boot time — cable pulled, zoning wrong, whatever — does the server automatically try the secondary path, and what exactly in this policy is what makes that automatic instead of something you'd have to trigger by hand?</p>
+</div>
+<h3 id="local-disk-configuration-policy">Local Disk Configuration Policy<a class="headerlink" href="#local-disk-configuration-policy" title="Permanent link">&para;</a></h3>
+<p><strong>Objective:</strong> pick the local-storage mode that actually matches your blades' hardware, not just the mode that sounds right for "boot from SAN."</p>
+<p>A <strong>Local Disk Configuration Policy</strong> (<strong>Servers &gt; Policies &gt; Local Disk Config Policies</strong>) configures the SAS local drives on the server's own on-board RAID controller — a separate concern from the SAN boot target you just built. Cisco documents several <strong>Mode</strong> options for this policy; the ones relevant to this lab are:</p>
+<ul>
+<li><strong>No Local Storage</strong> — for a diskless server or a SAN-only configuration. This is stricter than it sounds: if you select it, <strong>you cannot associate any service profile using this policy with a server that actually has a local disk</strong> — association fails outright, it doesn't just ignore the disk.</li>
+<li><strong>Any Configuration</strong> — for a server configuration that carries forward whatever local disk configuration is already present, without changing it. This is the safe choice when your UCS-B blades physically have local disks you simply want the OS to ignore in favor of the SAN boot LUN, since it won't fight with hardware that's actually there.</li>
+<li><strong>RAID 1 Mirrored</strong> — data is written to two disks at once, giving complete data redundancy if either single disk fails; the usable array size is capped at whichever of the two drives is smaller. This is what "mirrored" means concretely: every write is duplicated to both disks, not striped across them, so you trade half your raw capacity for the ability to lose one disk without losing data.</li>
+<li><strong>RAID 0 Striped</strong> — data is striped across all disks for fast throughput, with no redundancy at all; losing any one disk loses everything.</li>
+<li><strong>No RAID</strong> — disks behave individually, like JBOD, with no interdependency.</li>
+</ul>
+<p><strong>Why this matters for a SAN-boot lab specifically:</strong> the natural instinct is "we're booting from SAN, so pick No Local Storage." That's only correct if your actual UCS-B blades have zero local disks installed. Most B-Series blades ship with at least one local SAS/SATA drive whether or not you intend to use it — associate a service profile carrying <strong>No Local Storage</strong> to a blade like that, and the association fails with a configuration mismatch, for reasons that have nothing to do with zoning, VSANs, or anything else this guide has built so far. <strong>Any Configuration</strong> is the mode that actually matches "boot from SAN, and also happens to have a local disk we don't care about."</p>
+<p><strong>Create the policy:</strong></p>
+<ol>
+<li><strong>Servers &gt; Policies &gt; [root or your org] &gt; right-click Local Disk Config Policies &gt; Create Local Disk Configuration Policy.</strong></li>
+<li><strong>Name it</strong> <code>LocalDisk-SANBoot</code>.</li>
+<li><strong>Mode</strong> — choose <strong>Any Configuration</strong> if your blades have a local disk you're deliberately not booting from, or <strong>No Local Storage</strong> only if you've confirmed the blades genuinely have none installed. When in doubt, check <strong>Equipment &gt; Chassis &gt; Servers &gt; [blade] &gt; Inventory &gt; Storage</strong> before picking — don't guess from the blade model number alone.</li>
+<li><strong>Protect Configuration</strong> — leave unchecked for this lab. When checked, the local disk configuration survives a service profile disassociation; re-associating with a different local disk policy afterward then produces a configuration mismatch instead of quietly applying the new setting, which is a rough edge worth avoiding while you're still iterating on this template.</li>
+<li><strong>Click OK.</strong></li>
+</ol>
+<p><strong>Verify:</strong> attach this policy in Task 1.5's Service Profile Template (Storage panel), then after association, <strong>Servers &gt; Service Profiles &gt; [name] &gt; Storage &gt; Local Disk Configuration Policy</strong> should show the mode you set here with no configuration-mismatch fault against it.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If a blade with one physical local disk is associated with a service profile carrying the <strong>No Local Storage</strong> mode, what exactly fails — does UCSM silently ignore the disk, warn you, or block the association? Now compare that to what <strong>Any Configuration</strong> would do on the exact same hardware.</p>
+</div>
+<h2 id="25-task-14-vnic-and-vhba-templates">2.5 Task 1.4 — vNIC and vHBA Templates<a class="headerlink" href="#25-task-14-vnic-and-vhba-templates" title="Permanent link">&para;</a></h2>
+<p>Create templates under <strong>LAN &gt; Policies &gt; vNIC Templates</strong> and <strong>SAN &gt; Policies &gt; vHBA Templates</strong>, referencing the VLAN/VSAN objects you created in Task 1.1. vNICs and vHBAs behave differently here, and it's worth seeing why:</p>
+<p><strong>vNIC templates — one per fabric, each trunking two VLANs.</strong> A single vNIC can carry multiple VLANs at once, so reaching both of Fabric A's VLANs only takes one template:</p>
+<ul>
+<li><code>vNIC-Template-A</code> — Fabric A, no failover, MAC pool <code>MAC-Pool-A</code>, VLAN 10 (native) + VLAN 11.</li>
+<li><code>vNIC-Template-B</code> — Fabric B, mirrors A with <code>MAC-Pool-B</code>, same VLAN 10 (native) + VLAN 11 — the VLANs are shared, only the fabric side and MAC pool differ.</li>
+</ul>
+<p><strong>vHBA templates — two per fabric, because a vHBA belongs to exactly one VSAN.</strong> Reaching both of Fabric A's VSANs takes two separate vHBAs, each with its own template:</p>
+<ul>
+<li><code>vHBA-Template-A-Boot</code> — Fabric A, WWPN pool <code>WWPN-Pool-A</code>, VSAN 100.</li>
+<li><code>vHBA-Template-A-Data</code> — Fabric A, WWPN pool <code>WWPN-Pool-A</code>, VSAN 101.</li>
+<li><code>vHBA-Template-B-Boot</code> — Fabric B, WWPN pool <code>WWPN-Pool-B</code>, VSAN 200.</li>
+<li><code>vHBA-Template-B-Data</code> — Fabric B, WWPN pool <code>WWPN-Pool-B</code>, VSAN 201.</li>
+</ul>
+<p>Set <strong>Template Type = Updating Template</strong> on all six so a later change (e.g. adding a VLAN) propagates to every service profile derived from them — this distinction (initial vs. updating) is a favorite exam trap.</p>
+<h3 id="adapter-policy-on-the-vhbas">Adapter Policy on the vHBAs<a class="headerlink" href="#adapter-policy-on-the-vhbas" title="Permanent link">&para;</a></h3>
+<p>Every vHBA — whether it lands on a blade via one of the four templates above or is added directly to a service profile — uses a <strong>Fibre Channel Adapter Policy</strong> that governs host-side adapter behavior: queues, error recovery, and FLOGI/PLOGI timing. Cisco ships a set of pre-configured, OS-specific FC adapter policies (<code>VMware</code>, <code>Linux</code>, <code>Windows</code>, and so on) with recommended values for each OS, and its own guidance is blunt about them: use the default policy for your OS, and don't hand-edit the values unless your storage array vendor or Cisco TAC directs you to.</p>
+<p><strong>Create one (only if the defaults don't fit your scenario):</strong></p>
+<ol>
+<li><strong>Servers &gt; Policies &gt; [root or your org] &gt; right-click Adapter Policies &gt; Create Fibre Channel Adapter Policy.</strong></li>
+<li><strong>Name it</strong> (1–16 alphanumeric characters, same punctuation rules as every other UCSM policy name) and give it a description.</li>
+<li><strong>Resources area</strong> — Ring Size for Transmit/Receive/I/O queues; leave at platform defaults unless you have a specific performance reason to change them, since larger ring sizes trade memory for headroom under burst I/O, not raw throughput.</li>
+<li><strong>Options area</strong> — this is the section actually worth reading closely for a SAN-boot lab; the two fields below are the ones Cisco's own documentation calls out as boot-relevant:<ul>
+<li><strong>Flogi Timeout (ms)</strong> — how long the vHBA waits before retrying its fabric login. Default is 4,000 ms. Cisco's documentation is explicit that a Flogi timeout of <strong>20,000 ms or more on a boot vHBA can cause a SAN boot failure</strong> if the adapter doesn't receive an accept to its initial FLOGI in time — for any boot-enabled vHBA, keep this at <strong>5,000 ms or less</strong>.</li>
+<li><strong>Plogi Timeout (ms)</strong> — the same idea one layer up, for logging into a specific target port. Default is 20,000 ms, but the same warning applies: <strong>20,000 ms or more on a boot vHBA risks a SAN boot failure</strong>; Cisco recommends <strong>5,000 ms or less</strong> for boot-enabled vHBAs specifically (4,000 ms if the target OS is Windows).</li>
+<li><strong>Port Down Timeout (ms)</strong> — how long a remote FC port can sit offline before the SCSI upper layer is told it's gone; default 30,000 ms, but Cisco recommends 10,000 ms for VIC adapters running ESX.</li>
+</ul>
+</li>
+<li><strong>Click OK</strong>, confirm the dialog if one appears.</li>
+</ol>
+<p>Every one of these timeout values only matters <em>before</em> the fabric is actually usable — which is exactly the state Module 1 leaves you in. If Module 10's SAN boot attempt hangs or times out in a way that looks like the array simply never answered, these three values (not zoning, not the boot policy itself) are worth checking before you assume the fault is upstream.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>The platform defaults leave Flogi and Plogi timeout well above the 5,000 ms boot-safe threshold Cisco documents. Why doesn't that already break every SAN boot in this lab if you've left the adapter policy at its OS default? (Hint: what has to actually go wrong at FLOGI/PLOGI time for the timeout value to matter at all?)</p>
+</div>
+<h2 id="26-task-15-service-profile-template">2.6 Task 1.5 — Service Profile Template<a class="headerlink" href="#26-task-15-service-profile-template" title="Permanent link">&para;</a></h2>
+<p><strong>Literature review — Service Profile Templates.</strong></p>
+<p><img alt="Service Profile Template: types, creation methods, purpose, and the template-to-profile-to-server flow" src="../../assets/service-profile-template-flow.png" />
+<em>Service Profile Template: types, creation methods, purpose, and the template-to-profile-to-server flow</em></p>
+<p>A template is the reusable definition; a service profile is the concrete, per-server instance generated from it; associating that profile to a blade is what actually applies the identity (UUID, MACs, WWPNs, boot policy, and so on) to hardware. Task 1.5 below builds the template; Task 1.6 generates and associates the profiles from it.</p>
+<p>Build a <strong>Service Profile Template</strong> named <code>SPT-ESX-SANBoot</code>.</p>
+<p><strong>Set Type = Updating Template</strong> — this is a field in the creation wizard itself (<strong>Servers &gt; Service Profile Templates &gt; Create Service Profile Template &gt; Type: Initial Template / Updating Template</strong>), not a detail to configure afterward, so set it correctly on the first screen. The distinction matters for a different reason here than it did for the vNIC/vHBA templates in 2.5: an <strong>Initial Template</strong> is a one-time stamp — every service profile created from it is independent afterward, and editing the template later touches nothing already derived from it. An <strong>Updating Template</strong> keeps every derived service profile permanently bound to the template — change the Boot Policy, a pool, or any policy on the template later, and every service profile instantiated from it (Task 1.6) picks up that change automatically, without being re-created. For a lab where you'll likely be iterating on the boot policy, pools, or vHBA/vNIC placement, Updating is what lets a single fix apply everywhere at once instead of requiring you to touch each service profile individually.</p>
+<p>With Type set, continue through the wizard:</p>
+<ol>
+<li>Identity: UUID pool = <code>UUID-Pool-A</code>.</li>
+<li>Storage: local disk configuration policy <code>LocalDisk-SANBoot</code> from this module's Local Disk Configuration Policy subsection; add four vHBAs from the templates in 2.5 — <code>vHBA0</code> (Boot-A), <code>vHBA1</code> (Boot-B), <code>vHBA2</code> (Data-A), <code>vHBA3</code> (Data-B). Naming them in boot/data pairs like this makes the Boot Policy's vHBA0/vHBA1 references unambiguous later.</li>
+<li>Networking: add <code>vNIC0</code> (Template-A) and <code>vNIC1</code> (Template-B) from the templates in 2.5.</li>
+<li>Zoning (if using UCSM-managed zoning instead of switch-based — see Module 5 note): configure storage connection policies here if applicable.</li>
+<li><strong>Server Boot Order</strong> — its own wizard page, not part of Storage above. Select <strong>Boot Policy = <code>Boot-SANBoot</code></strong> (the policy built earlier in this module) from the drop-down. This is the page that actually binds the template to the vHBA0/vHBA1 Primary/Secondary SAN boot order — everything in step 2 makes the vHBAs exist, but this step is what tells the server to boot from them.</li>
+<li>Server Assignment: pool = <code>Blade-Pool</code>, maintenance policy from 2.4.</li>
+<li>Operational Policies: BIOS policy from 2.4.</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>If this template were Initial instead of Updating, and you later discovered the Boot Policy had the wrong LUN ID, what would you have to do differently to fix every service profile already derived from it?</p>
+</div>
+<h2 id="27-task-16-instantiate-and-associate">2.7 Task 1.6 — Instantiate and Associate<a class="headerlink" href="#27-task-16-instantiate-and-associate" title="Permanent link">&para;</a></h2>
+<p>From the template, right-click <strong>Create Service Profiles from Template</strong>, generate 2+ profiles (e.g. <code>Blade01</code>, <code>Blade02</code>). Confirm they auto-associate to pool members, or associate manually to specific blade slots if the lab calls for deterministic placement.</p>
+<p><strong>Verify:</strong></p>
+<div class="highlight"><pre><span></span><code>show service-profile status
+show server inventory (via UCSM CLI: scope org / scope service-profile &lt;name&gt; / show config)
+</code></pre></div>
+<p>In the GUI: <strong>Servers &gt; Service Profiles</strong>, confirm Assoc State = <code>associated</code>, Overall Status = <code>ok</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Overall Status may show a fault or sit at "discovery"/boot-related warnings at this point in the guide — that's expected. Association only means UCSM successfully applied the identity, pools, and policies to the blade; it says nothing about whether the blade can actually boot yet, since the SAN path (zoning, NPIV, LUN masking) doesn't exist until Modules 5–6. Don't chase boot faults now — come back to this exact service profile in Module 10 once the rest of the fabric is built, and confirm the boot itself there.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>What happens to already-associated profiles if you edit an <em>updating</em> vNIC template's VLAN list versus editing an <em>initial</em> template? Be able to explain the propagation difference out loud.</p>
+</div>
+<h3 id="worked-example-unbinding-a-service-profile-to-make-a-one-off-change">Worked Example: Unbinding a Service Profile to Make a One-Off Change<a class="headerlink" href="#worked-example-unbinding-a-service-profile-to-make-a-one-off-change" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario:</strong> <code>SPT-ESX-SANBoot</code> is an <strong>Updating Template</strong> (Task 1.5, by design), so every profile generated from it in this task — <code>Blade01</code>, <code>Blade02</code>, and so on — stays permanently bound to it: change the template later and every bound profile picks up that change automatically. Now suppose you need to make a change on <strong><code>Blade02</code> only</strong> — a one-off BIOS tweak while you diagnose something, a different boot LUN ID for a single test blade, whatever — without that change propagating to <code>Blade01</code> and every other profile sharing the template. A bound profile won't let you do this directly.</p>
+<p><strong>Why the direct edit doesn't work:</strong> Cisco's own documentation is explicit about what binding actually means: <em>"you can only change the configuration of a bound service profile through the associated template."</em> While a profile is bound, UCSM treats the template as the single source of truth — if you try to edit a template-controlled field directly on the bound profile, either the field is not editable, or UCSM reconfigures the profile back to match the template the next time it reconciles. Binding isn't a one-time copy; it's a standing link.</p>
+<p><strong>Fix — unbind the one profile you need to diverge:</strong></p>
+<ol>
+<li><strong>Servers &gt; Service Profiles &gt; [org] &gt; <code>Blade02</code>.</strong></li>
+<li><strong>Work pane &gt; General tab.</strong></li>
+<li><strong>Actions area &gt; Unbind from the Template.</strong></li>
+<li>Confirm <strong>Yes</strong> on the dialog.</li>
+</ol>
+<p><strong>CLI equivalent</strong>, for the same result:</p>
+<div class="highlight"><pre><span></span><code>scope org
+scope service-profile Blade02
+set src-templ-name ""
+commit-buffer
+</code></pre></div>
+<p><strong>What actually changes:</strong> unbinding only removes the link to the parent template — it does <strong>not</strong> revert or clear anything. <code>Blade02</code> keeps every setting and resource it already had (VLANs, VSANs, boot policy, pools, everything from the last time it matched the template) and simply becomes a <strong>static, independent service profile</strong> from that point on. You can now edit <code>Blade02</code> directly, and — just as important — the reverse is now also true: if you go back and change <code>SPT-ESX-SANBoot</code> itself, <code>Blade02</code> no longer picks up that change, while <code>Blade01</code> (still bound) does. That asymmetry is the actual trade-off, not a side effect: unbinding buys per-profile flexibility at the cost of that one profile falling out of the template's future updates until you explicitly <strong>Bind to a Template</strong> again (same General tab, <strong>Actions &gt; Bind to a Template</strong>).</p>
+<p><strong>Verify:</strong> <strong>Servers &gt; Service Profiles &gt; <code>Blade02</code> &gt; General</strong>, confirm the template reference field is now empty and the fields you needed to change are editable directly.</p>
+<div class="admonition question">
+<p class="admonition-title">Check yourself</p>
+<p>Six months from now, someone adds a VLAN to <code>SPT-ESX-SANBoot</code> for a new environment requirement. <code>Blade01</code> picks it up automatically; <code>Blade02</code> doesn't. Nothing in UCSM raises an alarm about this by itself — what would actually tip you off that <code>Blade02</code> silently drifted out of sync, and where would you look to confirm it?</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../01-pre-lab/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 01 · Pre-Lab Checklist">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                01 · Pre-Lab Checklist
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03-uplinks/" class="md-footer__link md-footer__link--next" aria-label="Next: 03 · SAN/LAN Uplinks">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                03 · SAN/LAN Uplinks
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
