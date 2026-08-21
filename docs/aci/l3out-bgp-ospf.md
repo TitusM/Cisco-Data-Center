@@ -78,6 +78,8 @@ Create the external EPG and define the external subnets that will be classified 
 
 When a prefix is configured under the scope “External Subnets for the External EPG”, ACI associates that prefix/route with the pcTag (“Class”) of the External EPG. This is critical for policy enforcement that will be required between the external EPG and any other EPG.
 
+![](../assets/l3out-bgp-ospf/img-023.png)
+
 As observed on the output below, 4.4.4.4/32 is associated to the external-EPG Class-ID/pcTag (32771).
 
 ```text
@@ -93,7 +95,7 @@ Vrf-Vni VRF-Id Table-Id Table-State VRF-Name                   Addr             
 
 PcTag of the External EPG:
 
-![](../assets/l3out-bgp-ospf/img-023.png)
+![](../assets/l3out-bgp-ospf/img-024.png)
 
 The required configurations on ACI are completed. The configurations on the external router are shown below.
 
@@ -114,8 +116,6 @@ router bgp 65002
 ```
 
 I hit a glitch. Despite all my configurations looking correct as l expected, the BGP between ACI and the external router was not getting to an “Established” state.
-
-![](../assets/l3out-bgp-ospf/img-024.png)
 
 ACI leaf verification:
 
