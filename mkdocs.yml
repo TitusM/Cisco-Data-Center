@@ -48,7 +48,9 @@ nav:
       - Standalone Labs:
           - Configure a Service Profile: ucs-san/14-service-profile-standalone.md
           - Configure Basic Identity Pools: ucs-san/15-identity-pools-standalone.md
-  - NX-OS: nx-os/index.md
+  - NX-OS:
+      - Overview: nx-os/index.md
+      - Virtual Port-Channel Basic Configuration: nx-os/virtual-port-channel-basic-configuration.md
   - ACI:
       - Overview: aci/index.md
       - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md

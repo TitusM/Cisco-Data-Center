@@ -1,10 +1,11 @@
 # NX-OS
 
-Content coming soon.
+## Available now
 
-Planned coverage:
+- **[Cisco Virtual Port-Channel (vPC) – Basic Configuration - CLI](virtual-port-channel-basic-configuration.md)** — vPC domain, peer-keepalive, peer-link, member interfaces, consistency verification, and full switch configurations for a four-switch Nexus topology.
 
-- Layer 2 data center switching — VLANs, spanning-tree, vPC
+## Coming soon
+
 - Layer 3 data center routing — OSPF/BGP on Nexus, VRF-lite
 - Port-channel and load-balancing deep dives outside the UCS context
 
