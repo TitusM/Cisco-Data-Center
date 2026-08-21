@@ -9,14 +9,15 @@
 
 On N5K-3, one device-alias per vHBA you're zoning plus one per storage target port. This lab has two VSANs on Fabric A (boot + data), so there are two blade-side aliases and — if the array uses a different target port per LUN — potentially two storage-side aliases as well:
 
-```text
-device-alias database
-  device-alias name Blade01-hba0 pwwn 20:00:00:25:b5:0a:00:01    ! vHBA0, VSAN 100 (boot)
-  device-alias name Blade01-hba2 pwwn 20:00:00:25:b5:0a:00:03    ! vHBA2, VSAN 101 (data)
-  device-alias name Storage-fa-boot pwwn 50:0a:09:81:88:9a:6b:c0
-  device-alias name Storage-fa-data pwwn 50:0a:09:82:88:9a:6b:c0
-device-alias commit
-```
+??? "Commands"
+    ```text
+    device-alias database
+      device-alias name Blade01-hba0 pwwn 20:00:00:25:b5:0a:00:01    ! vHBA0, VSAN 100 (boot)
+      device-alias name Blade01-hba2 pwwn 20:00:00:25:b5:0a:00:03    ! vHBA2, VSAN 101 (data)
+      device-alias name Storage-fa-boot pwwn 50:0a:09:81:88:9a:6b:c0
+      device-alias name Storage-fa-data pwwn 50:0a:09:82:88:9a:6b:c0
+    device-alias commit
+    ```
 
 Pull the actual WWPNs from `show flogi database` (blade side) and the array's documentation or `show fcns database` (storage side) rather than guessing. Repeat the equivalent alias set on N5K-4 for Fabric B (VSAN 200 boot, VSAN 201 data), using `-fb` names.
 
@@ -24,38 +25,40 @@ Pull the actual WWPNs from `show flogi database` (blade side) and the array's do
 
 Single-initiator, single-target zoning is the standard, exam-expected pattern. Each VSAN gets its own zone and its own zoneset — a zone is scoped to exactly one VSAN, so the boot zone and the data zone can't share one even though they're on the same physical switch:
 
-```text
-! VSAN 100 — boot path
-zone name Blade01-Boot-to-Storage-fa vsan 100
-  member device-alias Blade01-hba0
-  member device-alias Storage-fa-boot
+??? "Commands"
+    ```text
+    ! VSAN 100 — boot path
+    zone name Blade01-Boot-to-Storage-fa vsan 100
+      member device-alias Blade01-hba0
+      member device-alias Storage-fa-boot
 
-zoneset name ZS-Fabric-A-Boot vsan 100
-  member Blade01-Boot-to-Storage-fa
+    zoneset name ZS-Fabric-A-Boot vsan 100
+      member Blade01-Boot-to-Storage-fa
 
-zoneset activate name ZS-Fabric-A-Boot vsan 100
+    zoneset activate name ZS-Fabric-A-Boot vsan 100
 
-! VSAN 101 — data path
-zone name Blade01-Data-to-Storage-fa vsan 101
-  member device-alias Blade01-hba2
-  member device-alias Storage-fa-data
+    ! VSAN 101 — data path
+    zone name Blade01-Data-to-Storage-fa vsan 101
+      member device-alias Blade01-hba2
+      member device-alias Storage-fa-data
 
-zoneset name ZS-Fabric-A-Data vsan 101
-  member Blade01-Data-to-Storage-fa
+    zoneset name ZS-Fabric-A-Data vsan 101
+      member Blade01-Data-to-Storage-fa
 
-zoneset activate name ZS-Fabric-A-Data vsan 101
-```
+    zoneset activate name ZS-Fabric-A-Data vsan 101
+    ```
 
 Repeat both pairs with fabric-B naming (`-fb`) on N5K-4, under VSAN 200 (boot) and VSAN 201 (data).
 
 ## 6.3 Task 5.3 — Verify
 
-```text
-show zoneset active vsan 100
-show zoneset active vsan 101
-show zone name Blade01-Boot-to-Storage-fa vsan 100
-show device-alias database
-```
+??? "Commands"
+    ```text
+    show zoneset active vsan 100
+    show zoneset active vsan 101
+    show zone name Blade01-Boot-to-Storage-fa vsan 100
+    show device-alias database
+    ```
 
 Confirm the storage array's LUN masking (on the array side) presents each LUN to exactly the WWPNs you zoned for it — zoning and masking are two independent controls that must both agree, and this now matters twice (once per VSAN) instead of once.
 

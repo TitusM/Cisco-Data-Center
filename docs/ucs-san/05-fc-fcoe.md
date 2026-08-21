@@ -35,36 +35,38 @@ Confirm (from Module 1) each service profile has all four vHBAs correctly placed
 
 This is an **alternative to Task 2.3's native-FC F-port config**, not an addition to it — use whichever matches your actual uplink type. If the FI-to-N5K SAN uplink is FCoE rather than native FC, confirm FIP snooping and the virtual Fibre Channel interfaces on the N5K side — one `vfc` per VSAN on that fabric, both bound to the same underlying Ethernet trunk:
 
-```text
-feature fcoe
-vlan 1000
-  fcoe vsan 100
-vlan 1001
-  fcoe vsan 101
-! the underlying Ethernet interface (or port-channel) must already be a trunk
-! carrying both FCoE VLANs before you bind a vfc to it — this is separate from
-! the LAN-side trunk config in Task 2.1, even if it's the same physical interface
-interface Ethernet1/1
-  switchport mode trunk
-  switchport trunk allowed vlan 1000,1001
-interface vfc1
-  bind interface Ethernet1/1
-  no shutdown
-interface vfc2
-  bind interface Ethernet1/1
-  no shutdown
-show vfc
-show fcoe database
-```
+??? "Commands"
+    ```text
+    feature fcoe
+    vlan 1000
+      fcoe vsan 100
+    vlan 1001
+      fcoe vsan 101
+    ! the underlying Ethernet interface (or port-channel) must already be a trunk
+    ! carrying both FCoE VLANs before you bind a vfc to it — this is separate from
+    ! the LAN-side trunk config in Task 2.1, even if it's the same physical interface
+    interface Ethernet1/1
+      switchport mode trunk
+      switchport trunk allowed vlan 1000,1001
+    interface vfc1
+      bind interface Ethernet1/1
+      no shutdown
+    interface vfc2
+      bind interface Ethernet1/1
+      no shutdown
+    show vfc
+    show fcoe database
+    ```
 
 (Fabric B mirrors this on N5K-4 with VLAN 2000/VSAN 200 and VLAN 2001/VSAN 201.)
 
 **Verify (either flavor):**
 
-```text
-show flogi database
-show npv flogi-table      ! run from the FI's NX-OS shell: connect nxos {a|b}, then this command
-```
+??? "Commands"
+    ```text
+    show flogi database
+    show npv flogi-table      ! run from the FI's NX-OS shell: connect nxos {a|b}, then this command
+    ```
 
 Each associated blade's vHBA should FLOGI in with a WWPN drawn from your Module 1 WWPN pool.
 

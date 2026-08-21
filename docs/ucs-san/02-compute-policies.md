@@ -24,10 +24,11 @@ Chassis Discovery Policy is a **global policy** (**Equipment > Policies > Global
 
 **Verify:**
 
-```text
-show chassis detail
-show fex-connectivity        ! or equivalent under Equipment > Chassis > IO Modules, depending on platform
-```
+??? "Commands"
+    ```text
+    show chassis detail
+    show fex-connectivity        ! or equivalent under Equipment > Chassis > IO Modules, depending on platform
+    ```
 
 In the GUI: **Equipment > Chassis > IO Modules**, confirm the expected number of links per IOM shows **Up**, and that they're bundled into a port channel if Link Grouping Preference was set to Port Channel.
 
@@ -256,10 +257,11 @@ From the template, right-click **Create Service Profiles from Template**, genera
 
 **Verify:**
 
-```text
-show service-profile status
-show server inventory (via UCSM CLI: scope org / scope service-profile <name> / show config)
-```
+??? "Commands"
+    ```text
+    show service-profile status
+    show server inventory (via UCSM CLI: scope org / scope service-profile <name> / show config)
+    ```
 
 In the GUI: **Servers > Service Profiles**, confirm Assoc State = `associated`, Overall Status = `ok`.
 
@@ -284,12 +286,13 @@ In the GUI: **Servers > Service Profiles**, confirm Assoc State = `associated`, 
 
 **CLI equivalent**, for the same result:
 
-```text
-scope org
-scope service-profile Blade02
-set src-templ-name ""
-commit-buffer
-```
+??? "Commands"
+    ```text
+    scope org
+    scope service-profile Blade02
+    set src-templ-name ""
+    commit-buffer
+    ```
 
 **What actually changes:** unbinding only removes the link to the parent template — it does **not** revert or clear anything. `Blade02` keeps every setting and resource it already had (VLANs, VSANs, boot policy, pools, everything from the last time it matched the template) and simply becomes a **static, independent service profile** from that point on. You can now edit `Blade02` directly, and — just as important — the reverse is now also true: if you go back and change `SPT-ESX-SANBoot` itself, `Blade02` no longer picks up that change, while `Blade01` (still bound) does. That asymmetry is the actual trade-off, not a side effect: unbinding buys per-profile flexibility at the cost of that one profile falling out of the template's future updates until you explicitly **Bind to a Template** again (same General tab, **Actions > Bind to a Template**).
 

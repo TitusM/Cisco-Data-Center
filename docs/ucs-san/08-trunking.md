@@ -6,12 +6,13 @@
 
 On the F-port (or F-port-channel, see Module 8) between N5K-3 and FI-A, this lab already carries two VSANs (100 and 101) over the same physical uplink — you configured this back in Module 2, Task 2.3, so this is where you go verify it, not build it fresh:
 
-```text
-interface fc1/1
-  switchport mode F
-  switchport trunk mode on
-  switchport trunk allowed vsan 100,101
-```
+??? "Commands"
+    ```text
+    interface fc1/1
+      switchport mode F
+      switchport trunk mode on
+      switchport trunk allowed vsan 100,101
+    ```
 
 That `100,101` is exactly the scenario a single-VSAN design never has to think about: if you needed to add a third VSAN later, you'd extend the list rather than replace it — `switchport trunk allowed vsan add 300` — since replacing it outright would silently drop the VSANs you left out.
 
@@ -19,19 +20,20 @@ That `100,101` is exactly the scenario a single-VSAN design never has to think a
 
 Already touched in Module 2.1 — revisit it here specifically for trunk *negotiation and allowed-list hygiene*. Each N5K uplink still only carries its own fabric's pair — this is a check, not a widening of the allowed list from Task 2.1:
 
-```text
-! Toward FI-A
-interface Ethernet1/1
-  switchport mode trunk
-  switchport trunk allowed vlan 10,11
-  spanning-tree port type edge trunk   ! if this faces an FI, not another switch
+??? "Commands"
+    ```text
+    ! Toward FI-A
+    interface Ethernet1/1
+      switchport mode trunk
+      switchport trunk allowed vlan 10,11
+      spanning-tree port type edge trunk   ! if this faces an FI, not another switch
 
-! Toward FI-B
-interface Ethernet1/2
-  switchport mode trunk
-  switchport trunk allowed vlan 20,21
-  spanning-tree port type edge trunk
-```
+    ! Toward FI-B
+    interface Ethernet1/2
+      switchport mode trunk
+      switchport trunk allowed vlan 20,21
+      spanning-tree port type edge trunk
+    ```
 
 ## 8.3 Task 7.3 — FI-Side Trunk Definitions
 
@@ -39,11 +41,12 @@ On the FI: **LAN > VLANs** and **SAN > VSANs** must both explicitly list every I
 
 **Verify:**
 
-```text
-show interface trunk
-show vsan
-show vlan brief
-```
+??? "Commands"
+    ```text
+    show interface trunk
+    show vsan
+    show vlan brief
+    ```
 
 !!! question "Check yourself"
     On the LAN side, what NX-OS feature protects a trunk to an FI (a non-switch, non-STP-speaking device) from accidentally being blocked by spanning tree, and why is that setting safe specifically because the far end is an FI?
@@ -57,25 +60,28 @@ show vlan brief
 3. **Confirm those VLANs exist and are assigned to the uplink in UCSM.** **LAN > LAN Cloud > VLANs** — confirm VLAN 30/40 are defined, and check that they're assigned to the uplink port/port-channel from Task 2.1.
 4. **Check the upstream N5K-1/N5K-2 allowed-list on the specific interface facing that FI:**
 
-    ```text
-    show vlan
-    show interface trunk
-    ```
+    ??? "Commands"
+        ```text
+        show vlan
+        show interface trunk
+        ```
 
     If VLAN 30 and 40 exist switch-wide in `show vlan` but are missing from that interface's "Vlans Allowed on Trunk" list in `show interface trunk`, you've found it — the FI is willing to pass VLAN 30/40 frames, but the upstream N5K interface is silently dropping them because its allowed-list doesn't include those IDs. Everything on VLAN 10 keeps working over the exact same physical link, which is why the fault looks so selective.
 
 5. **Fix the allowed list on the affected interface:**
 
-    ```text
-    interface Ethernet1/1
-      switchport trunk allowed vlan add 30,40
-    ```
+    ??? "Commands"
+        ```text
+        interface Ethernet1/1
+          switchport trunk allowed vlan add 30,40
+        ```
 
 6. **Verify and confirm recovery:**
 
-    ```text
-    show interface trunk
-    ```
+    ??? "Commands"
+        ```text
+        show interface trunk
+        ```
 
     Confirm VLAN 30 and 40 now appear in that interface's allowed list, then confirm from the blade side that it obtains a DHCP lease and can reach the default gateway.
 

@@ -4,10 +4,11 @@
 
 ## 10.1 Task 9.1 — Ethernet Port-Channel Hashing
 
-```text
-port-channel load-balance ethernet source-dest-port
-show port-channel load-balance
-```
+??? "Commands"
+    ```text
+    port-channel load-balance ethernet source-dest-port
+    show port-channel load-balance
+    ```
 
 (This is Nexus 5000 syntax — the `ethernet <keyword>` form. Nexus 7000/9000 platforms use a different keyword style, e.g. `src-dst ip-l4port`; don't mix the two.)
 
@@ -17,9 +18,10 @@ Pick a hash that includes L4 port when traffic is mostly IP flows between the sa
 
 FC port channels load-balance per-exchange by default (OX_ID-based), which is almost always correct; per-flogi is available for edge cases where in-order delivery across the whole channel matters more than distribution. Check current mode:
 
-```text
-show san-port-channel summary
-```
+??? "Commands"
+    ```text
+    show san-port-channel summary
+    ```
 
 ## 10.3 Task 9.3 — UCS-Side Pinning and Failover
 
