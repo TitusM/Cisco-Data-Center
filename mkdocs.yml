@@ -52,6 +52,7 @@ nav:
   - ACI:
       - Overview: aci/index.md
       - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md
+      - Multi-Site Configuration: aci/multi-site-bring-up.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
 markdown_extensions:
