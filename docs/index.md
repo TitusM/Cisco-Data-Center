@@ -4,7 +4,7 @@ Practice lab guides for CCIE Data Center preparation, built around hands-on pod 
 
 ## Available now
 
-- **[UCS & SAN](ucs-san/00-overview.md)** — a full Nexus DC-1 pod walkthrough: compute policies and templates, SAN/LAN uplinks, port modes, FC/FCoE, zoning, NPV/NPIV, trunking, port-channel, load balancing, and an end-to-end SAN boot verification, mapped to blueprint topics 4.1.a through 5.1.e. Also includes a [standalone service profile lab](ucs-san/14-service-profile-standalone.md) on its own UCS 6400 domain, independent of the pod sequence.
+- **[UCS & SAN](ucs-san/00-overview.md)** — a full Nexus DC-1 pod walkthrough: compute policies and templates, SAN/LAN uplinks, port modes, FC/FCoE, zoning, NPV/NPIV, trunking, port-channel, load balancing, and an end-to-end SAN boot verification, mapped to blueprint topics 4.1.a through 5.1.e.
 
 ## Coming soon
 
