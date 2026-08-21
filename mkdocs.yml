@@ -58,6 +58,7 @@ nav:
       - Multi-Site Configuration: aci/multi-site-bring-up.md
       - Virtual Port-Channel (vPC): aci/virtual-port-channel-vpc.md
       - Cisco Application Centric Infrastructure (ACI) Contracts: aci/contracts.md
+      - Endpoint Security Groups (ESGs): aci/endpoint-security-groups.md
       - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
