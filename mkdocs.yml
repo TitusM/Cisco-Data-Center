@@ -45,6 +45,7 @@ nav:
       - 12 · Troubleshooting Drill: ucs-san/12-troubleshooting-drill.md
       - Appendix: ucs-san/13-appendix.md
       - "Standalone Lab · Configure a Service Profile": ucs-san/14-service-profile-standalone.md
+      - "Standalone Lab · Configure Basic Identity Pools": ucs-san/15-identity-pools-standalone.md
   - NX-OS: nx-os/index.md
   - ACI: aci/index.md
   - VXLAN EVPN: vxlan-evpn/index.md
