@@ -61,6 +61,7 @@ nav:
       - Cisco ACI L3OUT (BGP & OSPF) Configuration: aci/l3out-bgp-ospf.md
       - Endpoint Security Groups (ESGs): aci/endpoint-security-groups.md
       - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
+      - Cisco ACI Transit Routing Configuration: aci/transit-routing.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
 markdown_extensions:
