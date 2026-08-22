@@ -18,20 +18,20 @@ That `100,101` is exactly the scenario a single-VSAN design never has to think a
 
 ## 8.2 Task 7.2 — VLAN Trunking (LAN)
 
-Already touched in Module 2.1 — revisit it here specifically for trunk *negotiation and allowed-list hygiene*. Each N5K uplink still only carries its own fabric's pair — this is a check, not a widening of the allowed list from Task 2.1:
+Already touched in Module 2.1 — revisit it here specifically for trunk *negotiation and allowed-list hygiene*. Each N5K port channel still only carries its own fabric's pair — this is a check, not a widening of the allowed list from Task 2.1:
 
 ??? "Commands"
     ```text
-    ! Toward FI-A
-    interface Ethernet1/1
+    ! Port channel toward FI-A
+    interface port-channel1
       switchport mode trunk
-      switchport trunk allowed vlan 10,11
+      switchport trunk allowed vlan 10,11,1000
       spanning-tree port type edge trunk   ! if this faces an FI, not another switch
 
-    ! Toward FI-B
-    interface Ethernet1/2
+    ! Port channel toward FI-B
+    interface port-channel2
       switchport mode trunk
-      switchport trunk allowed vlan 10,11
+      switchport trunk allowed vlan 10,11,2000
       spanning-tree port type edge trunk
     ```
 
@@ -58,7 +58,7 @@ On the FI: **LAN > VLANs** and **SAN > VSANs** must both explicitly list every I
 1. **Rule out Layer 3 first.** From an affected blade, ping the default gateway directly. 100% loss, with a healthy blade sitting in the next slot, tells you this is scoped — not a general LAN or routing outage — before you touch a single switch command.
 2. **Identify which VLAN(s) the affected service profiles actually use.** **Servers > Service Profiles > [name] > Network**, note the vNIC's assigned VLAN — in this drill, the affected blades are the ones on VLAN 30 and VLAN 40, not VLAN 10.
 3. **Confirm those VLANs exist and are assigned to the uplink in UCSM.** **LAN > LAN Cloud > VLANs** — confirm VLAN 30/40 are defined, and check that they're assigned to the uplink port/port-channel from Task 2.1.
-4. **Check the upstream N5K-1/N5K-2 allowed-list on the specific interface facing that FI:**
+4. **Check the upstream N5K-1/N5K-2 allowed-list on the specific port channel facing that FI:**
 
     ??? "Commands"
         ```text
@@ -66,13 +66,13 @@ On the FI: **LAN > VLANs** and **SAN > VSANs** must both explicitly list every I
         show interface trunk
         ```
 
-    If VLAN 30 and 40 exist switch-wide in `show vlan` but are missing from that interface's "Vlans Allowed on Trunk" list in `show interface trunk`, you've found it — the FI is willing to pass VLAN 30/40 frames, but the upstream N5K interface is silently dropping them because its allowed-list doesn't include those IDs. Everything on VLAN 10 keeps working over the exact same physical link, which is why the fault looks so selective.
+    If VLAN 30 and 40 exist switch-wide in `show vlan` but are missing from that port channel's "Vlans Allowed on Trunk" list in `show interface trunk`, you've found it — the FI is willing to pass VLAN 30/40 frames, but the upstream N5K port channel is silently dropping them because its allowed-list doesn't include those IDs. Everything on VLAN 10 keeps working over the exact same bundled uplink, which is why the fault looks so selective.
 
-5. **Fix the allowed list on the affected interface:**
+5. **Fix the allowed list on the affected port channel:**
 
     ??? "Commands"
         ```text
-        interface Ethernet1/1
+        interface port-channel1
           switchport trunk allowed vlan add 30,40
         ```
 
@@ -83,7 +83,7 @@ On the FI: **LAN > VLANs** and **SAN > VSANs** must both explicitly list every I
         show interface trunk
         ```
 
-    Confirm VLAN 30 and 40 now appear in that interface's allowed list, then confirm from the blade side that it obtains a DHCP lease and can reach the default gateway.
+    Confirm VLAN 30 and 40 now appear in that port channel's allowed list, then confirm from the blade side that it obtains a DHCP lease and can reach the default gateway.
 
 !!! question "Check yourself"
     Why does this fault hit only *some* servers on the same chassis, same fabric, and same physical uplink, rather than all of them? Name the one property of a service profile's vNIC that determines whether a given blade is affected — and explain why "some work, some don't" is itself diagnostic evidence that should point you at a VLAN allowed-list before you check anything else.

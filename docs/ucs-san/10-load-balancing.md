@@ -51,7 +51,7 @@ Manual pinning is **not** automatically a best practice — default dynamic pinn
 
 ??? "Commands"
     ```text
-    show interface Ethernet1/1 counters
+    show interface port-channel1 counters
     show interface counters trunk
     ```
 

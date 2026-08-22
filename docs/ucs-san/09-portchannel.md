@@ -48,24 +48,9 @@ If N5K-1/N5K-2 form a vPC domain toward each FI, building a working vPC needs fo
 
 Restrict the peer-link's allowed-VLAN list to the VLANs actually carried over vPC (10, 11 in this lab) — Cisco's own vPC best-practice guidance is to prune the peer-link to only the VLANs it needs to carry, rather than trunking everything by default.
 
-**4 — FI-facing (downstream) vPC.** This is the port channel that was already in this module before the correction — kept as-is, just now built on top of an actual peer-link instead of standing alone:
+**4 — FI-facing (downstream) vPC.** This is the pair of port channels — `port-channel1` toward FI-A, `port-channel2` toward FI-B — you already built in Module 2, Task 2.1. That module is where you go to (re)build them; what's new here is that they now sit on top of an actual peer-link (step 3 above) instead of standing alone.
 
-??? "Commands"
-    ```text
-    ! On both N5K-1 and N5K-2
-    interface port-channel10
-      switchport
-      switchport mode trunk
-      switchport trunk allowed vlan 10,11
-      vpc 10
-
-    interface Ethernet1/1
-      channel-group 10 mode active
-    ```
-
-On the FI side, bundle the corresponding uplink ports into a **Port Channel** under **LAN > LAN Cloud > Fabric A > Port Channels**.
-
-**Verify the whole vPC domain, not just the downstream port channel:**
+**Verify the whole vPC domain, not just the downstream port channels:**
 
 ??? "Commands"
     ```text
@@ -73,10 +58,13 @@ On the FI side, bundle the corresponding uplink ports into a **Port Channel** un
     show vpc brief
     show port-channel summary
     show interface port-channel100
-    show interface port-channel10
+    show interface port-channel1
+    show interface port-channel2
     ```
 
-Confirm: peer adjacency is **peer-ok**, peer-keepalive is **alive**, the peer-link (`port-channel100`) is **up**, **vPC role** is consistent (primary/secondary), **consistency-parameters** show **success** (a mismatch here — e.g. differing MTU or trunk-allowed-VLAN lists between the two switches — is what most often blocks a vPC from coming fully up even though the peer-link itself is up), and VLAN 10/11 both show active across the FI-facing port channel.
+Confirm: peer adjacency is **peer-ok**, peer-keepalive is **alive**, the peer-link (`port-channel100`) is **up**, **vPC role** is consistent (primary/secondary), **consistency-parameters** show **success** (a mismatch here — e.g. differing MTU or trunk-allowed-VLAN lists between the two switches — is what most often blocks a vPC from coming fully up even though the peer-link itself is up), and VLAN 10/11 both show active across each FI-facing port channel.
+
+The one thing worth calling out here that Task 2.1 didn't dwell on: `channel-group N mode active` uses LACP (`active` on both ends negotiates; `active`/`passive` also works, but `passive`/`passive` never comes up since neither side initiates). A member stuck in `(I)` (individual, not bundled) on the Ethernet side almost always means the two ends disagree on LACP mode, speed, or trunk state — not a cabling problem, since `(I)` still implies the physical link is up.
 
 !!! warning "What a missing or inconsistent peer-link looks like"
     Without a working peer-link, `show vpc` reports the peer-link as down and the vPC domain falls back to individual, non-synchronized forwarding on each switch — downstream port channels toward the FI may still individually pass traffic, but MAC/ARP state isn't synchronized between N5K-1 and N5K-2, which shows up as intermittent duplicate-MAC or flapping symptoms rather than a clean outage. A consistency-parameter mismatch (e.g. mismatched `switchport trunk allowed vlan` lists between the two peer-link ends) similarly leaves vPC role negotiation stuck rather than fully operational — `show vpc consistency-parameters global` isolates exactly which parameter disagrees.
@@ -126,7 +114,7 @@ Proving the SAN port channel is actually operating correctly — not merely conf
 ??? "Commands"
     ```text
     show port-channel summary
-    show interface port-channel10
+    show interface port-channel1
     show san-port-channel summary
     show interface san-port-channel 1
     show flogi database

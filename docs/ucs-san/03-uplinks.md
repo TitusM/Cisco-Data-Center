@@ -17,9 +17,11 @@ Cisco documents three distinct Ethernet uplink roles on a Fabric Interconnect �
 ![LAN aspect of Nexus DC-1: N5K-1/N5K-2, FI-A/FI-B, and Host highlighted](../assets/topology-lan.png)
 *LAN aspect of Nexus DC-1: N5K-1/N5K-2, FI-A/FI-B, and Host highlighted*
 
-On each FI (UCSM: **Equipment > Fabric Interconnects > Fixed Module > Ethernet Ports**), set the ports facing N5K-1/N5K-2 to **Uplink Port**. If more than one physical link per FI, bundle them (see Module 8).
+This lab builds each FI's LAN uplink as a **vPC port channel** from the start, not a single link with bundling deferred — that's the design every later module already assumes (Task 2.4's VLAN-to-uplink association, Module 7's trunk verification, Module 9's hashing/pinning). Each FI has two physical uplinks, one to N5K-1 and one to N5K-2, bundled into one logical port channel that both N5K peers treat as a single link.
 
-On N5K-1/N5K-2, first create the local VLANs in the switch's own VLAN database (this is separate from the UCSM VLAN objects you created in Module 1, Task 1.1 — matching IDs are what tie the two together, not a shared database). VLAN 10 and 11 are shared, so both N5K uplink interfaces — the one toward FI-A and the one toward FI-B — carry the same Data/Mgmt pair. The one thing that must *not* be shared is the FCoE VLAN: it's bound to that fabric's VSANs (Module 4), so mixing FCoE VLAN 1000 onto the FI-B-facing interface (or 2000 onto the FI-A-facing one) would leak one fabric's SAN traffic onto the other's Ethernet path and defeat the point of keeping the SAN fabrics isolated:
+**On each FI** (UCSM: **Equipment > Fabric Interconnects > Fixed Module > Ethernet Ports**), set both ports facing the N5K pair to **Uplink Port**.
+
+**On N5K-1/N5K-2**, first create the local VLANs in the switch's own VLAN database (this is separate from the UCSM VLAN objects you created in Module 1, Task 1.1 — matching IDs are what tie the two together, not a shared database). This module builds the FI-facing (downstream) vPC itself; the vPC domain, peer-keepalive, and peer-link between N5K-1 and N5K-2 are prerequisites covered in full in Module 8, Task 8.1 — build those first if they don't already exist, since a downstream vPC cannot come up without a working peer-link. VLAN 10 and 11 are shared, so both port channels — the one toward FI-A and the one toward FI-B — carry the same Data/Mgmt pair; the allowed-VLAN list belongs on the **port-channel interface**, not repeated on each physical member. The one thing that must *not* be shared is the FCoE VLAN: it's bound to that fabric's VSANs (Module 4), so mixing FCoE VLAN 1000 onto the FI-B port channel (or 2000 onto the FI-A one) would leak one fabric's SAN traffic onto the other's Ethernet path and defeat the point of keeping the SAN fabrics isolated:
 
 ??? "Commands"
     ```text
@@ -28,20 +30,46 @@ On N5K-1/N5K-2, first create the local VLANs in the switch's own VLAN database (
     vlan 11
       name Mgmt
 
-    ! Toward FI-A
-    interface Ethernet1/1
+    ! Port channel toward FI-A — configure on N5K-1 AND N5K-2, each contributing
+    ! one physical link (its own Ethernet1/1) so the FI sees one bundled uplink
+    interface port-channel1
       switchport mode trunk
       switchport trunk allowed vlan 10,11,1000
+      vpc 1
       no shutdown
 
-    ! Toward FI-B
-    interface Ethernet1/2
+    interface Ethernet1/1
+      channel-group 1 mode active
+      no shutdown
+
+    ! Port channel toward FI-B — configure on N5K-1 AND N5K-2, each contributing
+    ! one physical link (its own Ethernet1/2) so the FI sees one bundled uplink
+    interface port-channel2
       switchport mode trunk
       switchport trunk allowed vlan 10,11,2000
+      vpc 2
+      no shutdown
+
+    interface Ethernet1/2
+      channel-group 2 mode active
       no shutdown
     ```
 
-If N5K-1/N5K-2 run vPC to each FI, see Module 8 for the vPC-specific config.
+**On the FI**, bundle the two uplink ports facing N5K-1/N5K-2 into a **Port Channel**: **LAN > LAN Cloud > Fabric A (or B) > Port Channels > Create Port Channel** — assign an ID and name, move both member uplink ports into the channel in the Add Ports step, then Finish.
+
+**VLAN-to-port-channel association.** Every VLAN defined under **LAN > LAN Cloud > VLANs** (Module 1, Task 1.1) is trunked on *every* uplink port and port channel by default in UCSM — VLAN 10/11 already ride the new port channel without further action. If you ever need to confirm or explicitly scope that association (e.g. via the VLAN's own **Ports** tab, or **LAN Uplinks Manager**), keep in mind Task 2.4's documented behavior: explicitly associating a VLAN with specific uplinks **removes it from every uplink not selected**. Since both VLANs need to stay reachable on both fabrics' port channels here, don't narrow this association down to one uplink for VLAN 10/11.
+
+**Verify:**
+
+??? "Commands"
+    ```text
+    show port-channel summary
+    show vpc
+    show interface port-channel1 trunk
+    show interface port-channel2 trunk
+    ```
+
+Confirm both member links show `(P)` under their port channel, `show vpc` reports each vPC as **up** with consistent parameters, and each port channel's "Vlans Allowed on Trunk" includes 10, 11, and only its own fabric's FCoE VLAN. In UCSM, confirm the port channel's member ports show **Up**.
 
 ## 3.2 Task 2.2 — FC/FCoE (SAN) Uplinks
 
