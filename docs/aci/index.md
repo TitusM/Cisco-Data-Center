@@ -10,6 +10,7 @@
 - **[Cisco ACI L3OUT (BGP & OSPF) Configuration](l3out-bgp-ospf.md)** — BGP and OSPF L3Out peering with external routers, external route redistribution and internal subnet advertisement, including the BGP route-reflector Pod profile troubleshooting scenario.
 - **[Endpoint Security Groups (ESGs)](endpoint-security-groups.md)** — ESG creation, VMM tag/IP/MAC-based Selectors for dynamic endpoint classification across EPGs, ESG-level contracts, and zoning-rule/communication-matrix verification.
 - **[ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU](local-span.md)** — local Access SPAN destination/source group configuration, and using a Nexus 9000's SPAN-to-CPU capability with Ethanalyzer to capture and verify the mirrored traffic.
+- **[Cisco ACI Transit Routing Configuration](transit-routing.md)** — transit routing between external OSPF and BGP domains, Export Route Control Subnet and default-export route-map control, prefix-list/route-map verification, and External EPG contract reachability.
 
 ## Coming soon
 
