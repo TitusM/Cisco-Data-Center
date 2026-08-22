@@ -63,6 +63,7 @@ nav:
       - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
       - Cisco ACI Transit Routing Configuration: aci/transit-routing.md
       - Cisco ACI Shared L3OUT (VRF Leaking): aci/shared-l3out.md
+      - Cisco ACI L4-L7 Policy-Based Redirect (PBR): aci/l4-l7-pbr.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
 markdown_extensions:
