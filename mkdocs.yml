@@ -62,6 +62,7 @@ nav:
       - Endpoint Security Groups (ESGs): aci/endpoint-security-groups.md
       - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
       - Cisco ACI Transit Routing Configuration: aci/transit-routing.md
+      - Cisco ACI Shared L3OUT (VRF Leaking): aci/shared-l3out.md
   - VXLAN EVPN: vxlan-evpn/index.md
 
 markdown_extensions:
