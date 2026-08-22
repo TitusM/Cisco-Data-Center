@@ -4,21 +4,9 @@
 
 ## 9.1 Task 8.1 — Ethernet Port Channel (vPC) on the LAN Side
 
-If N5K-1/N5K-2 form a vPC domain toward each FI, the peer-keepalive link must already be up before the peer-link (port-channel) can form — configure it first, and note it needs its own routed source/destination pair (commonly the mgmt0 VRF), separate from the peer-link data path:
+The LAN-side port channel was already built in Module 2, Task 2.1 — `feature vpc`, the `vpc domain`/peer-keepalive, `interface port-channel1`/`port-channel2` with `vpc 1`/`vpc 2`, and the FI-side **Port Channels** under **LAN > LAN Cloud**. This section is where you go verify and troubleshoot it, not build it fresh.
 
-??? "Commands"
-    ```text
-    ! On both N5K-1 and N5K-2
-    feature vpc
-    vpc domain 1
-      peer-keepalive destination <peer-mgmt-ip> source <this-switch-mgmt-ip> vrf management
-    interface port-channel10
-      vpc 10
-    interface Ethernet1/1
-      channel-group 10 mode active
-    ```
-
-On the FI side, bundle the corresponding uplink ports into a **Port Channel** under **LAN > LAN Cloud > Fabric A > Port Channels**.
+The one thing worth calling out here that Task 2.1 didn't dwell on: `channel-group N mode active` uses LACP (`active` on both ends negotiates; `active`/`passive` also works, but `passive`/`passive` never comes up since neither side initiates). A member stuck in `(I)` (individual, not bundled) almost always means the two ends disagree on LACP mode, speed, or the port's `switchport mode trunk` state — not a cabling problem, since `(I)` still implies the physical link is up.
 
 ## 9.2 Task 8.2 — FC Port Channel (SAN Side)
 
@@ -40,7 +28,7 @@ On the FI: **SAN > SAN Cloud > Fabric A > FC Port Channels**, add the member upl
 ??? "Commands"
     ```text
     show port-channel summary
-    show interface port-channel10
+    show interface port-channel1
     show san-port-channel summary
     ```
 

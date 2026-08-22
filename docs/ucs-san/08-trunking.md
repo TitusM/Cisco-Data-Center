@@ -18,20 +18,20 @@ That `100,101` is exactly the scenario a single-VSAN design never has to think a
 
 ## 8.2 Task 7.2 — VLAN Trunking (LAN)
 
-Already touched in Module 2.1 — revisit it here specifically for trunk *negotiation and allowed-list hygiene*. Each N5K uplink still only carries its own fabric's pair — this is a check, not a widening of the allowed list from Task 2.1:
+Already touched in Module 2.1 — revisit it here specifically for trunk *negotiation and allowed-list hygiene*. Each N5K port channel still only carries its own fabric's pair — this is a check, not a widening of the allowed list from Task 2.1:
 
 ??? "Commands"
     ```text
-    ! Toward FI-A
-    interface Ethernet1/1
+    ! Port channel toward FI-A
+    interface port-channel1
       switchport mode trunk
-      switchport trunk allowed vlan 10,11
+      switchport trunk allowed vlan 10,11,1000
       spanning-tree port type edge trunk   ! if this faces an FI, not another switch
 
-    ! Toward FI-B
-    interface Ethernet1/2
+    ! Port channel toward FI-B
+    interface port-channel2
       switchport mode trunk
-      switchport trunk allowed vlan 20,21
+      switchport trunk allowed vlan 10,11,2000
       spanning-tree port type edge trunk
     ```
 
@@ -68,11 +68,11 @@ On the FI: **LAN > VLANs** and **SAN > VSANs** must both explicitly list every I
 
     If VLAN 30 and 40 exist switch-wide in `show vlan` but are missing from that interface's "Vlans Allowed on Trunk" list in `show interface trunk`, you've found it — the FI is willing to pass VLAN 30/40 frames, but the upstream N5K interface is silently dropping them because its allowed-list doesn't include those IDs. Everything on VLAN 10 keeps working over the exact same physical link, which is why the fault looks so selective.
 
-5. **Fix the allowed list on the affected interface:**
+5. **Fix the allowed list on the affected port channel:**
 
     ??? "Commands"
         ```text
-        interface Ethernet1/1
+        interface port-channel1
           switchport trunk allowed vlan add 30,40
         ```
 

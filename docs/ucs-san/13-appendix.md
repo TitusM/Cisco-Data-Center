@@ -38,12 +38,12 @@
     feature vpc
     vpc domain 1
       peer-keepalive destination <ip> source <ip> vrf management
-    interface port-channel10
-      vpc 10
-    interface Ethernet1/1
+    interface port-channel1
       switchport mode trunk
       switchport trunk allowed vlan 10,11,1000
-      channel-group 10 mode active
+      vpc 1
+    interface Ethernet1/1
+      channel-group 1 mode active
     show port-channel summary
     show interface trunk
     show vpc brief
