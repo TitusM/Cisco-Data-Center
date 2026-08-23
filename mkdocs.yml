@@ -1,7 +1,10 @@
-site_name: CCIE Data Center Guided Labs
+site_name: Cisco Data Center Labs
 site_url: https://titusm.github.io/Cisco-Data-Center/
 repo_url: https://github.com/TitusM/Cisco-Data-Center
 repo_name: TitusM/Cisco-Data-Center
+
+extra_css:
+  - stylesheets/extra.css
 
 theme:
   name: material
@@ -30,6 +33,7 @@ theme:
 nav:
   - Home: index.md
   - UCS & SAN:
+      - Overview: ucs-san/index.md
       - End-to-End Guided Lab:
           - Overview: ucs-san/00-overview.md
           - Pre-Lab Checklist: ucs-san/01-pre-lab.md
@@ -53,16 +57,24 @@ nav:
       - Virtual Port-Channel Basic Configuration: nx-os/virtual-port-channel-basic-configuration.md
   - ACI:
       - Overview: aci/index.md
-      - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md
-      - Multi-Pod Fabric Bring Up – from Scratch!: aci/multipod-fabric-bring-up.md
-      - Multi-Site Configuration: aci/multi-site-bring-up.md
-      - Virtual Port-Channel (vPC): aci/virtual-port-channel-vpc.md
-      - Cisco Application Centric Infrastructure (ACI) Contracts: aci/contracts.md
-      - Cisco ACI L3OUT (BGP & OSPF) Configuration: aci/l3out-bgp-ospf.md
-      - Endpoint Security Groups (ESGs): aci/endpoint-security-groups.md
-      - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
-      - Cisco ACI Transit Routing Configuration: aci/transit-routing.md
-      - Cisco ACI Shared L3OUT (VRF Leaking): aci/shared-l3out.md
+      - Fabric Foundation:
+          - Fabric Bring Up – from Scratch!: aci/fabric-bring-up.md
+          - Virtual Port-Channel (vPC): aci/virtual-port-channel-vpc.md
+      - Policy & Segmentation:
+          - Contracts: aci/contracts.md
+          - Endpoint Security Groups (ESGs): aci/endpoint-security-groups.md
+          - L4-L7 Policy-Based Redirect (PBR): aci/l4-l7-pbr.md
+      - External Connectivity:
+          - L3OUT (BGP & OSPF) Configuration: aci/l3out-bgp-ospf.md
+      - Routing & Route Sharing:
+          - Transit Routing Configuration: aci/transit-routing.md
+          - Shared L3OUT (VRF Leaking): aci/shared-l3out.md
+          - Inter-VRF Route-Leaking: aci/inter-vrf-route-leaking.md
+      - Multi-Fabric:
+          - Multi-Pod Fabric Bring Up – from Scratch!: aci/multipod-fabric-bring-up.md
+          - Multi-Site Configuration: aci/multi-site-bring-up.md
+      - Operations & Visibility:
+          - Local SPAN, Ethanalyzer & SPAN-to-CPU: aci/local-span.md
   - VXLAN EVPN:
       - Overview: vxlan-evpn/index.md
       - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
@@ -71,8 +83,14 @@ nav:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - def_list
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - tables
   - toc:
       permalink: true

@@ -1,17 +1,72 @@
 # ACI
 
-## Available now
+Hands-on Cisco ACI labs covering fabric deployment, policy and segmentation, external routing, multi-fabric architectures, and operations.
 
-- **[Cisco ACI Fabric Bring Up – from Scratch!](fabric-bring-up.md)** — APIC cluster bring-up, fabric node registration, OOB management, and Pod/NTP/BGP policies on a fresh ACI fabric.
-- **[Cisco ACI Multi-Pod Fabric Bring Up – from Scratch!](multipod-fabric-bring-up.md)** — a second APIC cluster bring-up across two Pods, the Inter-Pod Network (OSPF, PIM Bidir, DHCP relay), the Multi-Pod wizard, MP-BGP EVPN between spines, and fabric discovery troubleshooting.
-- **[Cisco ACI Multi-Site Configuration](multi-site-bring-up.md)** — Nexus Dashboard and NDO onboarding, fabric-to-fabric connectivity, ISN OSPF, and MP-BGP EVPN verification across two ACI sites.
-- **[Cisco ACI Virtual Port-Channel (vPC)](virtual-port-channel-vpc.md)** — vPC Explicit Protection Group, Leaf/Interface Profiles, Access Port Selector, and vPC Interface Policy Group configuration and verification.
-- **[Cisco Application Centric Infrastructure (ACI) Contracts](contracts.md)** — contract filters, subjects, consumer/provider EPG relationships, zoning-rule verification, and inter-EPG traffic validation.
-- **[Cisco ACI L3OUT (BGP & OSPF) Configuration](l3out-bgp-ospf.md)** — BGP and OSPF L3Out peering with external routers, external route redistribution and internal subnet advertisement, including the BGP route-reflector Pod profile troubleshooting scenario.
-- **[Endpoint Security Groups (ESGs)](endpoint-security-groups.md)** — ESG creation, VMM tag/IP/MAC-based Selectors for dynamic endpoint classification across EPGs, ESG-level contracts, and zoning-rule/communication-matrix verification.
-- **[ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU](local-span.md)** — local Access SPAN destination/source group configuration, and using a Nexus 9000's SPAN-to-CPU capability with Ethanalyzer to capture and verify the mirrored traffic.
-- **[Cisco ACI Transit Routing Configuration](transit-routing.md)** — transit routing between external OSPF and BGP domains, Export Route Control Subnet and default-export route-map control, prefix-list/route-map verification, and External EPG contract reachability.
-- **[Cisco ACI Shared L3OUT (VRF Leaking)](shared-l3out.md)** — shared L3Out route leaking between VRFs, internal subnet sharing, external EPG import controls, route-map verification, and contract enforcement validation.
+Work through individual capabilities or combine them to understand how the ACI fabric behaves as a complete Data Center system.
+
+**New to the ACI labs?** Suggested progression:
+
+Fabric Foundation → Policy & Segmentation → External Connectivity → Routing & Route Sharing → Multi-Fabric → Operations & Visibility
+
+This is a suggestion, not a requirement — jump straight to whichever lab you need.
+
+<div class="grid cards" markdown>
+
+-   :material-hexagon-outline: **Fabric Foundation**
+
+    ---
+
+    Build the ACI fabric foundation, onboard nodes, establish access connectivity, and verify the fabric is operational before tenant services are introduced.
+
+    - **[Fabric Bring Up – from Scratch!](fabric-bring-up.md)** · Guided Lab
+    - **[Virtual Port-Channel (vPC)](virtual-port-channel-vpc.md)** · Standalone Lab
+
+-   :material-shield-check-outline: **Policy & Segmentation**
+
+    ---
+
+    Practice ACI policy, segmentation, endpoint grouping, and communication control using the application policy model.
+
+    - **[Contracts](contracts.md)** · Standalone Lab
+    - **[Endpoint Security Groups (ESGs)](endpoint-security-groups.md)** · Standalone Lab
+    - **[L4-L7 Policy-Based Redirect (PBR)](l4-l7-pbr.md)** · Standalone Lab
+
+-   :material-router-network-wireless: **External Connectivity**
+
+    ---
+
+    Connect ACI tenants to external routed networks and validate adjacency, route exchange, endpoint reachability, and policy enforcement.
+
+    - **[L3OUT (BGP & OSPF) Configuration](l3out-bgp-ospf.md)** · Standalone Lab
+
+-   :material-routes: **Routing & Route Sharing**
+
+    ---
+
+    Explore how ACI handles transit traffic, shared external connectivity, route leaking, and controlled routing between tenant contexts.
+
+    - **[Transit Routing Configuration](transit-routing.md)** · Standalone Lab
+    - **[Shared L3OUT (VRF Leaking)](shared-l3out.md)** · Standalone Lab
+    - **[Inter-VRF Route-Leaking](inter-vrf-route-leaking.md)** · Standalone Lab
+
+-   :material-server-network: **Multi-Fabric**
+
+    ---
+
+    Build and operate ACI across multiple pods or sites and understand the control-plane, data-plane, and orchestration dependencies involved.
+
+    - **[Multi-Pod Fabric Bring Up – from Scratch!](multipod-fabric-bring-up.md)** · Guided Lab
+    - **[Multi-Site Configuration](multi-site-bring-up.md)** · Guided Lab
+
+-   :material-magnify-scan: **Operations & Visibility**
+
+    ---
+
+    Observe ACI operational state, inspect traffic, validate endpoint behavior, and gather evidence before troubleshooting.
+
+    - **[Local SPAN, Ethanalyzer & SPAN-to-CPU](local-span.md)** · Standalone Lab
+
+</div>
 
 ## Coming soon
 
