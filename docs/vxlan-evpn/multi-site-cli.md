@@ -949,146 +949,166 @@ Most verifications will be shown for 1 site, however the same set of checks appl
 sites.
 
 Verify the VTEP interface status on the BGWs.
+
 #### S1-BGW1
 
 ```text
+show nve interface nve 1
+Interface: nve1, State: Up, encapsulation: VXLAN
+ VPC Capability: VPC-VIP-Only [not-notified]
+ Local Router MAC: e41f.7b68.6407
+ Host Learning Mode: Control-Plane
+ Source-Interface: loopback1
+           (primary: 55.55.55.55, secondary: 0.0.0.0)
 ```
 
 #### S2-BGW1
 
 ```text
+show nve interface nve 1
+Interface: nve1, State: Up, encapsulation: VXLAN
+ VPC Capability: VPC-VIP-Only [not-notified]
+ Local Router MAC: 9077.ee36.4847
+ Host Learning Mode: Control-Plane
+ Source-Interface: loopback1
+           (primary: 55.0.0.55, secondary: 0.0.0.0)
 ```
 
-show nve interface nve 1                                           show nve interface nve 1
-```text
-Interface: nve1, State: Up, encapsulation: VXLAN                   Interface: nve1, State: Up, encapsulation: VXLAN
- VPC Capability: VPC-VIP-Only [not-notified]                        VPC Capability: VPC-VIP-Only [not-notified]
- Local Router MAC: e41f.7b68.6407                                   Local Router MAC: 9077.ee36.4847
- Host Learning Mode: Control-Plane                                  Host Learning Mode: Control-Plane
- Source-Interface: loopback1                                        Source-Interface: loopback1
-           (primary: 55.55.55.55, secondary: 0.0.0.0)                         (primary: 55.0.0.55, secondary: 0.0.0.0)
-
-
-            Verify the VTEP interface details on the BGWs.
-```
+Verify the VTEP interface details on the BGWs.
 
 #### S1-BGW1
 
 ```text
+show nve interface nve 1 detail
+Interface: nve1, State: Up, encapsulation: VXLAN
+ VPC Capability: VPC-VIP-Only [not-notified]
+ Local Router MAC: e41f.7b68.6407
+ Host Learning Mode: Control-Plane
+ Source-Interface: loopback1
+       (primary: 55.55.55.55, secondary: 0.0.0.0)
+ Source Interface State: Up
+ Virtual RMAC Advertisement: No
+ NVE Flags:
+ Interface Handle: 0x49000001
+ Source Interface hold-down-time: 180
+ Source Interface hold-up-time: 30
+ Remaining hold-down time: 0 seconds
+ Virtual Router MAC: N/A
+ Virtual Router MAC Re-origination: 0200.3838.3838
+ Interface state: nve-intf-add-complete
+ Fabric convergence time: 135 seconds
+ Fabric convergence time left: 0 seconds
+ Multisite delay-restore time: 300 seconds
+ Multisite delay-restore time left: 0 seconds
+ Multisite dci-advertise-pip configured: False
+ Multisite bgw-if: loopback100
+               (ip: 56.56.56.56, admin: Up, oper: Up)
+ Multisite bgw-if oper down reason:
 ```
 
 #### S2-BGW1
 
 ```text
-```
-
-show nve interface nve 1 detail                                  show nve interface nve 1 detail
-```text
-Interface: nve1, State: Up, encapsulation: VXLAN                 Interface: nve1, State: Up, encapsulation: VXLAN
- VPC Capability: VPC-VIP-Only [not-notified]                      VPC Capability: VPC-VIP-Only [not-notified]
- Local Router MAC: e41f.7b68.6407                                 Local Router MAC: 9077.ee36.4847
- Host Learning Mode: Control-Plane                                Host Learning Mode: Control-Plane
- Source-Interface: loopback1                                      Source-Interface: loopback1
-       (primary: 55.55.55.55, secondary: 0.0.0.0)                             (primary: 55.0.0.55, secondary: 0.0.0.0)
- Source Interface State: Up                                       Source Interface State: Up
- Virtual RMAC Advertisement: No                                   Virtual RMAC Advertisement: No
- NVE Flags:                                                       NVE Flags:
-```
-
-Interface Handle: 0x49000001                                     Interface Handle: 0x49000001
-```text
- Source Interface hold-down-time: 180                             Source Interface hold-down-time: 180
- Source Interface hold-up-time: 30                                Source Interface hold-up-time: 30
- Remaining hold-down time: 0 seconds                              Remaining hold-down time: 0 seconds
- Virtual Router MAC: N/A                                          Virtual Router MAC: N/A
- Virtual Router MAC Re-origination: 0200.3838.3838                Virtual Router MAC Re-origination: 0200.3800.0038
-```
-
-Interface state: nve-intf-add-complete                           Interface state: nve-intf-add-complete
-Fabric convergence time: 135 seconds                             Fabric convergence time: 135 seconds
-Fabric convergence time left: 0 seconds                          Fabric convergence time left: 0 seconds
-```text
- Multisite delay-restore time: 300 seconds                        Multisite delay-restore time: 300 seconds
- Multisite delay-restore time left: 0 seconds                     Multisite delay-restore time left: 0 seconds
- Multisite dci-advertise-pip configured: False                    Multisite dci-advertise-pip configured: False
+show nve interface nve 1 detail
+Interface: nve1, State: Up, encapsulation: VXLAN
+ VPC Capability: VPC-VIP-Only [not-notified]
+ Local Router MAC: 9077.ee36.4847
+ Host Learning Mode: Control-Plane
+ Source-Interface: loopback1
+       (primary: 55.0.0.55, secondary: 0.0.0.0)
+ Source Interface State: Up
+ Virtual RMAC Advertisement: No
+ NVE Flags:
+ Interface Handle: 0x49000001
+ Source Interface hold-down-time: 180
+ Source Interface hold-up-time: 30
+ Remaining hold-down time: 0 seconds
+ Virtual Router MAC: N/A
+ Virtual Router MAC Re-origination: 0200.3800.0038
+ Interface state: nve-intf-add-complete
+ Fabric convergence time: 135 seconds
+ Fabric convergence time left: 0 seconds
+ Multisite delay-restore time: 300 seconds
+ Multisite delay-restore time left: 0 seconds
+ Multisite dci-advertise-pip configured: False
  Multisite fabric-advertise-pip l3 configured: False
- Multisite bgw-if: loopback100                                   Multisite bgw-if: loopback100
-               (ip: 56.56.56.56, admin: Up, oper: Up)                            (ip: 56.0.0.56, admin: Up, oper: Up
- Multisite bgw-if oper down reason:                              Multisite bgw-if oper down reason:
-
-
-            Verify the status of Multi-site dci-links
+ Multisite bgw-if: loopback100
+               (ip: 56.0.0.56, admin: Up, oper: Up)
+ Multisite bgw-if oper down reason:
 ```
+
+Verify the status of Multi-site dci-links
 
 #### S1-BGW1
 
 ```text
+show nve multisite dci-links
+Interface      State
+---------      -----
+Ethernet1/1    Up
+Ethernet1/2    Up
 ```
 
 #### S2-BGW1
 
 ```text
+show nve multisite dci-links
+Interface      State
+---------      -----
+Ethernet1/47   Up
+Ethernet1/48   Up
 ```
-
-show nve multisite dci-links                                     show nve multisite dci-links
-```text
-Interface      State                                             Interface      State
----------      -----                                             ---------      -----
-```
-
-Ethernet1/1    Up                                                Ethernet1/47   Up
-Ethernet1/2    Up                                                Ethernet1/48   Up
-
 
 Verify the status of Multi-site fabric-links
+
 #### S1-BGW1
 
 ```text
+show nve multisite fabric-links
+Interface      State
+---------      -----
+Ethernet1/98   Up
+Ethernet1/99   Up
 ```
 
 #### S2-BGW1
 
 ```text
+show nve multisite fabric-links
+Interface      State
+---------      -----
+Ethernet1/99   Up
+Ethernet1/100  Up
 ```
-
-show nve multisite fabric-links                                  show nve multisite fabric-links
-```text
-Interface      State                                             Interface      State
----------      -----                                             ---------      -----
-```
-
-Ethernet1/98   Up                                                Ethernet1/99   Up
-Ethernet1/99   Up                                                Ethernet1/100 Up
-
 
 Verify nve peers on the BGWs
+
+#### S1-BGW1
+
 ```text
-            S1-BGW1:
-       S1-BGW1# show nve peer
+S1-BGW1# show nve peer
+Interface Peer-IP                                          State LearnType Uptime   Router-Mac
+--------- --------------------------------------           ----- --------- -------- -----------------
+nve1      11.11.11.11                                      Up    CP        08:53:45 f8a7.3a39.3cb3
+nve1      22.22.22.22                                      Up    CP        08:53:45 f8a7.3a2e.9311
+nve1      55.0.0.55                                        Up    CP        08:53:42 n/a
+nve1      56.0.0.56                                        Up    CP        08:53:42 0200.3800.0038
+nve1      66.0.0.66                                        Up    CP        08:53:42 n/a
+nve1      66.66.66.66                                      Up    CP        08:06:42 n/a
+```
 
+#### S2-BGW1
 
-       Interface Peer-IP                                          State LearnType Uptime   Router-Mac
-       --------- --------------------------------------           ----- --------- -------- -----------------
-       nve1      11.11.11.11                                      Up    CP        08:53:45 f8a7.3a39.3cb3
-       nve1      22.22.22.22                                      Up    CP        08:53:45 f8a7.3a2e.9311
-       nve1      55.0.0.55                                        Up    CP        08:53:42 n/a
-       nve1      56.0.0.56                                        Up    CP        08:53:42 0200.3800.0038
-       nve1      66.0.0.66                                        Up    CP        08:53:42 n/a
-       nve1      66.66.66.66                                      Up    CP        08:06:42 n/a
-
-
-            S2-BGW1
-       S2-BGW1# show nve peer
-       Interface Peer-IP                                          State LearnType Uptime   Router-Mac
-       --------- --------------------------------------           ----- --------- -------- -----------------
-       nve1      11.0.0.11                                        Up    CP        5d20h    f8a7.3a2e.a30f
-       nve1      22.0.0.22                                        Up    CP        5d19h    f8a7.3a39.3d6b
-       nve1      55.55.55.55                                      Up    CP        08:56:46 n/a
-       nve1      56.56.56.56                                      Up    CP        08:52:03 0200.3838.3838
-       nve1      66.0.0.66                                        Up    CP        5d23h    n/a
-       nve1      66.66.66.66                                      Up    CP        08:09:56 n/a
-
-
+```text
+S2-BGW1# show nve peer
+Interface Peer-IP                                          State LearnType Uptime   Router-Mac
+--------- --------------------------------------           ----- --------- -------- -----------------
+nve1      11.0.0.11                                        Up    CP        5d20h    f8a7.3a2e.a30f
+nve1      22.0.0.22                                        Up    CP        5d19h    f8a7.3a39.3d6b
+nve1      55.55.55.55                                       Up    CP        08:56:46 n/a
+nve1      56.56.56.56                                       Up    CP        08:52:03 0200.3838.3838
+nve1      66.0.0.66                                        Up    CP        5d23h    n/a
+nve1      66.66.66.66                                      Up    CP        08:09:56 n/a
 ```
 
 #### S1-BGW1
@@ -1126,8 +1146,6 @@ Peer-Ip: 22.22.22.22
     Group policy capable: no
 ----------------------------------------
 Peer-Ip: 55.0.0.55
-
-
     NVE Interface       : nve1
     Peer State          : Up
     Peer Uptime         : 08:53:47
@@ -1183,56 +1201,56 @@ Peer-Ip: 66.66.66.66
     Peer Location       : FABRIC
     Group policy capable: no
 ----------------------------------------
-
-
-            Verify BGP EVPN neighborship between spines and BGW
-S1-SPINE1# show bgp l2vpn evpn summary
 ```
 
 #### S2-BGW1
 
 ```text
- S2-BGW1# show nve peer detail
- Details of nve Peers:
- ----------------------------------------
- Peer-Ip: 11.0.0.11
-     NVE Interface       : nve1
-     Peer State          : Up
-     Peer Uptime         : 5d20h
-     Router-Mac          : f8a7.3a2e.a30f
-     Peer First VNI      : 10011
-     Time since Create   : 5d20h
-     Configured VNIs     : 10011-10012,50000
-     Provision State     : peer-add-complete
-     Learnt CP VNIs      : 10011,50000
-     vni assignment mode : SYMMETRIC
-     Peer Location       : FABRIC
- Peer-Ip: 22.0.0.22
-     NVE Interface       : nve1
-     Peer State          : Up
-     Peer Uptime         : 5d19h
-     Router-Mac          : f8a7.3a39.3d6b
-     Peer First VNI      : 50000
-     Time since Create   : 5d19h
-     Configured VNIs     : 10011-10012,50000
-     Provision State     : peer-add-complete
-     Learnt CP VNIs      : 50000
-     vni assignment mode : SYMMETRIC
-     Peer Location       : FABRIC
- Peer-Ip: 55.55.55.55
-
-
-     NVE Interface       : nve1
-     Peer State          : Up
-     Peer Uptime         : 08:58:39
-     Router-Mac          : n/a
-     Peer First VNI      : 10011
-     Time since Create   : 08:58:39
-     Configured VNIs     : 10011-10012,50000
-     Provision State     : peer-add-complete
-     Learnt CP VNIs      : 10011-10012
-     vni assignment mode : SYMMETRIC
-     Peer Location       : DCI
+S2-BGW1# show nve peer detail
+Details of nve Peers:
+----------------------------------------
+Peer-Ip: 11.0.0.11
+    NVE Interface       : nve1
+    Peer State          : Up
+    Peer Uptime         : 5d20h
+    Router-Mac          : f8a7.3a2e.a30f
+    Peer First VNI      : 10011
+    Time since Create   : 5d20h
+    Configured VNIs     : 10011-10012,50000
+    Provision State     : peer-add-complete
+    Learnt CP VNIs      : 10011,50000
+    vni assignment mode : SYMMETRIC
+    Peer Location       : FABRIC
+    Group policy capable: no
+----------------------------------------
+Peer-Ip: 22.0.0.22
+    NVE Interface       : nve1
+    Peer State          : Up
+    Peer Uptime         : 5d19h
+    Router-Mac          : f8a7.3a39.3d6b
+    Peer First VNI      : 50000
+    Time since Create   : 5d19h
+    Configured VNIs     : 10011-10012,50000
+    Provision State     : peer-add-complete
+    Learnt CP VNIs      : 50000
+    vni assignment mode : SYMMETRIC
+    Peer Location       : FABRIC
+    Group policy capable: no
+----------------------------------------
+Peer-Ip: 55.55.55.55
+    NVE Interface       : nve1
+    Peer State          : Up
+    Peer Uptime         : 08:58:39
+    Router-Mac          : n/a
+    Peer First VNI      : 10011
+    Time since Create   : 08:58:39
+    Configured VNIs     : 10011-10012,50000
+    Provision State     : peer-add-complete
+    Learnt CP VNIs      : 10011-10012
+    vni assignment mode : SYMMETRIC
+    Peer Location       : DCI
+    Group policy capable: no
+----------------------------------------
 Peer-Ip: 56.56.56.56
     NVE Interface       : nve1
     Peer State          : Up
@@ -1245,6 +1263,8 @@ Peer-Ip: 56.56.56.56
     Learnt CP VNIs      : 10011-10012,50000
     vni assignment mode : SYMMETRIC
     Peer Location       : DCI
+    Group policy capable: no
+----------------------------------------
 Peer-Ip: 66.0.0.66
     NVE Interface       : nve1
     Peer State          : Up
@@ -1257,6 +1277,8 @@ Peer-Ip: 66.0.0.66
     Learnt CP VNIs      : 10011-10012
     vni assignment mode : SYMMETRIC
     Peer Location       : FABRIC
+    Group policy capable: no
+----------------------------------------
 Peer-Ip: 66.66.66.66
     NVE Interface       : nve1
     Peer State          : Up
@@ -1269,11 +1291,14 @@ Peer-Ip: 66.66.66.66
     Learnt CP VNIs      : 10011-10012
     vni assignment mode : SYMMETRIC
     Peer Location       : DCI
-
-
-s.
+    Group policy capable: no
+----------------------------------------
 ```
 
+Verify BGP EVPN neighborship between spines and BGWs.
+
+```text
+S1-SPINE1# show bgp l2vpn evpn summary
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 3.3.3.3, local AS number 65001
 BGP table version is 182, L2VPN EVPN config peers 4, capable peers 4
@@ -1281,17 +1306,11 @@ BGP table version is 182, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [22/3784], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [0/0]
 
-```text
 Neighbor        V    AS MsgRcvd MsgSent   TblVer InQ OutQ Up/Down State/PfxRcd
-```
-
 5.5.5.5         4 65001    2746    2715      182     0   0    1d03h 7
 6.6.6.6         4 65001    2797    2736      182     0   0    1d03h 11
-```text
 !
 S1-SPINE2# show bgp l2vpn evpn summary
-```
-
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 4.4.4.4, local AS number 65001
 BGP table version is 172, L2VPN EVPN config peers 4, capable peers 4
@@ -1299,18 +1318,13 @@ BGP table version is 172, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [22/8096], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [0/0]
 
-```text
 Neighbor        V    AS    MsgRcvd       MsgSent       TblVer   InQ OutQ Up/Down State/PfxRcd
-```
-
 5.5.5.5         4 65001       2746          2716          172     0    0    1d03h 7
 6.6.6.6         4 65001       2802          2735          172     0    0    1d03h 11
-
+```
 
 ```text
 S1-BGW1# show bgp l2vpn evpn summary
-```
-
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 5.5.5.5, local AS number 65001
 BGP table version is 496, L2VPN EVPN config peers 4, capable peers 4
@@ -1318,17 +1332,11 @@ BGP table version is 496, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [64/23552], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [6/24]
 
-```text
 Neighbor        V    AS    MsgRcvd    MsgSent   TblVer InQ OutQ Up/Down State/PfxRcd
-```
-
 3.3.3.3         4 65001       2813       2713      496    0    0    1d03h 13
 4.4.4.4         4 65001       2814       2717      496    0    0    1d03h 13
-```text
 !
 S1-BGW2# sh bgp l2vpn evpn summary
-```
-
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 6.6.6.6, local AS number 65001
 BGP table version is 798, L2VPN EVPN config peers 4, capable peers 4
@@ -1336,19 +1344,15 @@ BGP table version is 798, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [62/10664], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [6/24]
 
-```text
 Neighbor        V    AS MsgRcvd MsgSent       TblVer    InQ OutQ Up/Down State/PfxRcd
-```
-
 3.3.3.3         4 65001    2922    2716          798      0    0    1d03h 13
 4.4.4.4         4 65001    2927    2724          798      0    0    1d03h 13
-
-
-```text
-              Verify eBGP neighborship between the BGWs and the Route-Server.
-S1-BGW1# show bgp l2vpn evpn summary
 ```
 
+Verify eBGP neighborship between the BGWs and the Route-Server.
+
+```text
+S1-BGW1# show bgp l2vpn evpn summary
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 5.5.5.5, local AS number 65001
 BGP table version is 106, L2VPN EVPN config peers 4, capable peers 4
@@ -1356,17 +1360,11 @@ BGP table version is 106, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [57/20976], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [6/24]
 
-```text
 Neighbor        V    AS    MsgRcvd    MsgSent   TblVer InQ OutQ Up/Down State/PfxRcd
-```
-
 200.1.1.1       4 65036        566        526      106    0    0 08:41:57 16
 200.1.1.2       4 65036        566        526      106    0    0 08:41:58 16
-```text
 !
 S2-BGW1# show bgp l2vpn evpn summary
-```
-
 BGP summary information for VRF default, address family L2VPN EVPN
 BGP router identifier 5.0.0.5, local AS number 65002
 BGP table version is 812, L2VPN EVPN config peers 4, capable peers 4
@@ -1374,45 +1372,44 @@ BGP table version is 812, L2VPN EVPN config peers 4, capable peers 4
 BGP attribute entries [55/19800], BGP AS path entries [1/10]
 BGP community entries [0/0], BGP clusterlist entries [6/24]
 
-```text
 Neighbor          V    AS     MsgRcvd       MsgSent      TblVer    InQ OutQ Up/Down State/PfxRcd
-```
-
 200.1.1.1         4 65036        5039          4946         812      0    0 08:59:08 14
 200.1.1.2         4 65036        5003          4920         812      0    0 08:59:04 14
-
+```
 
 ```text
-            S1-WAN1# show bgp l2vpn evpn summary
-            BGP summary information for VRF default, address family L2VPN EVPN
-            BGP router identifier 200.1.1.1, local AS number 65036
-            BGP table version is 232, L2VPN EVPN config peers 4, capable peers 4
-            38 network entries and 50 paths using 10712 bytes of memory
-            BGP attribute entries [34/5848], BGP AS path entries [2/12]
-            BGP community entries [0/0], BGP clusterlist entries [0/0]
+S1-WAN1# show bgp l2vpn evpn summary
+BGP summary information for VRF default, address family L2VPN EVPN
+BGP router identifier 200.1.1.1, local AS number 65036
+BGP table version is 232, L2VPN EVPN config peers 4, capable peers 4
+38 network entries and 50 paths using 10712 bytes of memory
+BGP attribute entries [34/5848], BGP AS path entries [2/12]
+BGP community entries [0/0], BGP clusterlist entries [0/0]
 
-            Neighbor        V    AS MsgRcvd MsgSent   TblVer InQ OutQ Up/Down State/PfxRcd
-            5.0.0.5         4 65002    3594    3575      232    0    0 09:00:58 13
-            5.5.5.5         4 65001    3579    3563      232    0    0 08:44:50 11
-            6.0.0.6         4 65002    3593    3573      232    0    0 08:59:18 13
-            6.6.6.6         4 65001    3496    3477      232    0    0 07:57:50 13
-            !
-            S1-WAN2# show bgp l2vpn evpn summary
-            BGP summary information for VRF default, address family L2VPN EVPN
-            BGP router identifier 200.1.1.2, local AS number 65036
-            BGP table version is 240, L2VPN EVPN config peers 4, capable peers 4
-            38 network entries and 50 paths using 10712 bytes of memory
-            BGP attribute entries [34/5848], BGP AS path entries [2/12]
-            BGP community entries [0/0], BGP clusterlist entries [0/0]
+Neighbor        V    AS MsgRcvd MsgSent   TblVer InQ OutQ Up/Down State/PfxRcd
+5.0.0.5         4 65002    3594    3575      232    0    0 09:00:58 13
+5.5.5.5         4 65001    3579    3563      232    0    0 08:44:50 11
+6.0.0.6         4 65002    3593    3573      232    0    0 08:59:18 13
+6.6.6.6         4 65001    3496    3477      232    0    0 07:57:50 13
+!
+S1-WAN2# show bgp l2vpn evpn summary
+BGP summary information for VRF default, address family L2VPN EVPN
+BGP router identifier 200.1.1.2, local AS number 65036
+BGP table version is 240, L2VPN EVPN config peers 4, capable peers 4
+38 network entries and 50 paths using 10712 bytes of memory
+BGP attribute entries [34/5848], BGP AS path entries [2/12]
+BGP community entries [0/0], BGP clusterlist entries [0/0]
 
-            Neighbor        V    AS MsgRcvd MsgSent          TblVer    InQ OutQ Up/Down State/PfxRcd
-            5.0.0.5         4 65002    3581    3561             240      0    0 09:01:27 13
-            5.5.5.5         4 65001    3580    3565             240      0    0 08:45:23 11
-            6.0.0.6         4 65002    3580    3559             240      0    0 09:00:09 13
-            6.6.6.6         4 65001    3500    3480             240      0    0 07:58:33 13
+Neighbor        V    AS MsgRcvd MsgSent          TblVer    InQ OutQ Up/Down State/PfxRcd
+5.0.0.5         4 65002    3581    3561             240      0    0 09:01:27 13
+5.5.5.5         4 65001    3580    3565             240      0    0 08:45:23 11
+6.0.0.6         4 65002    3580    3559             240      0    0 09:00:09 13
+6.6.6.6         4 65001    3500    3480             240      0    0 07:58:33 13
+```
 
+Verify the EVPN IPv4 address (host IP) on S1-BGW1
 
-         Verify the EVPN IPv4 address (host IP) on S1-BGW1
+```text
 S1-BGW1# show bgp l2vpn evpn 100.0.11.10
 BGP routing table information for VRF default, address family L2VPN EVPN
 Route Distinguisher: 1.1.1.1:32778
@@ -1477,9 +1474,11 @@ Flags: (0x000202) (high32 0x000400) on xmit-list, is not in l2rib/evpn, is not i
       Originator: 1.1.1.1 Cluster list: 3.3.3.3
 
   Path-id 1 (dual) not advertised to any peer
+```
 
+Verify the EVPN IPv4 address (host IP) on S1-WAN1 (route-server)
 
-         Verify the EVPN IPv4 address (host IP) on S1-WAN1 (route-server)
+```text
 S1-WAN1# show bgp l2vpn evpn 100.0.11.10
 BGP routing table information for VRF default, address family L2VPN EVPN
 Route Distinguisher: 1:10011
@@ -1505,9 +1504,11 @@ Flags: (0x000202) (high32 00000000) on xmit-list, is not in l2rib/evpn, is not i
 
   Path-id 1 advertised to peers:
     5.0.0.5            6.0.0.6
+```
 
+Verify the EVPN IPv4 address (host IP) on the S2-BGW1
 
-         Verify the EVPN IPv4 address (host IP) on the S2-BGW1
+```text
 S2-BGW1# show bgp l2vpn evpn 100.0.11.10
 BGP routing table information for VRF default, address family L2VPN EVPN
 Route Distinguisher: 1:10011
@@ -2763,146 +2764,262 @@ router bgp 65036
 hostname S2-LEAF1
 
 feature nxapi
+cfs eth distribute
+nv overlay evpn
+feature ospf
+feature bgp
+feature pim
+feature interface-vlan
+feature vn-segment-vlan-based
+feature lacp
+feature dhcp
+feature lldp
+feature nv overlay
+feature ngoam
+
+fabric forwarding anycast-gateway-mac 1234.5678.9000
+ip pim rp-address 34.0.0.34 group-list 239.0.0.0/24
+ip pim ssm range 232.0.0.0/8
+vlan 1,10-12
+vlan 10
+  vn-segment 50000
+vlan 11
+  vn-segment 10011
+vlan 12
+  vn-segment 10012
+
+route-map PERMIT-ALL permit 10
+vrf context Tenant-1
+  vni 50000
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
+
+interface Vlan10
+  no shutdown
+  vrf member Tenant-1
+  ip forward
+
+interface Vlan11
+  no shutdown
+  mtu 9216
+  vrf member Tenant-1
+  ip address 100.0.11.1/24
+  fabric forwarding mode anycast-gateway
+
+interface Vlan12
+  no shutdown
+  mtu 9216
+  vrf member Tenant-1
+  ip address 100.0.12.1/24
+  fabric forwarding mode anycast-gateway
+
+interface nve1
+  no shutdown
+  host-reachability protocol bgp
+  source-interface loopback1
+  member vni 10011
+    suppress-arp
+    mcast-group 239.0.0.11
+  member vni 10012
+    suppress-arp
+    mcast-group 239.0.0.12
+  member vni 50000 associate-vrf
+
+interface Ethernet1/3
+  description S2-LEAF1 TO S2-SPINE1
+  mtu 9216
+  ip address 20.2.2.0/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+
+interface Ethernet1/34
+  description S2-LEAF1 TO S2-SPINE2
+  mtu 9216
+  ip address 20.2.2.2/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+
+interface loopback0
+  description S2-LEAF1 Loopback0
+  ip address 1.0.0.1/32
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+
+interface loopback1
+  description S2-LEAF1 Loopback1
+  ip address 11.0.0.11/32
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+
+router ospf UNDERLAY
+  router-id 1.0.0.1
+router bgp 65002
+  router-id 1.0.0.1
+
+  address-family l2vpn evpn
+  neighbor 3.0.0.3
+     remote-as 65002
+     update-source loopback0
+     address-family l2vpn evpn
+       send-community
+       send-community extended
+  neighbor 4.0.0.4
+     remote-as 65002
+     update-source loopback0
+     address-family l2vpn evpn
+       send-community
+       send-community extended
+  vrf Tenant-1
+     address-family ipv4 unicast
+       advertise l2vpn evpn
+       redistribute direct route-map PERMIT-ALL
+evpn
+  vni 10011 l2
+     rd auto
+     route-target import auto
+     route-target export auto
+  vni 10012 l2
+     rd auto
+     route-target import auto
+     route-target export auto
 ```
 
 #### S2-LEAF2
 
 ```text
- hostname S2-LEAF2
+hostname S2-LEAF2
 
- feature nxapi
-```
+feature nxapi
+cfs eth distribute
+nv overlay evpn
+feature ospf
+feature bgp
+feature pim
+feature interface-vlan
+feature vn-segment-vlan-based
+feature lacp
+feature dhcp
+feature lldp
+feature nv overlay
+feature ngoam
 
-cfs eth distribute                                                cfs eth distribute
-```text
-nv overlay evpn                                                   nv overlay evpn
-feature ospf                                                      feature ospf
-feature bgp                                                       feature bgp
-feature pim                                                       feature pim
-feature interface-vlan                                            feature interface-vlan
-feature vn-segment-vlan-based                                     feature vn-segment-vlan-based
-feature lacp                                                      feature lacp
-feature dhcp                                                      feature dhcp
-feature lldp                                                      feature lldp
-feature nv overlay                                                feature nv overlay
-feature ngoam                                                     feature ngoam
+fabric forwarding anycast-gateway-mac 1234.5678.9000
+ip pim rp-address 34.0.0.34 group-list 239.0.0.0/24
+ip pim ssm range 232.0.0.0/8
+vlan 1,10-12
+vlan 10
+  vn-segment 50000
+vlan 11
+  vn-segment 10011
+vlan 12
+  vn-segment 10012
 
-fabric forwarding anycast-gateway-mac 1234.5678.9000              fabric forwarding anycast-gateway-mac 1234.5678.9000
-ip pim rp-address 34.0.0.34 group-list 239.0.0.0/24               ip pim rp-address 34.0.0.34 group-list 239.0.0.0/24
-ip pim ssm range 232.0.0.0/8                                      ip pim ssm range 232.0.0.0/8
-vlan 1,10-12                                                      vlan 1,10-12
-vlan 10                                                           vlan 10
-  vn-segment 50000                                                  vn-segment 50000
-vlan 11                                                           vlan 11
-  vn-segment 10011                                                  vn-segment 10011
-vlan 12                                                           vlan 12
-  vn-segment 10012                                                  vn-segment 10012
+route-map PERMIT-ALL permit 10
+vrf context Tenant-1
+  vni 50000
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
 
-route-map PERMIT-ALL permit 10                                    route-map PERMIT-ALL permit 10
-vrf context Tenant-1                                              vrf context Tenant-1
-  vni 50000                                                         vni 50000
-  rd auto                                                           rd auto
-  address-family ipv4 unicast                                       address-family ipv4 unicast
-    route-target both auto                                            route-target both auto
-    route-target both auto evpn                                       route-target both auto evpn
+interface Vlan10
+  no shutdown
+  vrf member Tenant-1
+  ip forward
 
-interface Vlan10                                                  interface Vlan10
-  no shutdown                                                       no shutdown
-  vrf member Tenant-1                                               vrf member Tenant-1
-  ip forward                                                        ip forward
+interface Vlan11
+  no shutdown
+  mtu 9216
+  vrf member Tenant-1
+  ip address 100.0.11.1/24
+  fabric forwarding mode anycast-gateway
 
-interface Vlan11                                                  interface Vlan11
-  no shutdown                                                       no shutdown
-  mtu 9216                                                          mtu 9216
-  vrf member Tenant-1                                               vrf member Tenant-1
+interface Vlan12
+  no shutdown
+  mtu 9216
+  vrf member Tenant-1
+  ip address 100.0.12.1/24
+  fabric forwarding mode anycast-gateway
 
+interface nve1
+  no shutdown
+  host-reachability protocol bgp
+  source-interface loopback1
+  member vni 10011
+    suppress-arp
+    mcast-group 239.0.0.11
+  member vni 10012
+    suppress-arp
+    mcast-group 239.0.0.12
+  member vni 50000 associate-vrf
 
-  ip address 100.0.11.1/24                                         ip address 100.0.11.1/24
-  fabric forwarding mode anycast-gateway                           fabric forwarding mode anycast-gateway
+interface Ethernet1/3
+  description S2-LEAF2 TO S2-SPINE2
+  mtu 9216
+  ip address 20.2.2.6/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
 
-interface Vlan12                                                 interface Vlan12
-  no shutdown                                                      no shutdown
-  mtu 9216                                                         mtu 9216
-  vrf member Tenant-1                                              vrf member Tenant-1
-  ip address 100.0.12.1/24                                         ip address 100.0.12.1/24
-  fabric forwarding mode anycast-gateway                           fabric forwarding mode anycast-gateway
+interface Ethernet1/34
+  description S2-LEAF2 TO S2-SPINE1
+  mtu 9216
+  ip address 20.2.2.4/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
 
-interface nve1                                                   interface nve1
-  no shutdown                                                      no shutdown
-  host-reachability protocol bgp                                   host-reachability protocol bgp
-  source-interface loopback1                                       source-interface loopback1
-  member vni 10011                                                 member vni 10011
-    suppress-arp                                                     suppress-arp
-    mcast-group 239.0.0.11                                           mcast-group 239.0.0.11
-  member vni 10012                                                 member vni 10012
-    suppress-arp                                                     suppress-arp
-    mcast-group 239.0.0.12                                           mcast-group 239.0.0.12
-  member vni 50000 associate-vrf                                   member vni 50000 associate-vrf
+interface loopback0
+  description S2-LEAF2 Loopback0
+  ip address 2.0.0.2/32
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
 
-interface Ethernet1/3                                            interface Ethernet1/3
-  description S2-LEAF1 TO S2-SPINE1                                description S2-LEAF2 TO S2-SPINE2
-  mtu 9216                                                         mtu 9216
-  ip address 20.2.2.0/31                                           ip address 20.2.2.6/31
-  ip ospf network point-to-point                                   ip ospf network point-to-point
-  ip router ospf UNDERLAY area 0.0.0.0                             ip router ospf UNDERLAY area 0.0.0.0
-  ip pim sparse-mode                                               ip pim sparse-mode
-  no shutdown                                                      no shutdown
+interface loopback1
+  description S2-LEAF2 Loopback1
+  ip address 22.0.0.22/32
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
 
-interface Ethernet1/34                                           interface Ethernet1/34
-  description S2-LEAF1 TO S2-SPINE2                                description S2-LEAF2 TO S2-SPINE1
-  mtu 9216                                                         mtu 9216
-  ip address 20.2.2.2/31                                           ip address 20.2.2.4/31
-  ip ospf network point-to-point                                   ip ospf network point-to-point
-  ip router ospf UNDERLAY area 0.0.0.0                             ip router ospf UNDERLAY area 0.0.0.0
-  ip pim sparse-mode                                               ip pim sparse-mode
-  no shutdown                                                      no shutdown
+router ospf UNDERLAY
+  router-id 2.0.0.2
+router bgp 65002
+  router-id 2.0.0.2
 
-interface loopback0                                              interface loopback0
-  description S2-LEAF1 Loopback0                                   description S2-LEAF2 Loopback0
-  ip address 1.0.0.1/32                                            ip address 2.0.0.2/32
-  ip router ospf UNDERLAY area 0.0.0.0                             ip router ospf UNDERLAY area 0.0.0.0
-  ip pim sparse-mode                                               ip pim sparse-mode
-
-interface loopback1                                              interface loopback1
-  description S2-LEAF1 Loopback1                                   description S2-LEAF2 Loopback1
-  ip address 11.0.0.11/32                                          ip address 22.0.0.22/32
-  ip router ospf UNDERLAY area 0.0.0.0                             ip router ospf UNDERLAY area 0.0.0.0
-  ip pim sparse-mode                                               ip pim sparse-mode
-
-router ospf UNDERLAY                                             router ospf UNDERLAY
-  router-id 1.0.0.1                                                router-id 2.0.0.2
-router bgp 65002                                                 router bgp 65002
-  router-id 1.0.0.1                                                router-id 2.0.0.2
-
-
-  address-family l2vpn evpn                                       address-family l2vpn evpn
-  neighbor 3.0.0.3                                                neighbor 3.0.0.3
-     remote-as 65002                                                 remote-as 65002
-     update-source loopback0                                         update-source loopback0
-     address-family l2vpn evpn                                       address-family l2vpn evpn
-       send-community                                                  send-community
-       send-community extended                                         send-community extended
-  neighbor 4.0.0.4                                                neighbor 4.0.0.4
-     remote-as 65002                                                 remote-as 65002
-     update-source loopback0                                         update-source loopback0
-     address-family l2vpn evpn                                       address-family l2vpn evpn
-       send-community                                                  send-community
-       send-community extended                                         send-community extended
-  vrf Tenant-1                                                    vrf Tenant-1
-     address-family ipv4 unicast                                     address-family ipv4 unicast
-       advertise l2vpn evpn                                            advertise l2vpn evpn
-       redistribute direct route-map PERMIT-ALL                        redistribute direct route-map PERMIT-ALL
-evpn                                                            evpn
-  vni 10011 l2                                                    vni 10011 l2
-     rd auto                                                         rd auto
-     route-target import auto                                        route-target import auto
-     route-target export auto                                        route-target export auto
-  vni 10012 l2                                                    vni 10012 l2
-     rd auto                                                         rd auto
-     route-target import auto                                        route-target import auto
-     route-target export auto                                        route-target export auto
-
-
+  address-family l2vpn evpn
+  neighbor 3.0.0.3
+     remote-as 65002
+     update-source loopback0
+     address-family l2vpn evpn
+       send-community
+       send-community extended
+  neighbor 4.0.0.4
+     remote-as 65002
+     update-source loopback0
+     address-family l2vpn evpn
+       send-community
+       send-community extended
+  vrf Tenant-1
+     address-family ipv4 unicast
+       advertise l2vpn evpn
+       redistribute direct route-map PERMIT-ALL
+evpn
+  vni 10011 l2
+     rd auto
+     route-target import auto
+     route-target export auto
+  vni 10012 l2
+     rd auto
+     route-target import auto
+     route-target export auto
 ```
 
 #### S2-SPINE1
@@ -3155,7 +3272,7 @@ interface Vlan10
   ip forward
 
 
-interface nve1                                                 in
+interface nve1
   no shutdown
   host-reachability protocol bgp
   source-interface loopback1
@@ -3169,14 +3286,14 @@ interface nve1                                                 in
   member vni 50000 associate-vrf
 
 
-interface Ethernet1/47                                         in
+interface Ethernet1/47
   description S2-BGW1 TO S2-WAN1
   mtu 9216
   ip address 100.2.2.5/31 tag 54321
   no shutdown
   evpn multisite dci-tracking
 
-interface Ethernet1/48                                         in
+interface Ethernet1/48
   description S2-BGW1 TO S2-WAN2
   mtu 9216
   ip address 100.2.2.1/31 tag 54321
@@ -3184,7 +3301,7 @@ interface Ethernet1/48                                         in
   evpn multisite dci-tracking
 
 
-interface Ethernet1/99                                         in
+interface Ethernet1/99
   description S2-BGW1 TO S2-SPINE2
   mtu 9216
   ip address 20.2.2.13/31
@@ -3194,7 +3311,7 @@ interface Ethernet1/99                                         in
   no shutdown
   evpn multisite fabric-tracking
 
-interface Ethernet1/100                                        in
+interface Ethernet1/100
   description S2-BGW1 TO S2-SPINE1
   mtu 9216
   ip address 20.2.2.9/31
@@ -3204,28 +3321,28 @@ interface Ethernet1/100                                        in
   no shutdown
   evpn multisite fabric-tracking
 
-interface loopback0                                            in
+interface loopback0
   description S2-BGW1 Loopback0
   ip address 5.0.0.5/32 tag 54321
   ip router ospf UNDERLAY area 0.0.0.0
   ip pim sparse-mode
 
 
-interface loopback1                                            in
+interface loopback1
   description S2-BGW1 Loopback1
   ip address 55.0.0.55/32 tag 54321
   ip router ospf UNDERLAY area 0.0.0.0
   ip pim sparse-mode
 
-interface loopback100                                          in
+interface loopback100
   description MULTI-SITE INTERFACE (VIP VTEP)
   ip address 56.0.0.56/32 tag 54321
   ip router ospf UNDERLAY area 0.0.0.0
   ip pim sparse-mode
 
-router ospf UNDERLAY                                           ro
+router ospf UNDERLAY
   router-id 5.0.0.5
-router bgp 65002                                               ro
+router bgp 65002
   router-id 5.0.0.5
   log-neighbor-changes
   address-family ipv4 unicast
@@ -3272,7 +3389,7 @@ router bgp 65002                                               ro
       send-community
       send-community extended
       rewrite-evpn-rt-asn
-evpn                                                            e
+evpn
   vni 10011 l2
      rd auto
      route-target import auto
@@ -3281,14 +3398,11 @@ evpn                                                            e
      rd auto
      route-target import auto
      route-target export auto
-vrf context Tenant-1                                            v
+vrf context Tenant-1
   rd auto
   address-family ipv4 unicast
      route-target both auto
      route-target both auto evpn
-
-
-            For more labs visit my GitHub repo: https://github.co
 ```
 
 #### S2-BGW2
@@ -3332,141 +3446,132 @@ vrf context Tenant-1                                            v
    vrf member Tenant-1
    ip forward
 
+interface nve1
+  no shutdown
+  host-reachability protocol bgp
+  source-interface loopback1
+  multisite border-gateway interface loopback100
+  member vni 10011
+    multisite ingress-replication
+    mcast-group 239.1.1.11
+  member vni 10012
+    multisite ingress-replication
+    mcast-group 239.1.1.12
+  member vni 50000 associate-vrf
 
-terface nve1
-no shutdown
-host-reachability protocol bgp
-source-interface loopback1
-multisite border-gateway interface loopback100
-member vni 10011
-  multisite ingress-replication
-  mcast-group 239.1.1.11
-member vni 10012
-  multisite ingress-replication
-  mcast-group 239.1.1.12
-member vni 50000 associate-vrf
+interface Ethernet1/47
+  description S2-BGW2 TO S2-WAN2
+  mtu 9216
+  ip address 100.2.2.7/31 tag 54321
+  no shutdown
+  evpn multisite dci-tracking
 
+interface Ethernet1/48
+  description S2-BGW2 TO S2-WAN1
+  mtu 9216
+  ip address 100.2.2.3/31 tag 54321
+  no shutdown
+  evpn multisite dci-tracking
 
-terface Ethernet1/47
-description S2-BGW2 TO S2-WAN2
-mtu 9216
-ip address 100.2.2.7/31 tag 54321
-no shutdown
-evpn multisite dci-tracking
+interface Ethernet1/99
+  description S2-BGW2 TO S2-SPINE1
+  mtu 9216
+  ip address 20.2.2.11/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+  evpn multisite fabric-tracking
 
-terface Ethernet1/48
-description S2-BGW2 TO S2-WAN1
-mtu 9216
-ip address 100.2.2.3/31 tag 54321
-no shutdown
-evpn multisite dci-tracking
+interface Ethernet1/100
+  description S2-BGW2 TO S2-SPINE2
+  mtu 9216
+  ip address 20.2.2.15/31
+  ip ospf network point-to-point
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
+  no shutdown
+  evpn multisite fabric-tracking
 
+interface loopback0
+  description S2-BGW2 Loopback0
+  ip address 6.0.0.6/32 tag 54321
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
 
-terface Ethernet1/99
-description S2-BGW2 TO S2-SPINE1
-mtu 9216
-ip address 20.2.2.11/31
-ip ospf network point-to-point
-ip router ospf UNDERLAY area 0.0.0.0
-ip pim sparse-mode
-no shutdown
-evpn multisite fabric-tracking
+interface loopback1
+  description S2-BGW2 Loopback1
+  ip address 66.0.0.66/32 tag 54321
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
 
-terface Ethernet1/100
-description S2-BGW2 TO S2-SPINE2
-mtu 9216
-ip address 20.2.2.15/31
-ip ospf network point-to-point
-ip router ospf UNDERLAY area 0.0.0.0
-ip pim sparse-mode
-no shutdown
-evpn multisite fabric-tracking
+interface loopback100
+  description MULTI-SITE INTERFACE (VIP VTEP)
+  ip address 56.0.0.56/32 tag 54321
+  ip router ospf UNDERLAY area 0.0.0.0
+  ip pim sparse-mode
 
-terface loopback0
-description S2-BGW2 Loopback0
-ip address 6.0.0.6/32 tag 54321
-ip router ospf UNDERLAY area 0.0.0.0
-ip pim sparse-mode
-
-
-terface loopback1
-description S2-BGW2 Loopback1
-ip address 66.0.0.66/32 tag 54321
-ip router ospf UNDERLAY area 0.0.0.0
-ip pim sparse-mode
-
-terface loopback100
-description MULTI-SITE INTERFACE (VIP VTEP)
-ip address 56.0.0.56/32 tag 54321
-ip router ospf UNDERLAY area 0.0.0.0
-ip pim sparse-mode
-
-uter ospf UNDERLAY
-router-id 6.0.0.6
-uter bgp 65002
-router-id 6.0.0.6
-log-neighbor-changes
-address-family ipv4 unicast
-  redistribute direct route-map RMAP-REDIST-DIRECT
-  maximum-paths 4
-address-family l2vpn evpn
-neighbor 3.0.0.3
-  remote-as 65002
-  update-source loopback0
-  address-family l2vpn evpn
-    send-community
-    send-community extended
-neighbor 4.0.0.4
-  remote-as 65002
-  update-source loopback0
-  address-family l2vpn evpn
-    send-community
-    send-community extended
-neighbor 100.2.2.2
-  remote-as 65036
-  update-source Ethernet1/47
+router ospf UNDERLAY
+  router-id 6.0.0.6
+router bgp 65002
+  router-id 6.0.0.6
+  log-neighbor-changes
   address-family ipv4 unicast
-neighbor 100.2.2.6
-  remote-as 65036
-  update-source Ethernet1/48
-  address-family ipv4 unicast
-neighbor 200.1.1.1
-  remote-as 65036
-  update-source loopback0
-  ebgp-multihop 5
-  peer-type fabric-external
+    redistribute direct route-map RMAP-REDIST-DIRECT
+    maximum-paths 4
   address-family l2vpn evpn
-    send-community
-    send-community extended
-    rewrite-evpn-rt-asn
-neighbor 200.1.1.2
-  remote-as 65036
-  update-source loopback0
-  ebgp-multihop 5
-  peer-type fabric-external
-  address-family l2vpn evpn
-
-
+  neighbor 3.0.0.3
+    remote-as 65002
+    update-source loopback0
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+  neighbor 4.0.0.4
+    remote-as 65002
+    update-source loopback0
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+  neighbor 100.2.2.2
+    remote-as 65036
+    update-source Ethernet1/47
+    address-family ipv4 unicast
+  neighbor 100.2.2.6
+    remote-as 65036
+    update-source Ethernet1/48
+    address-family ipv4 unicast
+  neighbor 200.1.1.1
+    remote-as 65036
+    update-source loopback0
+    ebgp-multihop 5
+    peer-type fabric-external
+    address-family l2vpn evpn
       send-community
       send-community extended
       rewrite-evpn-rt-asn
-vpn
- vni 10011 l2
-    rd auto
-    route-target import auto
-    route-target export auto
- vni 10012 l2
-    rd auto
-    route-target import auto
-    route-target export auto
-rf context Tenant-1
- rd auto
- address-family ipv4 unicast
-    route-target both auto
-    route-target both auto evpn
-
-
-m/TitusM/Cisco-Data-Center
+  neighbor 200.1.1.2
+    remote-as 65036
+    update-source loopback0
+    ebgp-multihop 5
+    peer-type fabric-external
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+      rewrite-evpn-rt-asn
+evpn
+  vni 10011 l2
+     rd auto
+     route-target import auto
+     route-target export auto
+  vni 10012 l2
+     rd auto
+     route-target import auto
+     route-target export auto
+vrf context Tenant-1
+  rd auto
+  address-family ipv4 unicast
+     route-target both auto
+     route-target both auto evpn
 ```
 
 ## References

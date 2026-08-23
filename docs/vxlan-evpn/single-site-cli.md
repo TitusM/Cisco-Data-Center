@@ -934,7 +934,7 @@ nve1      50000    n/a               Up    CP   L3 [tenant-1]
 LEAF-1
 feature interface-vlan
 !
-fabric forwarding
+fabric forwarding anycast-gateway-mac 0002.0002.0002
 !
 interface Vlan100
   no shutdown

@@ -183,37 +183,37 @@ At this point it is observed that the switches are successfully added to the VXL
 
 Under the Fabric, navigate to the Inventory tab and verify that all switches are present.
 
-![Fabric inventory with switches](../assets/vxlan-single-site-ndfc/img-053.png)
-
 The next step is to configure each switch with the correct role that is required for it to operate in the fabric. For each switch role, there is a specific deployment/configuration template for it in NDFC.
 
 Select the tick box of a switch >> Actions >> Set role.
 
-![Set role action](../assets/vxlan-single-site-ndfc/img-054.png)
+![Set role action](../assets/vxlan-single-site-ndfc/img-053.png)
 
 Select Role from the options below.
 
-![Select Role options](../assets/vxlan-single-site-ndfc/img-055.png)
+![Select Role options](../assets/vxlan-single-site-ndfc/img-054.png)
 
 Press Ok.
 
-![Warning to recalculate and deploy](../assets/vxlan-single-site-ndfc/img-056.png)
+![Warning to recalculate and deploy](../assets/vxlan-single-site-ndfc/img-055.png)
 
 Repeat the same procedure for the Spine, Leaf and Border Leaf.
+
+![Set role action for additional switches](../assets/vxlan-single-site-ndfc/img-056.png)
 
 ![Set border role](../assets/vxlan-single-site-ndfc/img-058.png)
 
 ![Set spine role](../assets/vxlan-single-site-ndfc/img-059.png)
 
-![Set role action for additional switches](../assets/vxlan-single-site-ndfc/img-060.png)
-
 The next step is to define VPC pairing on leaf switches. In this lab Site1-L1 and Site1-L2 will be configured as vPC peers. Select one Leaf that forms part of the vPC domain >> Actions >> VPC pairing.
 
-![VPC pairing action](../assets/vxlan-single-site-ndfc/img-061.png)
+![VPC pairing action](../assets/vxlan-single-site-ndfc/img-060.png)
 
 A new configuration window will show the switches that are eligible to pair with the selected switch. In this case Site1-L2 is the eligible pair so it is selected to be part of the vPC domain.
 
-![VPC pairing eligible switch selection](../assets/vxlan-single-site-ndfc/img-062.png)
+![VPC pairing eligible switch selection](../assets/vxlan-single-site-ndfc/img-061.png)
+
+![VPC pairing confirmation](../assets/vxlan-single-site-ndfc/img-062.png)
 
 Now it is time to deploy all configurations that are embedded in the templates to all devices. Select all devices in the Inventory >> Actions >> Recalculate and Deploy.
 
@@ -271,11 +271,9 @@ Navigate to Connectivity, select the interfaces with the undesired state and dis
 
 Save and Deploy the configuration to shutdown the interfaces.
 
-![Fabric health after interface shutdown](../assets/vxlan-single-site-ndfc/img-082.png)
-
 After the intervention, the fabric is fully Healthy without an anomaly.
 
-![Fabric connectivity interface status after remediation](../assets/vxlan-single-site-ndfc/img-084.png)
+![Fabric health after interface shutdown](../assets/vxlan-single-site-ndfc/img-082.png)
 
 !!! note
     This was just an example to show how NDFC plays a role for Day-2 operations and enabling network operations to quickly spot any issue and resolve with ease.
@@ -284,7 +282,7 @@ Now let’s move on to further fabric verifications (underlay, overlay etc.)
 
 To verify the switches in a vPC domain, navigate to Inventory >> VPC pairs as shown below.
 
-![Inventory VPC pairs](../assets/vxlan-single-site-ndfc/img-086.png)
+![Inventory VPC pairs](../assets/vxlan-single-site-ndfc/img-084.png)
 
 Before proceeding with the configurations, it is a good idea to perform verifications based on the configuration that has been pushed by NDFC.
 
@@ -357,6 +355,8 @@ After all the configuration verifications are completed, the next step is to def
 This section will showcase how a tenant VRF, Layer-3 Virtual Network Identifier (VNI) and Network is configured. A tenant VRF separates routing domains between tenant overlays. The L3VNI is required for inter-VXLAN routing, and it is associated to a tenant VRF. Under Networks is where the L2VNIs along with their associated VLANs are created.
 
 From the Fabric Overview, navigate to Segmentation and Security >> VRFs >> Actions and Create:
+
+![Segmentation and Security VRFs create action](../assets/vxlan-single-site-ndfc/img-086.png)
 
 ![Create VRF form](../assets/vxlan-single-site-ndfc/img-087.png)
 
