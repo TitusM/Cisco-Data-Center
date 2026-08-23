@@ -13,6 +13,7 @@
 - **[Cisco ACI Transit Routing Configuration](transit-routing.md)** — transit routing between external OSPF and BGP domains, Export Route Control Subnet and default-export route-map control, prefix-list/route-map verification, and External EPG contract reachability.
 - **[Cisco ACI Shared L3OUT (VRF Leaking)](shared-l3out.md)** — shared L3Out route leaking between VRFs, internal subnet sharing, external EPG import controls, route-map verification, and contract enforcement validation.
 - **[Cisco ACI L4-L7 Policy-Based Redirect (PBR)](l4-l7-pbr.md)** — service graph insertion with a one-arm ASAv firewall, L4-L7 redirect policy, device selection policy, contract association, and ELAM packet-walk verification.
+- **[Cisco ACI Inter-VRF Route-Leaking](inter-vrf-route-leaking.md)** — inter-VRF route leaking between EPGs in different VRFs using tenant-scoped contracts, shared subnet scope, global pcTag allocation, zoning-rule verification, and ICMP/HTTPS validation.
 
 ## Coming soon
 
