@@ -33,6 +33,7 @@ theme:
 nav:
   - Home: index.md
   - UCS & SAN:
+      - Overview: ucs-san/index.md
       - End-to-End Guided Lab:
           - Overview: ucs-san/00-overview.md
           - Pre-Lab Checklist: ucs-san/01-pre-lab.md
