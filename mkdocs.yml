@@ -3,6 +3,9 @@ site_url: https://titusm.github.io/Cisco-Data-Center/
 repo_url: https://github.com/TitusM/Cisco-Data-Center
 repo_name: TitusM/Cisco-Data-Center
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   palette:
