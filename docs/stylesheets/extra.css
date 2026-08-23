@@ -1,0 +1,30 @@
+/* Homepage "Who Are These Labs For?" audience cards.
+   Material's default .grid.cards uses auto-fit/minmax, which can pack
+   unevenly (e.g. 2+1) for exactly three cards. Force a stable 3/2/1
+   responsive layout with equal-height cards and bottom-aligned CTAs. */
+.md-typeset .grid.cards.audience-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.md-typeset .grid.cards.audience-grid > ul > li,
+.md-typeset .grid.cards.audience-grid > ol > li {
+  display: flex;
+  flex-direction: column;
+}
+
+.md-typeset .grid.cards.audience-grid > ul > li > p:last-child,
+.md-typeset .grid.cards.audience-grid > ol > li > p:last-child {
+  margin-top: auto;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-typeset .grid.cards.audience-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .grid.cards.audience-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,38 +9,38 @@ Build real Data Center technologies from the ground up, verify how they operate,
 <div class="grid" markdown>
 
 [Explore the Labs](#technology-domains){ .md-button .md-button--primary }
-[Start CCIE DC Practice](ucs-san/00-overview.md){ .md-button }
+[Start CCIE DC Practice](#preparing-for-ccie-data-center){ .md-button }
 [Choose Your Path](#who-are-these-labs-for){ .md-button }
 
 </div>
 
 ## Who Are These Labs For?
 
-<div class="grid cards" markdown>
+<div class="grid cards audience-grid" markdown>
 
 -   :material-certificate-outline: **CCIE Data Center Candidates**
 
     ---
 
-    Build configuration speed, verification habits, and troubleshooting discipline against technologies found in the CCIE Data Center blueprint — from-scratch configuration, operational verification, and independent practice toward capstone-style scenarios.
+    Build configuration speed, verification habits, and troubleshooting discipline across CCIE Data Center technologies through hands-on practice.
 
-    [Prepare for CCIE DC](#preparing-for-ccie-data-center)
+    [Prepare for CCIE DC →](#preparing-for-ccie-data-center)
 
 -   :material-flask-outline: **Data Center Enthusiasts**
 
     ---
 
-    Go beyond theory by building UCS, SAN, NX-OS, ACI, and VXLAN EVPN technologies in realistic lab topologies. Progress from individual capabilities to complete systems without turning the site into a theory course.
+    Go beyond theory by building UCS, SAN, NX-OS, ACI, and VXLAN EVPN in realistic Data Center topologies.
 
-    [Explore Technologies](#technology-domains)
+    [Explore Technologies →](#technology-domains)
 
 -   :material-server-network: **Data Center Professionals**
 
     ---
 
-    Reproduce real implementation and troubleshooting scenarios, validate expected behavior, and use the labs as a practical technical reference grounded in official documentation and design assumptions.
+    Practice real implementation and troubleshooting scenarios while strengthening operational verification skills.
 
-    [Practice Real-World Scenarios](#technology-domains)
+    [Practice Real-World Scenarios →](#technology-domains)
 
 </div>
 
