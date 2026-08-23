@@ -75,7 +75,11 @@ nav:
           - Multi-Site Configuration: aci/multi-site-bring-up.md
       - Operations & Visibility:
           - Local SPAN, Ethanalyzer & SPAN-to-CPU: aci/local-span.md
-  - VXLAN EVPN: vxlan-evpn/index.md
+  - VXLAN EVPN:
+      - Overview: vxlan-evpn/index.md
+      - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
+      - VXLAN BGP EVPN Fabric Bring Up Using NDFC – Single Site: vxlan-evpn/single-site-ndfc.md
+      - VXLAN BGP EVPN Multi-Site (CLI) Configuration and Verification: vxlan-evpn/multi-site-cli.md
 
 markdown_extensions:
   - admonition
