@@ -63,7 +63,11 @@ nav:
       - ACI Local SPAN (Access), Nexus 9000 Ethanalyzer & SPAN-to-CPU: aci/local-span.md
       - Cisco ACI Transit Routing Configuration: aci/transit-routing.md
       - Cisco ACI Shared L3OUT (VRF Leaking): aci/shared-l3out.md
-  - VXLAN EVPN: vxlan-evpn/index.md
+  - VXLAN EVPN:
+      - Overview: vxlan-evpn/index.md
+      - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
+      - VXLAN BGP EVPN Fabric Bring Up Using NDFC – Single Site: vxlan-evpn/single-site-ndfc.md
+      - VXLAN BGP EVPN Multi-Site (CLI) Configuration and Verification: vxlan-evpn/multi-site-cli.md
 
 markdown_extensions:
   - admonition
