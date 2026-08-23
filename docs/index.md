@@ -68,6 +68,10 @@ Build real Data Center technologies from the ground up, verify how they operate,
 
     Return the environment to the intended working state and prove recovery.
 
+-   **Optimize**
+
+    Improve resilience, performance, convergence, efficiency, or operational simplicity based on what you observed.
+
 </div>
 
 Configuration is not the finish line. A lab is complete when the intended service works and you can prove why it works.
@@ -76,7 +80,7 @@ Configuration is not the finish line. A lab is complete when the intended servic
 
 <div class="grid cards" markdown>
 
--   :material-server: **[UCS & SAN](ucs-san/00-overview.md)**
+-   :material-server: **[UCS & SAN](ucs-san/index.md)**
 
     ---
 
@@ -183,7 +187,7 @@ These labs are intended to complement official Cisco training, documentation, an
 
 <div class="grid" markdown>
 
-[UCS & SAN](ucs-san/00-overview.md){ .md-button }
+[UCS & SAN](ucs-san/index.md){ .md-button }
 [NX-OS](nx-os/index.md){ .md-button }
 [ACI](aci/index.md){ .md-button }
 [VXLAN EVPN](vxlan-evpn/index.md){ .md-button }

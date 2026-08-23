@@ -1,5 +1,7 @@
 # 0. Lab Overview
 
+*Part of the [UCS & SAN](index.md) technology domain.*
+
 ## 0.1 Purpose
 
 **The objective of this entire session is to get a UCS-B blade booting its OS from a SAN LUN over Fibre Channel.** Every module below exists to make that one outcome possible — compute policy gives the blade its identity and boot policy, SAN/LAN uplinks and port modes get traffic off the FI, zoning and NPIV control who can see the boot LUN, trunking/port-channel/load-balancing make the paths resilient, and Module 10 is where you actually watch it boot and prove it. If you only have time for a subset of this guide, prioritize whatever's still needed to reach a successful SAN boot over anything that isn't.
