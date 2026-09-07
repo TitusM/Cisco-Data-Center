@@ -13,46 +13,46 @@ This lab demonstrates the fundamentals of creating and configuring a VXLAN EVPN 
 
 ## Lab Topology
 
-The lab topology consists of a simple two-spine, two-leaf VXLAN EVPN fabric managed by Cisco NDFC. NDFC provides centralized fabric management and configuration, while each leaf switch connects to both spine switches to form the underlay fabric. Server-1 and Server-2 connect to n9k-leaf-01 on the NET_WEB and NET_APP networks respectively, and Server-3 connects to n9k-leaf-02 on the NET_WEB network. The lab uses this topology to demonstrate fabric onboarding, overlay network creation, interface configuration, and end-to-end connectivity across the VXLAN fabric.
+The lab topology consists of a simple two-spine, two-leaf VXLAN EVPN fabric managed by Cisco NDFC. NDFC provides centralized fabric management and configuration, while each leaf switch connects to both spine switches to form the underlay fabric. **Server-1 and Server-2** connect to n9k-leaf-01 on the NET_WEB and NET_APP networks respectively, and **Server-3** connects to n9k-leaf-02 on the NET_WEB network. The lab uses this topology to demonstrate fabric onboarding, overlay network creation, interface configuration, and end-to-end connectivity across the VXLAN fabric.
 
 ## Create a Fabric
 
 ### Login Nexus Dashboard
 
-Click Manage, then click Fabrics in the navigation panel that opens.
+Click **Manage**, then click **Fabrics** in the navigation panel that opens.
 
 ![Nexus Dashboard login page](../assets/vxlan-fabric-fundamentals/img-002.png)
 
 ![Manage navigation panel with Fabrics](../assets/vxlan-fabric-fundamentals/img-003.png)
 
-On the Fabrics page, click the Actions menu in the top right and choose Create fabric.
+On the **Fabrics** page, click the **Actions** menu in the top right and choose **Create fabric**.
 
 ![Fabrics page Actions menu Create fabric](../assets/vxlan-fabric-fundamentals/img-004.png)
 
-Click the Create new LAN fabric tile, then click Next.
+Click the **Create new LAN fabric** tile, then click **Next**.
 
 ![Create new LAN fabric category selection](../assets/vxlan-fabric-fundamentals/img-005.png)
 
-Click the VXLAN tile, leave Data Center VXLAN EVPN chosen as the fabric template, then click Next.
+Click the **VXLAN** tile, leave **Data Center VXLAN EVPN** chosen as the fabric template, then click **Next**.
 
 ![VXLAN fabric type Data Center VXLAN EVPN selection](../assets/vxlan-fabric-fundamentals/img-006.png)
 
-On the Settings page, change Configuration mode from Default to Advanced. Set the fabric Name to OR-TAMBO and BGP ASN to 65001.
+On the Settings page, change **Configuration mode** from Default to **Advanced**. Set the fabric **Name** to **OR-TAMBO** and **BGP ASN** to **65001**.
 
 ![Fabric settings name OR-TAMBO and BGP ASN 65001](../assets/vxlan-fabric-fundamentals/img-007.png)
 
-Click Next. Review the General Parameters. In this lab, all entries are left as defaults. Click the Advanced tab.
+Click **Next.** Review the **General Parameters**. In this lab, all entries are left as defaults. Click the **Advanced** tab.
 
 ![Advanced settings General Parameters tab](../assets/vxlan-fabric-fundamentals/img-008.png)
 
-Scroll down to Add Switches without Reload, open the drop-down, and choose enable.
+Scroll down to **Add Switches without Reload**, open the drop-down, and choose **enable**.
 
 ![Add Switches without Reload set to enable](../assets/vxlan-fabric-fundamentals/img-009.png)
 
 !!! note
     By default, Cisco Nexus Dashboard reloads a switch when it imports it with Preserve Config unchecked, to guarantee a clean baseline. Enabling Add Switches without Reload clears the running configuration and applies the calculated configuration without rebooting the switch.
 
-Leave everything else as defaults and click Next. Review the summary and Submit.
+Leave everything else as defaults and click **Next**. **Submit.**
 
 ![Fabric creation summary](../assets/vxlan-fabric-fundamentals/img-010.png)
 
@@ -60,71 +60,75 @@ Wait for the Fabric creation process to complete.
 
 ![Fabric creation in progress](../assets/vxlan-fabric-fundamentals/img-011.png)
 
-![Fabric creation completed successfully](../assets/vxlan-fabric-fundamentals/img-015.png)
+![Fabric creation completed successfully](../assets/vxlan-fabric-fundamentals/img-012.png)
 
 ### Add Switches and Assign Roles
 
 Under this section, the switches will be onboarded in the VXLAN fabric and will be assigned roles.
 
-Click "Add switches to fabric". A warning shows that credentials for Cisco Nexus Dashboard to access the switches need to be set. Click Set Default Credentials.
+Click **"Add switches to fabric".** A warning shows that credentials for Cisco Nexus Dashboard to access the switches need to be set. Click **Set Default Credentials.**
 
-![Warning to set default credentials](../assets/vxlan-fabric-fundamentals/img-016.png)
+![Warning to set default credentials](../assets/vxlan-fabric-fundamentals/img-013.png)
 
 Create and save the default credentials.
 
-![Set Default Credentials form](../assets/vxlan-fabric-fundamentals/img-017.png)
+![Set Default Credentials form](../assets/vxlan-fabric-fundamentals/img-014.png)
 
-Fill in the Seed IP details and login credentials. Ensure to untick "Preserve config".
+Fill in the Seed IP details and login credentials. **Ensure to untick "Preserve config".**
 
-![Add switches seed switch details](../assets/vxlan-fabric-fundamentals/img-018.png)
+![Add switches seed switch details](../assets/vxlan-fabric-fundamentals/img-015.png)
 
-Click Discover switches to begin the switches discovery process. In the cleanup warning dialog, click Confirm.
+Click Discover switches to begin the switches discovery process. In the cleanup warning dialog, click **Confirm**.
 
-![Cleanup warning before switch discovery](../assets/vxlan-fabric-fundamentals/img-019.png)
+![Cleanup warning before switch discovery](../assets/vxlan-fabric-fundamentals/img-016.png)
 
-Tick on all the discovered switches and Click on Add Switches.
+Tick on all the discovered switches and Click on **Add Switches.**
 
-![Discovery results with all switches selected](../assets/vxlan-fabric-fundamentals/img-020.png)
+![Discovery results with all switches Manageable and selected](../assets/vxlan-fabric-fundamentals/img-017.png)
 
 Wait for the discovery process to complete.
 
-![Switches added to fabric](../assets/vxlan-fabric-fundamentals/img-022.png)
+![Discovery in progress](../assets/vxlan-fabric-fundamentals/img-018.png)
+
+![Switches added to fabric](../assets/vxlan-fabric-fundamentals/img-019.png)
 
 Review the fabric's Inventory page to verify that all devices have been successfully onboarded to the fabric. As observed all devices are by default assigned the role of "Leaf".
 
-![Inventory showing all devices as Leaf role](../assets/vxlan-fabric-fundamentals/img-023.png)
+![Inventory showing all devices as Leaf role](../assets/vxlan-fabric-fundamentals/img-020.png)
 
-Check the check boxes for n9k-spine-01 and n9k-spine-02 and on the Actions menu and choose Set role.
+Check the check boxes for **n9k-spine-01** and **n9k-spine-02** and on the **Actions** menu and choose **Set role**.
 
-![Actions menu Set role for spine switches](../assets/vxlan-fabric-fundamentals/img-024.png)
+![Actions menu Set role for spine switches](../assets/vxlan-fabric-fundamentals/img-021.png)
 
-Select "Spine" as the role. In the warning dialog, click Ok.
+Select "Spine" as the role. In the warning dialog, click **Ok**.
 
-![Select Role dropdown with Spine highlighted](../assets/vxlan-fabric-fundamentals/img-025.png)
+![Select Role dropdown with Spine highlighted](../assets/vxlan-fabric-fundamentals/img-022.png)
 
-On the Inventory tab, verify that n9k-spine-01 and n9k-spine-02 show role Spine and the two leaves remain as Leaf.
+![Warning to recalculate and deploy after role change](../assets/vxlan-fabric-fundamentals/img-023.png)
 
-![Inventory verifying spine and leaf roles](../assets/vxlan-fabric-fundamentals/img-026.png)
+On the Inventory tab, verify that **n9k-spine-01** and **n9k-spine-02** show role **Spine** and the two leaves remain as **Leaf**.
 
-Click on the top "Action" button and select Recalculate and deploy.
+![Inventory verifying spine and leaf roles](../assets/vxlan-fabric-fundamentals/img-024.png)
 
-![Actions menu Recalculate and deploy](../assets/vxlan-fabric-fundamentals/img-027.png)
+Click on the top "Action" button and select **Recalculate and deploy.**
 
-Review the Deploy configuration preview window, paying attention to the Pending config and Diff columns for each switch.
+![Actions menu Recalculate and deploy](../assets/vxlan-fabric-fundamentals/img-025.png)
 
-![Deploy configuration preview pending config and diff](../assets/vxlan-fabric-fundamentals/img-028.png)
+Review the **Deploy configuration** preview window, paying attention to the **Pending config** and **Diff** columns for each switch.
 
-Click the 584 Lines link in the Pending config column for n9k-leaf-01. Click the Side-by-side comparison tab at the top of the preview to see the configuration that will be added or removed on the switch.
+![Deploy configuration preview pending config and diff](../assets/vxlan-fabric-fundamentals/img-026.png)
 
-![Side-by-side comparison of pending config for n9k-leaf-01](../assets/vxlan-fabric-fundamentals/img-029.png)
+Click the **584 Lines** link in the **Pending config** column for **n9k-leaf-01**. Click the **Side-by-side comparison tab** at the top of the preview to see the configuration that will be added or removed on the switch.
 
-Click "Deploy all" to configure the devices. Wait for the deployment process to run until completion.
+![Side-by-side comparison of pending config for n9k-leaf-01](../assets/vxlan-fabric-fundamentals/img-027.png)
+
+Click **"Deploy all"** to configure the devices. Wait for the deployment process to run until completion.
 
 ![Deployment in progress across all switches](../assets/vxlan-fabric-fundamentals/img-030.png)
 
 ![Deployment completed successfully on all switches](../assets/vxlan-fabric-fundamentals/img-031.png)
 
-Ensure that the Config-sync status reads in sync for each device.
+Ensure that the **Config-sync status** reads **in sync** for each device.
 
 ![Config-sync status in sync for all devices](../assets/vxlan-fabric-fundamentals/img-032.png)
 
@@ -197,34 +201,34 @@ Next stop is to create a new VRF and new Networks (Layer 2 and Layer 3).
 
 In Cisco Nexus Dashboard, Virtual Routing and Forwarding (VRF) instances act as isolated, tenant-specific routing tables. The VRF is identified by a Layer 3 VNI (L3VNI) that spans the entire fabric.
 
-Navigate to Manage > Fabrics. From the list of fabrics, click on the fabric to open it. Click the Segmentation and security tab, and then click VRFs. Click Actions in the VRF subtab, then create.
+Navigate to **Manage > Fabrics**. From the list of fabrics, click on the fabric to open it. Click the **Segmentation and security** tab, and then click **VRFs**. Click **Actions** in the VRF subtab, then **create**.
 
 ![Segmentation and security VRFs Actions Create](../assets/vxlan-fabric-fundamentals/img-036.png)
 
-In the Create VRF page, enter MAIN for the VRF name, keep the proposed VRF ID 50000, and click Propose VLAN to assign the tenant VLAN ID 2000. Leave all other fields empty or as defaults.
+In the **Create VRF** page, enter **MAIN** for the **VRF name**, keep the proposed VRF ID **50000**, and click **Propose VLAN** to assign the tenant VLAN ID **2000**. Leave all other fields empty or as defaults.
 
 ![Create VRF form MAIN VRF ID 50000 VLAN 2000](../assets/vxlan-fabric-fundamentals/img-037.png)
 
 !!! note
-    The VRF ID is derived from the Layer 3 VXLAN VNI Range in the Fabric's Resources, and the VLAN ID is derived from the VRF VLAN Range.
+    The **VRF ID** is derived from **the Layer 3 VXLAN VNI Range** in the Fabric's Resources, and the **VLAN ID** is derived from the **VRF VLAN** Range.
 
 ![Fabric Resources VNI and VLAN reservation ranges](../assets/vxlan-fabric-fundamentals/img-038.png)
 
-Click Create to add the new VRF. The MAIN VRF now appears in the VRFs list.
+Click **Create** to add the new VRF. The **MAIN** VRF now appears in the VRFs list.
 
 ![VRFs list showing MAIN VRF](../assets/vxlan-fabric-fundamentals/img-039.png)
 
 ## Create a Layer 2 Network
 
-In the VXLAN fabric, in the Segmentation and security tab, click Networks. Click Actions in the Networks subtab, then Create to create a new network.
+In the VXLAN fabric, in the **Segmentation and security** tab, click **Networks**. Click **Actions** in the **Networks** subtab, then **Create** to create a new network.
 
 ![Networks subtab Actions Create](../assets/vxlan-fabric-fundamentals/img-041.png)
 
-Enter NET_WEB for the Network name, set Network mode to Layer 2 only (Default is Layer 3), keep the proposed Network ID as 30000, and click Propose VLAN to assign VLAN 2300.
+Enter **NET_WEB** for the **Network name**, set **Network mode** to **Layer 2 only** (Default is Layer 3), keep the proposed **Network ID** as **30000**, and click **Propose VLAN** to assign VLAN **2300**.
 
 ![Create network NET_WEB Layer 2 only VLAN 2300](../assets/vxlan-fabric-fundamentals/img-042.png)
 
-Leave all other fields as empty or defaults and click Create.
+Leave all other fields as empty or defaults and click **Create**.
 
 !!! note
     The Network ID and VLAN ID are not random values — they are automatically carved from the reservation pools defined in the Fabric's Resources. The Network ID was derived from the Layer 2 VXLAN VNI Range and the VLAN ID was derived from the Network VLAN Range.
@@ -237,17 +241,17 @@ The Layer 2 Network is successfully created as shown below.
 
 ## Create a Layer 3 Network
 
-This section showcases how to create a routed Layer 3 network in the MAIN VRF.
+This section showcases how to create a routed **Layer 3** network in the **MAIN** VRF.
 
-On the Networks subtab of the VXLAN fabric, click Actions > Create. Enter NET_APP as the Network name, set Network mode to Layer 3, choose MAIN as the VRF name, set the Network ID to 30001, and click Propose VLAN to assign VLAN 2301. In the IPv4 Gateway/NetMask field, enter 192.168.2.254/24.
+On the **Networks** subtab of the VXLAN fabric, click **Actions > Create**. Enter **NET_APP** as the **Network name**, set **Network mode** to **Layer 3**, choose **MAIN** as the **VRF name**, set the **Network ID** to **30001**, and click **Propose VLAN** to assign VLAN **2301**. In the **IPv4 Gateway/NetMask** field, enter **192.168.2.254/24**.
 
 ![Create network NET_APP Layer 3 VRF MAIN gateway 192.168.2.254/24](../assets/vxlan-fabric-fundamentals/img-046.png)
 
-Leave the other fields as defaults or empty and click Create. The network NET_APP now appears in the Networks list, associated with VRF MAIN and gateway 192.168.2.254/24.
+Leave the other fields as defaults or empty and click **Create**. The network **NET_APP** now appears in the **Networks** list, associated with VRF **MAIN** and gateway **192.168.2.254/24**.
 
 ![Networks list showing NET_APP associated with VRF MAIN](../assets/vxlan-fabric-fundamentals/img-047.png)
 
-Click Actions in the top-right corner, then Recalculate and Deploy to push the configuration to the fabric.
+Click **Actions** in the top-right corner, then **Recalculate and Deploy** to push the configuration to the fabric.
 
 ![Fabric Actions menu Recalculate and deploy](../assets/vxlan-fabric-fundamentals/img-048.png)
 
@@ -263,19 +267,19 @@ The topology below does indicate that the Fabric now has Networks and VRF object
 
 In VXLAN, attaching an endpoint tells the fabric which network a port belongs to and how to forward its traffic. This section of the lab shows how to set the leaf interface mode, attach the interface to the network, and deploy the configurations to the switches.
 
-The host facing ports will be configured to access mode in the fabric.
+The host facing ports will be configured to **access mode** in the fabric.
 
-Choose Manage > Fabrics. Click OR-TAMBO in the Fabrics list to open the fabric. On the Connectivity tab, open the Interfaces view and filter for interface Ethernet1/3 for both leaf switches.
+Choose **Manage > Fabrics**. Click **OR-TAMBO** in the Fabrics list to open the fabric. On the **Connectivity** tab, open the **Interfaces** view and filter for interface **Ethernet1/3** for both leaf switches.
 
 ![Connectivity Interfaces filtered on Ethernet1/3](../assets/vxlan-fabric-fundamentals/img-051.png)
 
-Select the Ethernet1/3 row on both n9k-leaf-01 and n9k-leaf-02 and click the lower Actions button, then choose Edit configuration.
+Select the Ethernet1/3 row on both **n9k-leaf-01** and **n9k-leaf-02** and click the lower **Actions** button, then choose **Edit configuration**.
 
-Open the Mode drop-down for n9k-leaf-01 Ethernet1/3 and select Access.
+Open the **Mode** drop-down for **n9k-leaf-01** Ethernet1/3 and select **Access**.
 
 ![Edit interface Ethernet1/3 n9k-leaf-01 Mode set to Access](../assets/vxlan-fabric-fundamentals/img-052.png)
 
-Scroll down, make sure that the Access VLAN box is empty and click Save & Next.
+Scroll down, make sure that the **Access VLAN** box is empty and click **Save & Next**.
 
 ![Edit interface access port settings MTU and Access VLAN empty](../assets/vxlan-fabric-fundamentals/img-053.png)
 
@@ -289,21 +293,21 @@ Click Save then Click Deploy. The pending configuration shows that the interface
 
 ![Deploy interfaces configuration preview showing pending lines](../assets/vxlan-fabric-fundamentals/img-056.png)
 
-Click Deploy Config to push the change to the switches. Review the pending configuration for n9k-leaf-01 Ethernet1/3.
+Click **Deploy Config** to push the change to the switches. Review the pending configuration for **n9k-leaf-01** **Ethernet1/3**.
 
 ![Pending config for n9k-leaf-01 Ethernet1/3 changing trunk to access](../assets/vxlan-fabric-fundamentals/img-057.png)
 
-Confirm that both Ethernet1/3 interfaces show intended configuration mode access and sync status In-Sync.
+Confirm that both **Ethernet1/3** interfaces show intended configuration mode **access** and sync status **In-Sync**.
 
 ![Deploy progress showing interfaces configured access](../assets/vxlan-fabric-fundamentals/img-058.png)
 
 ![Interfaces confirmed access mode and In sync status](../assets/vxlan-fabric-fundamentals/img-059.png)
 
-Repeat the filter from Step 4, but for Ethernet1/4 on n9k-leaf-01. Click the lower Actions button, then choose Edit configuration.
+Repeat the filter from Step 4, but for **Ethernet1/4** on n9k-leaf-01. Click the lower **Actions** button, then choose **Edit configuration**.
 
 ![Connectivity Interfaces filtered on Ethernet1/4 with Edit configuration action](../assets/vxlan-fabric-fundamentals/img-060.png)
 
-Verify that the Ethernet1/4 interface has also been set to Access mode.
+Verify that the **Ethernet1/4** interface has also been set to **Access** mode.
 
 ![Edit interface Ethernet1/4 n9k-leaf-01 Mode set to Access](../assets/vxlan-fabric-fundamentals/img-061.png)
 
@@ -313,47 +317,45 @@ Verify that the Ethernet1/4 interface has also been set to Access mode.
 
 In this section, the Multi-Attach workflow of the Cisco Nexus Dashboard is used to attach endpoints to the networks.
 
-Navigate to the Segmentation and security. Select NET_WEB, then click on the lower Actions button and select Multi-Attach.
+Navigate to the **Segmentation and security**. Select **NET_WEB**, then click on the lower **Actions** button and select **Multi-Attach**.
 
 ![Segmentation and security Networks Actions Multi-attach for NET_WEB](../assets/vxlan-fabric-fundamentals/img-063.png)
 
-Select both leaf switches n9k-leaf-01 and n9k-leaf-02, then click Next.
+Select both leaf switches **n9k-leaf-01** and **n9k-leaf-02**, then click **Next**.
 
 ![Multi-Attach select switches n9k-leaf-01 and n9k-leaf-02](../assets/vxlan-fabric-fundamentals/img-064.png)
 
-Select the interfaces that you are going to attach to the network NET_WEB on the first leaf. Click the Select Interfaces button in the row of n9k-leaf-01.
+Select the interfaces that you are going to attach to the network **NET_WEB** on the first leaf. Click the **Select Interfaces** button in the row of **n9k-leaf-01**.
 
 ![Multi-Attach select interfaces step for NET_WEB](../assets/vxlan-fabric-fundamentals/img-065.png)
 
-Choose Ethernet1/3 for n9k-leaf-01, then click Save.
+Choose **Ethernet1/3** for **n9k-leaf-01**, then click **Save**.
 
 ![Select Interfaces of n9k-leaf-01 and NET_WEB Ethernet1/3](../assets/vxlan-fabric-fundamentals/img-066.png)
 
-Select the interfaces that you are going to attach to the network NET_WEB on the second leaf. Click the Select Interfaces button in the row of n9k-leaf-02. Choose Ethernet1/3 for n9k-leaf-02, then click Save.
+Select the interfaces that you are going to attach to the network **NET_WEB** on the second leaf. Click the **Select Interfaces** button in the row of **n9k-leaf-02**. Choose **Ethernet1/3** for **n9k-leaf-02**, then click **Save**. **Next**.
 
 ![Multi-Attach interfaces list for NET_WEB on both leafs](../assets/vxlan-fabric-fundamentals/img-067.png)
 
-Click Next. Click Deploy later and Save.
+Click **Deploy later**. **Save**. Select **NET_APPL**, then click **Actions > Multi-Attach**.
 
 ![Multi-Attach summary for NET_WEB deploy later option](../assets/vxlan-fabric-fundamentals/img-068.png)
 
-Select NET_APPL, then click Actions > Multi-Attach.
-
 ![Networks Actions Multi-attach for NET_APPL](../assets/vxlan-fabric-fundamentals/img-069.png)
 
-Select n9k-leaf-01, then click Next.
+Select **n9k-leaf-01**, then click **Next**.
 
 ![Multi-Attach select switch n9k-leaf-01 for NET_APPL](../assets/vxlan-fabric-fundamentals/img-070.png)
 
-Choose Ethernet1/4, then click Save.
+Choose **Ethernet1/4**, then click **Save**. **Next**.
 
 ![Select interfaces Ethernet1/4 for n9k-leaf-01 NET_APPL](../assets/vxlan-fabric-fundamentals/img-071.png)
 
-Click Next. Choose Deploy later, then click Save.
+Choose **Deploy later**, then click **Save**.
 
 ![Multi-Attach summary for NET_APPL deploy later option](../assets/vxlan-fabric-fundamentals/img-072.png)
 
-Click the upper Actions button, then select Recalculate and Deploy. Review the deployment intent.
+Click the upper **Actions** button, then select **Recalculate and Deploy**. Review the deployment intent.
 
 ![Fabric Actions Recalculate and deploy with pending network attachments](../assets/vxlan-fabric-fundamentals/img-073.png)
 
@@ -441,17 +443,17 @@ Deploying pushes the VRF, network, and interface attachment configuration to the
     configure terminal
     ```
 
-Confirm that both NET_WEB and NET_APPL show the Deployed status.
+Confirm that both **NET_WEB** and **NET_APPL** show the **Deployed** status.
 
-![Networks list showing NET_WEB and NET_APPL Deployed](../assets/vxlan-fabric-fundamentals/img-080.png)
+![Networks list showing NET_WEB and NET_APPL Deployed](../assets/vxlan-fabric-fundamentals/img-079.png)
 
 ## Connectivity Verification
 
-### Connect to Server-1
+### Connect to **Server-1**
 
-From Server-1 (IP: 192.168.1.101), ping Server-3 at 192.168.1.103.
+From **Server-1 (IP: 192.168.1.101)**, ping **Server-3** at **192.168.1.103**.
 
-![Server-1 ens192 interface IP address 192.168.1.101/24](../assets/vxlan-fabric-fundamentals/img-081.png)
+![Server-1 ens192 interface IP address 192.168.1.101/24](../assets/vxlan-fabric-fundamentals/img-080.png)
 
 ```text
 student@server1:~$ ping 192.168.1.103
@@ -469,7 +471,7 @@ PING 192.168.1.103 (192.168.1.103) 56(84) bytes of data.
 rtt min/avg/max/mdev = 3.650/443.537/2047.992/744.900 ms, pipe 3
 ```
 
-From Server-1, ping Server-2 at 192.168.2.102.
+From **Server-1**, ping **Server-2** at **192.168.2.102**.
 
 ```text
 student@server1:~$ ping 192.168.2.102
@@ -488,7 +490,7 @@ pipe 4
 
 The ping fails with no replies and 100% packet loss. NET_WEB is a Layer 2-only network, so the endpoint reaches other endpoints in the same network but cannot reach another network without a gateway.
 
-From Server-2, ping the gateway 192.168.2.254.
+From **Server-2**, ping the gateway **192.168.2.254**.
 
 ```text
 student@server2:~$ ping 192.168.2.254
@@ -508,23 +510,23 @@ Server-2 can communicate with its default gateway.
 
 NET_WEB is a Layer 2 network, so its endpoints reach each other in the same subnet but cannot reach other subnets. In this section of the lab the NET_WEB network will be converted to Layer 3 by adding a distributed anycast gateway (DAG). Inter-subnet connectivity will then be verified.
 
-Navigate to Segmentation and security > Networks, select NET_WEB, and click Actions > Edit.
+Navigate to **Segmentation and security > Networks**, select **NET_WEB**, and click **Actions > Edit**.
 
 ![Edit network NET_WEB currently Layer 2 only](../assets/vxlan-fabric-fundamentals/img-084.png)
 
-Change the network mode to Layer 3 and associate the network with VRF – MAIN.
+Change the network mode to **Layer 3** and associate the network with VRF – MAIN.
 
 ![Edit network NET_WEB mode changed to Layer 3 VRF MAIN](../assets/vxlan-fabric-fundamentals/img-085.png)
 
-Enter the IPv4 gateway 192.168.1.254/24 for NET_WEB, then click Save to convert the Layer 2 network to Layer 3.
+Enter the IPv4 gateway **192.168.1.254/24** for NET_WEB, then click **Save** to convert the Layer 2 network to Layer 3.
 
 ![Edit network NET_WEB IPv4 gateway 192.168.1.254/24](../assets/vxlan-fabric-fundamentals/img-086.png)
 
-Select NET_WEB, then click Actions > Deploy.
+Select **NET_WEB**, then click **Actions > Deploy**.
 
 ![Networks Actions Deploy for NET_WEB](../assets/vxlan-fabric-fundamentals/img-091.png)
 
-Connect to Server-1 and ping the default gateway.
+Connect to **Server-1** and ping the default gateway.
 
 ```text
 student@server1:~$ ping 192.168.1.254
@@ -538,7 +540,7 @@ PING 192.168.1.254 (192.168.1.254) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.736/0.837/0.934/0.080 ms
 ```
 
-From Server-1, ping Server-2 at 192.168.2.102.
+From **Server-1**, ping **Server-2** at **192.168.2.102**.
 
 ```text
 student@server1:~$ ping 192.168.2.102
@@ -672,6 +674,6 @@ For more labs visit my GitHub repo: [https://github.com/TitusM/Cisco-Data-Center
 
 ## References
 
-Cisco U Courses:
+**Cisco U Courses:**
 
 1. [Cisco Data Center Nexus Dashboard Essentials | DCNDE](https://www.cisco.com/site/us/en/learn/training-certifications/training/courses/dcnde.html)
