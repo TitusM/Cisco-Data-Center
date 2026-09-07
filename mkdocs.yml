@@ -78,6 +78,7 @@ nav:
   - VXLAN EVPN:
       - Overview: vxlan-evpn/index.md
       - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
+      - Building a VXLAN EVPN Fabric with Cisco NDFC: vxlan-evpn/fabric-fundamentals.md
       - VXLAN BGP EVPN Fabric Bring Up Using NDFC – Single Site: vxlan-evpn/single-site-ndfc.md
       - VXLAN BGP EVPN Multi-Site (CLI) Configuration and Verification: vxlan-evpn/multi-site-cli.md
 
