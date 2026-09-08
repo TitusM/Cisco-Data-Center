@@ -449,7 +449,7 @@ Confirm that both **NET_WEB** and **NET_APPL** show the **Deployed** status.
 
 ## Connectivity Verification
 
-### Connect to Server-1
+Connect to Server-1.
 
 From **Server-1 (IP: 192.168.1.101)**, ping **Server-3** at **192.168.1.103**.
 
