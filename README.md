@@ -52,6 +52,7 @@ Each topic below is published as a guided lab on the [lab website](https://titus
 ### ✅ Prerequisites
 
 - 🟦 Access to a Cisco ACI fabric _(with APIC)_
+- 🟩 Access to a VXLAN fabric _(with NDFC)_
 - 🟧 Access to Cisco Modeling Labs [(CML)](https://developer.cisco.com/modeling-labs/)
 
 ### ▶️ Usage (for ACI automation labs)
