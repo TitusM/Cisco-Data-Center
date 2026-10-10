@@ -54,6 +54,7 @@ nav:
           - External Layer 3 Network Connectivity (OSPF L3Out): aci/external-l3-connectivity.md
       - Routing & Route Sharing:
           - Transit Routing Configuration: aci/transit-routing.md
+          - Enable Transit Routing: aci/enable-transit-routing.md
           - Shared L3OUT (VRF Leaking): aci/shared-l3out.md
           - Inter-VRF Route-Leaking: aci/inter-vrf-route-leaking.md
       - Multi-Fabric:

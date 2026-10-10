@@ -47,6 +47,7 @@ This is a suggestion, not a requirement — jump straight to whichever lab you n
     Explore how ACI handles transit traffic, shared external connectivity, route leaking, and controlled routing between tenant contexts.
 
     - **[Transit Routing Configuration](transit-routing.md)** · Standalone Lab
+    - **[Enable Transit Routing](enable-transit-routing.md)** · Standalone Lab
     - **[Shared L3OUT (VRF Leaking)](shared-l3out.md)** · Standalone Lab
     - **[Inter-VRF Route-Leaking](inter-vrf-route-leaking.md)** · Standalone Lab
 
