@@ -38,7 +38,7 @@ This is a suggestion, not a requirement — jump straight to whichever lab you n
     Connect ACI tenants to external routed networks and validate adjacency, route exchange, endpoint reachability, and policy enforcement.
 
     - **[L3OUT (BGP & OSPF) Configuration](l3out-bgp-ospf.md)** · Standalone Lab
-    - **[External Layer 3 Network Connectivity](external-l3-connectivity.md)** · Standalone Lab
+    - **[External Layer 3 Network Connectivity (OSPF L3Out)](external-l3-connectivity.md)** · Standalone Lab
 
 -   :material-routes: **Routing & Route Sharing**
 

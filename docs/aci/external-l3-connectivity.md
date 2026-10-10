@@ -1,4 +1,4 @@
-# External Layer 3 Network Connectivity
+# External Layer 3 Network Connectivity (OSPF L3Out)
 
 ## Introduction
 
