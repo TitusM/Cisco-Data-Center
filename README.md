@@ -5,21 +5,39 @@
 ![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform)
 ![Author](https://img.shields.io/badge/Author-TitusM-blueviolet)
 
-This repository contains lab configurations for Cisco Data Center technologies, primarily focused on **CCNP/CCIE-level** labs. Its purpose is to provide practical resources for learning and deploying Cisco Data Center solutions in a lab environment.
+> ## 📖 Read the labs online
+>
+> The labs are published as a searchable, easy-to-read website. **For the best experience, visit:**
+>
+> ### 👉 [titusm.github.io/Cisco-Data-Center](https://titusm.github.io/Cisco-Data-Center/)
+>
+> This repository holds the source files, configurations, and automation code behind that site.
 
-## 🧩 Sections & Features
+[![Open the Lab Site](https://img.shields.io/badge/Open-Lab%20Website-4051B5?style=for-the-badge&logo=materialformkdocs&logoColor=white)](https://titusm.github.io/Cisco-Data-Center/)
 
-- **🏢 ACI (Application Centric Infrastructure)**
-  - ACI Configurations, troubleshooting, and automation _(Infrastructure as Code using Terraform)_.
+Hands-on technical labs for **CCIE Data Center** candidates, Data Center enthusiasts, and practicing engineers. Build real Data Center technologies from the ground up, verify how they operate, deliberately break them, and troubleshoot the failures.
 
-- **🌐 VXLAN**
-  - VXLAN Configurations, troubleshooting, and automation _(Infrastructure as Code using Ansible)_.
+**Build it. Verify it. Break it. Troubleshoot it.**
 
-- **🔗 Data Center Layer 2 Networking**
-  - Labs and configs focusing on L2 switching.
- 
-- **🔗 Data Center Layer 3 Networking**
-  - Labs and configs focusing on L3 routing.
+## 🧩 Lab Topics
+
+Each topic below is published as a guided lab on the [lab website](https://titusm.github.io/Cisco-Data-Center/).
+
+- **🖥️ [UCS & SAN](https://titusm.github.io/Cisco-Data-Center/ucs-san/)**
+  - End-to-end guided lab: compute policies, SAN/LAN uplinks, FC/FCoE, zoning, NPV/NPIV, trunking, port-channels, SAN boot, and a troubleshooting drill.
+  - Standalone labs for service profiles and identity pools.
+
+- **🔗 [NX-OS](https://titusm.github.io/Cisco-Data-Center/nx-os/)**
+  - Layer 2 switching and virtual Port-Channel (vPC) configuration and troubleshooting.
+
+- **🏢 [ACI (Application Centric Infrastructure)](https://titusm.github.io/Cisco-Data-Center/aci/)**
+  - Fabric bring-up, vPC, contracts, ESGs, L4-L7 Policy-Based Redirect, L3Out (BGP & OSPF), transit routing, shared L3Out, inter-VRF route leaking, Multi-Pod, Multi-Site, and SPAN.
+
+- **🌐 [VXLAN EVPN](https://titusm.github.io/Cisco-Data-Center/vxlan-evpn/)**
+  - VXLAN BGP EVPN single-site and multi-site via CLI, plus fabric build-out with Cisco NDFC.
+
+- **🤖 Automation**
+  - Infrastructure as Code and automation for ACI _(Terraform / Nexus-as-Code)_, VXLAN _(Ansible / Nexus-as-Code)_, and NX-OS _(Ansible)_.
 
 - **🛡️ Network Security**
   - Data Center AAA and security-related labs.
@@ -59,9 +77,9 @@ This repository contains lab configurations for Cisco Data Center technologies, 
 
 ## ℹ️ Additional Information
 
-- 🗂 For a full list of available labs and configurations, explore the subfolders in the repository.
-- 📄 Each section includes domain-specific README files for further guidance.
+- 🌍 Browse all labs on the website: **[titusm.github.io/Cisco-Data-Center](https://titusm.github.io/Cisco-Data-Center/)**
+- 🗂 To work with the raw files and configurations, explore the subfolders in this repository.
 
 ---
 
-🔗 For more details, see the [repository on GitHub](https://github.com/TitusM/Cisco-Data-Center).
+🔗 **[Open the lab website →](https://titusm.github.io/Cisco-Data-Center/)**
