@@ -1,3 +1,14 @@
+/* Wider page layout.
+   Material caps the page grid at 61rem, which leaves the content column
+   cramped between the left nav and the right table of contents on desktop
+   (and squeezes screenshots, tables, and CLI blocks in the labs). Widen the
+   grid on large screens and give the content column more room. */
+@media screen and (min-width: 76.25em) {
+  .md-grid {
+    max-width: 90rem;
+  }
+}
+
 /* Homepage "Who Are These Labs For?" audience cards.
    Material's default .grid.cards uses auto-fit/minmax, which can pack
    unevenly (e.g. 2+1) for exactly three cards. Force a stable 3/2/1
