@@ -24,7 +24,6 @@ Hands-on technical labs for **CCIE Data Center** candidates, Data Center enthusi
 Each topic below is published as a guided lab on the [lab website](https://titusm.github.io/Cisco-Data-Center/).
 
 - **🖥️ [UCS & SAN](https://titusm.github.io/Cisco-Data-Center/ucs-san/)**
-  - End-to-end guided lab: compute policies, SAN/LAN uplinks, FC/FCoE, zoning, NPV/NPIV, trunking, port-channels, SAN boot, and a troubleshooting drill.
   - Standalone labs for service profiles and identity pools.
 
 - **🔗 [NX-OS](https://titusm.github.io/Cisco-Data-Center/nx-os/)**
