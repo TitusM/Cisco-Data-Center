@@ -51,6 +51,7 @@ nav:
           - L4-L7 Policy-Based Redirect (PBR): aci/l4-l7-pbr.md
       - External Connectivity:
           - L3OUT (BGP & OSPF) Configuration: aci/l3out-bgp-ospf.md
+          - External Layer 3 Network Connectivity: aci/external-l3-connectivity.md
       - Routing & Route Sharing:
           - Transit Routing Configuration: aci/transit-routing.md
           - Shared L3OUT (VRF Leaking): aci/shared-l3out.md
