@@ -2,7 +2,7 @@ apic:
 
   interface_policies:
     nodes:
-      - id: 103
+      - id: 1003
         interfaces:
           - port: 4
             description: server-port-Eth1/3

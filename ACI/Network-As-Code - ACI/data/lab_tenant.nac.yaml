@@ -4,10 +4,10 @@ apic:
       vrfs:
         - name: LAB_VRF
       bridge_domains:
-        - name: vlan_101
+        - name: vlan_1001
           vrf: LAB_VRF
-        - name: vlan_102
+        - name: vlan_1002
           vrf: LAB_VRF
-        - name: vlan_103
+        - name: vlan_1003
           vrf: LAB_VRF    
  

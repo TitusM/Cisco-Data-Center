@@ -7,15 +7,15 @@ apic:
       mode: explicit
       groups:
         - id: 1
-          switch_1: 101
-          switch_2: 102
+          switch_1: 1001
+          switch_2: 1002
 
         - id: 2
-          switch_1: 103
-          switch_2: 104
+          switch_1: 1003
+          switch_2: 1004
 
     nodes:
-      - id: 101
+      - id: 1001
         pod: 1
         role: leaf
         serial_number: FDXXXXXXXX
@@ -25,7 +25,7 @@ apic:
         fabric_policy_group: ALL_LEAFS
         access_policy_group: ALL_LEAFS
 
-      - id: 102
+      - id: 1002
         pod: 1
         role: leaf
         serial_number: FDXXXXXXXX
@@ -35,7 +35,7 @@ apic:
         fabric_policy_group: ALL_LEAFS
         access_policy_group: ALL_LEAFS
 
-      - id: 103
+      - id: 1003
         pod: 1
         role: leaf
         serial_number: FDXXXXXXXX
@@ -45,7 +45,7 @@ apic:
         fabric_policy_group: ALL_LEAFS
         access_policy_group: ALL_LEAFS
 
-      - id: 104
+      - id: 1004
         pod: 1
         role: leaf
         serial_number: FDXXXXXXXX
