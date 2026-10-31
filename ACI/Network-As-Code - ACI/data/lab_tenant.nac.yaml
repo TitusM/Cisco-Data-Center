@@ -1,0 +1,13 @@
+apic:
+  tenants:
+    - name: LAB_TENANT
+      vrfs:
+        - name: LAB_VRF
+      bridge_domains:
+        - name: vlan_101
+          vrf: LAB_VRF
+        - name: vlan_102
+          vrf: LAB_VRF
+        - name: vlan_103
+          vrf: LAB_VRF    
+ 

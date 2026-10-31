@@ -1,0 +1,8 @@
+# Overwrite default values here
+
+defaults:
+  apic:
+    tenants:
+      bridge_domains:
+        name_suffix: "_bd"
+        unicast_routing: false

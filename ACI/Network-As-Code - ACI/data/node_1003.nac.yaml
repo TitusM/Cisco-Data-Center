@@ -1,0 +1,11 @@
+apic:
+
+  interface_policies:
+    nodes:
+      - id: 103
+        interfaces:
+          - port: 4
+            description: server-port-Eth1/3
+            policy_group: SERVER_PORTS
+            expected_state:
+              lldp_neighbor: "F241-04-13-N3K-2:Ethernet1/1"

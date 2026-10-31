@@ -1,0 +1,16 @@
+apic:
+  fabric_policies:
+
+    switch_policies:
+      psu_policies:
+        - name: COMBINED
+          admin_state: combined
+
+    leaf_switch_policy_groups:
+      - name: ALL_LEAFS
+        psu_policy: COMBINED
+
+
+    spine_switch_policy_groups:
+      - name: ALL_SPINES
+        psu_policy: COMBINED

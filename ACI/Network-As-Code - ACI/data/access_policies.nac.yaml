@@ -1,0 +1,70 @@
+apic:
+  auto_generate_access_leaf_switch_interface_profiles: true
+  access_policies:
+
+    leaf_interface_selector_name: "ETH\\g<mod>-\\g<port>"
+    leaf_interface_selector_sub_port_name: "ETH\\g<mod>-\\g<port>-\\g<sport>"
+
+    mcp:
+      key: C1sco123!
+
+    vlan_pools:
+      - name: LAB_VLANS
+        allocation: static
+        ranges:
+          - from: 3965
+            to: 4094
+    physical_domains:
+      - name: PDOM_LAB
+        vlan_pool: LAB_VLANS
+    
+    aaeps:
+      - name: AEP_LAB_01
+        physical_domains:
+          - PDOM_LAB
+        infra_vlan: false
+
+    interface_policies:
+      lldp_policies:
+        - name: LLDP-ENABLED
+          admin_rx_state: true
+          admin_tx_state: true
+
+      cdp_policies:
+        - name: CDP-ENABLED
+          admin_state: false
+
+      link_level_policies:
+        - name: 10G-AUTO_ON
+          speed: 10G
+          auto: true
+
+    switch_policies:
+      bfd_ipv4_policies:
+        - name: BFD-IPV4-POLICY
+          description: BFD IPv4 Policy
+          detection_multiplier: 5
+          min_transmit_interval: 100
+          min_receive_interval: 50
+          slow_timer_interval: 3000
+          startup_timer_interval: 10
+          echo_receive_interval: 50
+
+    leaf_interface_policy_groups:
+      - name: SERVER_PORTS
+        description: "Server Ports"
+        type: access
+        link_level_policy: 10G-AUTO_ON
+        cdp_policy: CDP-ENABLED
+        lldp_policy: LLDP-ENABLED
+        aaep: AEP_LAB_01
+    
+    leaf_switch_policy_groups:
+      - name: ALL_LEAFS
+        cdp_policy: CDP-ENABLED
+        lldp_policy: LLDP-ENABLED
+
+    spine_switch_policy_groups:
+      - name: ALL_SPINES
+        lldp_policy: LLDP-ENABLED
+        cdp_policy: CDP-ENABLED

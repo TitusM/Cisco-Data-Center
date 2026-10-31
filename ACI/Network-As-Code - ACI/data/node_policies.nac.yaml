@@ -1,0 +1,86 @@
+---
+apic:
+  node_policies:
+    oob_endpoint_group: OOB
+
+    vpc_groups:
+      mode: explicit
+      groups:
+        - id: 1
+          switch_1: 101
+          switch_2: 102
+
+        - id: 2
+          switch_1: 103
+          switch_2: 104
+
+    nodes:
+      - id: 101
+        pod: 1
+        role: leaf
+        serial_number: FDXXXXXXXX
+        name: leaf1
+        oob_address: 10.x.y.232/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_LEAFS
+        access_policy_group: ALL_LEAFS
+
+      - id: 102
+        pod: 1
+        role: leaf
+        serial_number: FDXXXXXXXX
+        name: leaf2
+        oob_address: 10.x.y.233/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_LEAFS
+        access_policy_group: ALL_LEAFS
+
+      - id: 103
+        pod: 1
+        role: leaf
+        serial_number: FDXXXXXXXX
+        name: leaf3
+        oob_address: 10.x.y.234/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_LEAFS
+        access_policy_group: ALL_LEAFS
+
+      - id: 104
+        pod: 1
+        role: leaf
+        serial_number: FDXXXXXXXX
+        name: leaf4
+        oob_address: 10.x.y.235/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_LEAFS
+        access_policy_group: ALL_LEAFS
+
+      - id: 201
+        pod: 1
+        role: spine
+        serial_number: FDXXXXXXXX
+        name: spine1
+        oob_address: 10.x.y.236/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_SPINES
+
+      - id: 202
+        pod: 1
+        role: spine
+        serial_number: FDXXXXXXXX
+        name: spine2
+        oob_address: 10.x.y.237/27
+        oob_gateway: 10.x.y.225
+        fabric_policy_group: ALL_SPINES
+
+      - id: 1
+        pod: 1
+        role: apic
+
+      - id: 2
+        pod: 1
+        role: apic
+
+      - id: 3
+        pod: 1
+        role: apic
