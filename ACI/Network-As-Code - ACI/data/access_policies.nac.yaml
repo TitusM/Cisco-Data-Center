@@ -6,7 +6,7 @@ apic:
     leaf_interface_selector_sub_port_name: "ETH\\g<mod>-\\g<port>-\\g<sport>"
 
     mcp:
-      key: C1sco123!
+      key: MCP_KEY_PLACEHOLDER
 
     vlan_pools:
       - name: LAB_VLANS
