@@ -68,6 +68,14 @@ This is a suggestion, not a requirement — jump straight to whichever lab you n
 
     - **[Local SPAN, Ethanalyzer & SPAN-to-CPU](local-span.md)** · Standalone Lab
 
+-   :material-code-braces: **Automation**
+
+    ---
+
+    Describe the fabric as declarative YAML and deploy it with Terraform, validating the intent before the change and the operational state after it.
+
+    - **[Introduction to Network as Code (NaC)](network-as-code.md)** · Guided Lab
+
 </div>
 
 ## Coming soon

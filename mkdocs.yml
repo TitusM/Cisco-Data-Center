@@ -62,6 +62,8 @@ nav:
           - Multi-Site Configuration: aci/multi-site-bring-up.md
       - Operations & Visibility:
           - Local SPAN, Ethanalyzer & SPAN-to-CPU: aci/local-span.md
+      - Automation:
+          - Introduction to Network as Code (NaC): aci/network-as-code.md
   - VXLAN EVPN:
       - Overview: vxlan-evpn/index.md
       - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
