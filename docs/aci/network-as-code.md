@@ -285,14 +285,14 @@ Terraform used the selected providers to generate the following execution plan. 
 are indicated with the following symbols:
   + create
 
-  # module.aci.module.aci_node_registration["102"].aci_rest_managed.fabricNodeIdentP will be created
+  # module.aci.module.aci_node_registration["1002"].aci_rest_managed.fabricNodeIdentP will be created
   + resource "aci_rest_managed" "fabricNodeIdentP" {
       + annotation  = "orchestrator:terraform"
       + class_name  = "fabricNodeIdentP"
       + content     = {
           + "extPoolId" = null
           + "name"      = "leaf2"
-          + "nodeId"    = "102"
+          + "nodeId"    = "1002"
           + "nodeType"  = "unspecified"
           + "podId"     = "1"
           + "role"      = null
@@ -333,16 +333,16 @@ Do you want to perform these actions?
   Enter a value: yes
 
 …output truncated
-module.aci.module.aci_oob_node_address["102"].aci_rest.mgmtOoB: Creation complete after 2s [id={}]
+module.aci.module.aci_oob_node_address["1002"].aci_rest.mgmtOoB: Creation complete after 2s [id={}]
 module.aci.module.aci_oob_node_address["202"].aci_rest.mgmtOoB: Creation complete after 2s [id={}]
 module.aci.module.aci_oob_node_address["1004"].aci_rest_managed.mgmtRsOoBStNode: Creating...
 module.aci.module.aci_oob_node_address["1001"].aci_rest_managed.mgmtRsOoBStNode: Creating...
 module.aci.module.aci_oob_node_address["201"].aci_rest_managed.mgmtRsOoBStNode: Creating...
 module.aci.module.aci_oob_node_address["1003"].aci_rest_managed.mgmtRsOoBStNode: Creating...
-module.aci.module.aci_oob_node_address["102"].aci_rest_managed.mgmtRsOoBStNode: Creating...
+module.aci.module.aci_oob_node_address["1002"].aci_rest_managed.mgmtRsOoBStNode: Creating...
 module.aci.module.aci_oob_node_address["202"].aci_rest_managed.mgmtRsOoBStNode: Creating...
 module.aci.module.aci_oob_node_address["1004"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-1004]]
-module.aci.module.aci_oob_node_address["102"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-102]]
+module.aci.module.aci_oob_node_address["1002"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-1002]]
 module.aci.module.aci_oob_node_address["202"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-202]]
 module.aci.module.aci_oob_node_address["1003"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-1003]]
 module.aci.module.aci_oob_node_address["201"].aci_rest_managed.mgmtRsOoBStNode: Creation complete after 0s [id=uni/tn-mgmt/mgmtp-default/oob-OOB/rsooBStNode-[topology/pod-1/node-201]]
@@ -519,7 +519,7 @@ The profiles below were created because `auto_generate_switch_pod_profiles: true
 
 Network as Code ships with sensible built-in defaults based on Cisco's best practices. In some cases, those default values might not be the best choice for a particular deployment and can be overwritten if needed. Appending suffixes to object names is a common practice that introduces room for human errors. Using default values, such suffixes can be defined once and then consistently appended to all objects of a specific type including its references. The same approach works for any attribute that should be identical across many objects. For example, in an L2-only fabric, `unicast_routing` can be disabled once in the defaults instead of being set explicitly under every bridge domain.
 
-To validate how default value overrides behave in practice, a LAB_TENANT tenant is defined in `data/lab_tenant.nac.yaml`, containing a VRF (LAB_VRF) and three bridge domains (vlan_1001, vlan_102, vlan_1003) associated with it. Separately, `data/defaults.nac.yaml` overrides two of the module's built-in bridge domain defaults: `name_suffix` is set to `_bd`, and `unicast_routing` is set to `false`.
+To validate how default value overrides behave in practice, a LAB_TENANT tenant is defined in `data/lab_tenant.nac.yaml`, containing a VRF (LAB_VRF) and three bridge domains (vlan_1001, vlan_1002, vlan_1003) associated with it. Separately, `data/defaults.nac.yaml` overrides two of the module's built-in bridge domain defaults: `name_suffix` is set to `_bd`, and `unicast_routing` is set to `false`.
 
 **defaults.nac.yaml**
 
@@ -543,7 +543,7 @@ apic:
       bridge_domains:
         - name: vlan_1001
           vrf: LAB_VRF
-        - name: vlan_102
+        - name: vlan_1002
           vrf: LAB_VRF
         - name: vlan_1003
           vrf: LAB_VRF
