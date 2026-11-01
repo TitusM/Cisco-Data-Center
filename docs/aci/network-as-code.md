@@ -670,7 +670,7 @@ In this example, the key:value (`role: leaf`) which is a mandatory attribute was
 
 ![](../assets/aci-network-as-code/img-019.png)
 
-In this example a VLAN ID (4098) was defined which goes beyond the boundaries of the maximum VLAN ID (4094). The pre-validation tool flags this immediately.
+In this example a VLAN ID (4098) was defined which goes beyond the boundaries of the maximum VLAN ID (4096). The pre-validation tool flags this immediately.
 
 Since the files are defined with the ".nac.yaml" extension, this offers a help context during the YAML development. Just by hovering over a property, in this case `link_level_policies:` the user can see the attributes that are required/allowed within that specific section of the configuration. This allows the user to quickly build up a valid intent that does not violate the data model.
 

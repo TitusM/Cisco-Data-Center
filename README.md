@@ -30,13 +30,13 @@ Each topic below is published as a guided lab on the [lab website](https://titus
   - Layer 2 switching and virtual Port-Channel (vPC) configuration and troubleshooting.
 
 - **🏢 [ACI (Application Centric Infrastructure)](https://titusm.github.io/Cisco-Data-Center/aci/)**
-  - Fabric bring-up, vPC, contracts, ESGs, L4-L7 Policy-Based Redirect, L3Out (BGP & OSPF), transit routing, shared L3Out, inter-VRF route leaking, Multi-Pod, Multi-Site, and SPAN.
+  - Fabric bring-up, vPC, contracts, ESGs, L4-L7 Policy-Based Redirect, L3Out (BGP & OSPF), transit routing, shared L3Out, inter-VRF route leaking, Multi-Pod, Multi-Site, SPAN, and an introduction to Network as Code (NaC).
 
 - **🌐 [VXLAN EVPN](https://titusm.github.io/Cisco-Data-Center/vxlan-evpn/)**
   - VXLAN BGP EVPN single-site and multi-site via CLI, plus fabric build-out with Cisco NDFC.
 
 - **🤖 Automation**
-  - Infrastructure as Code and automation for ACI _(Terraform / Nexus-as-Code)_, VXLAN _(Ansible / Nexus-as-Code)_, and NX-OS _(Ansible)_.
+  - Infrastructure as Code and automation for ACI _(Terraform / Network-as-Code, with schema validation of the YAML data model)_, VXLAN _(Ansible / Nexus-as-Code)_, and NX-OS _(Ansible)_.
 
 - **🛡️ Network Security**
   - Data Center AAA and security-related labs.
@@ -44,7 +44,7 @@ Each topic below is published as a guided lab on the [lab website](https://titus
 ## 🛠 Technologies Used
 
 - 🖥️ Cisco Data Center platforms _(NX-OS, ACI, Nexus Dashboard)_
-- 🛠️ Terraform _(Infrastructure as Code for ACI automation)_
+- 🛠️ Terraform and the [Network-as-Code ACI module](https://registry.terraform.io/modules/netascode/nac-aci/aci/latest) _(Infrastructure as Code for ACI automation)_
 - 🛠️ Ansible _(Infrastructure as Code for VXLAN automation)_
 
 ## 🏁 Getting Started
@@ -62,14 +62,14 @@ Each topic below is published as a guided lab on the [lab website](https://titus
    git clone https://github.com/TitusM/Cisco-Data-Center.git
    cd Cisco-Data-Center
    ```
-2. Navigate to the relevant lab directory (e.g., `ACI/Nexus-As-Code - ACI/Initial Fabric Deployment`)
+2. Navigate to the relevant lab directory (e.g., `ACI/Network-As-Code - ACI` for the Network as Code introduction, or `ACI/Nexus-As-Code - ACI/1. Initial Fabric Deployment`)
 3. Run Terraform:
    ```sh
    terraform init
    terraform plan
    terraform apply
    ```
-4. ✏️ Replace placeholders in YAML files with values specific to your deployment.
+4. ✏️ Replace placeholders in the YAML data files (for example the APIC credentials and MCP key) with values specific to your deployment.
 
 ## 👤 Author
 
