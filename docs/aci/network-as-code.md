@@ -9,6 +9,44 @@
 }
 </style>
 
+## Lab at a Glance
+
+This hands-on lab demonstrates how **Network as Code (NaC)** applies declarative infrastructure management, automated deployment, and continuous validation to Cisco ACI.
+
+While Cisco ACI is the implementation used in this lab, the underlying Network as Code principles extend to other network architectures and technologies.
+
+| | |
+|---|---|
+| **Lab Environment** | Cisco ACI fabric — 2 Spines, 4 Leafs |
+| **Technologies** | YAML, Terraform, nac-aci, nac-validate, nac-test |
+| **Prerequisites** | Basic ACI knowledge, Terraform, Python, and access to an ACI fabric or simulator |
+| **Deployment** | Node registration, OOB management, fabric/access policies, tenants, VRFs, and Bridge Domains |
+| **Pre-Deployment Validation** | YAML schema validation, semantic checks, and custom compliance rules |
+| **Post-Deployment Validation** | Automated configuration and health tests using Robot Framework |
+| **Additional Concepts** | Terraform state management, configuration drift, and default value overrides |
+
+**Learning Outcome:** By the end of this lab, readers will understand how to define network intent, validate proposed changes, deploy ACI configuration through Terraform, and verify the resulting infrastructure state.
+
+### Getting Started — Reference Repositories
+
+Cisco provides two official Network as Code repositories to help engineers begin their automation journey:
+
+**1. Simple Example — Getting Started with NaC**
+
+A minimal ACI configuration focused on tenant provisioning. Ideal for engineers exploring Network as Code for the first time.
+
+[https://github.com/netascode/nac-aci-simple-example](https://github.com/netascode/nac-aci-simple-example)
+
+**2. Comprehensive Example — Full ACI Fabric Configuration**
+
+A more extensive example covering node registration, fabric and access policies, interface configurations, and tenant provisioning. Suitable for exploring broader ACI automation capabilities.
+
+[https://github.com/netascode/nac-aci-comprehensive-example](https://github.com/netascode/nac-aci-comprehensive-example)
+
+**Note:** The repositories and core NaC modules are publicly available. Some advanced `nac-validate` rules and `nac-test` templates demonstrated in this lab require access to Cisco Services as Code subscription resources.
+
+---
+
 Cisco Network as Code (NaC) is an automation approach that applies Infrastructure as Code (IaC) principles to network infrastructure. It uses declarative, human-readable data models to define the intended state of routers, switches, firewalls, and software-defined networks.
 
 By representing network intent as code, configurations can be version-controlled, validated, tested, and deployed through automated workflows and CI/CD pipelines. This enables network changes to be delivered in a more consistent, repeatable, and auditable manner.
@@ -381,7 +419,7 @@ nac-aci-terraform/
     └── access_policies.nac.yaml
 ```
 
-With Network as code, configuration can be split into multiple YAMLs which allows full flexibility for managing configurations. Network as code will perform the deep merging of all the YAML files where configuration is defined. The `manage_*` flags define which parts of the fabric a Terraform project is responsible for, which helps limit the blast radius of a change: a project that only manages access policies will never plan or modify tenant configuration. Note that these flags set ownership, not a temporary filter. Once a section has been applied, setting its flag back to `false` removes it from Terraform's scope, and Terraform will plan to destroy the objects it previously created.
+With Network as Code, configuration can be split into multiple YAMLs which allows full flexibility for managing configurations. Network as Code will perform the deep merging of all the YAML files where configuration is defined. The `manage_*` flags define which parts of the fabric a Terraform project is responsible for, which helps limit the blast radius of a change: a project that only manages access policies will never plan or modify tenant configuration. Note that these flags set ownership, not a temporary filter. Once a section has been applied, setting its flag back to `false` removes it from Terraform's scope, and Terraform will plan to destroy the objects it previously created.
 
 Below are the YAML contents required to configure access policies.
 
@@ -623,7 +661,7 @@ Network as Code introduces a complete engineering lifecycle, with validation bef
 
 ### Pre-Change Validation
 
-Pre-change/pre-deployment validation is the process within the engineering lifecycle whereby a proposed change is validated before any configuration has touched the infrastructure. Network as code offers a CLI tool called `nac-validate` for pre-change validation. The `nac-validate` tool is executed before configuration deployment to validate that the configuration files do not contain any syntax, semantic or logical errors. The intention is to fail fast: errors are caught at this pre-change stage, rather than waiting for the configuration to fail during the maintenance window.
+Pre-change/pre-deployment validation is the process within the engineering lifecycle whereby a proposed change is validated before any configuration has touched the infrastructure. Network as Code offers a CLI tool called `nac-validate` for pre-change validation. The `nac-validate` tool is executed before configuration deployment to validate that the configuration files do not contain any syntax, semantic or logical errors. The intention is to fail fast: errors are caught at this pre-change stage, rather than waiting for the configuration to fail during the maintenance window.
 
 The `nac-validate` tool can be found here: [https://github.com/netascode/nac-validate](https://github.com/netascode/nac-validate)
 
@@ -654,9 +692,9 @@ Any indentation violations are detected allowing the engineer to refine the YAML
 
 ![](../assets/aci-network-as-code/img-016.png)
 
-In this example, an incorrect value was put in a YAML file and this violation is already highlighted because specific keys have specific values that they accept & Network as code ensures that these validations are adhered to.
+In this example, an incorrect value was put in a YAML file and this violation is already highlighted because specific keys have specific values that they accept & Network as Code ensures that these validations are adhered to.
 
-#### Example 3: Syntactic validation, semantic are cross-object references
+#### Example 3: Required Fields and Schema Validation
 
 ![](../assets/aci-network-as-code/img-017.png)
 
@@ -816,7 +854,7 @@ Validation Summary
   ✓ Semantic validation: PASSED
 ```
 
-Network as code allows for custom rules/policy enforcement whereby an organization can define its own objects naming conventions, IP addressing schemes, security and regulatory compliance etc.
+Network as Code allows for custom rules/policy enforcement whereby an organization can define its own objects naming conventions, IP addressing schemes, security and regulatory compliance etc.
 
 In the example below, a simple custom naming convention rule was created which only accepts the name "BFD-IPV4-POLICY" when defining a BFD IPv4 policy. To test that the rule is indeed enforced, the BFD policy name before has been defined as "BFD-POLICY" which does not conform to the required convention.
 
@@ -1026,7 +1064,7 @@ Every YAML file in this data model is plain text, which means it can be tracked 
 
 ## Start Your Network as Code Journey Today
 
-To quickly get started with Network as code for ACI deployment and validation, you can clone either of the following repositories.
+To quickly get started with Network as Code for ACI deployment and validation, you can clone either of the following repositories.
 
 - Simple Example: [https://github.com/netascode/nac-aci-simple-example](https://github.com/netascode/nac-aci-simple-example)
 - Comprehensive Example: [https://github.com/netascode/nac-aci-comprehensive-example](https://github.com/netascode/nac-aci-comprehensive-example)
