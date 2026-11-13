@@ -64,6 +64,9 @@ nav:
           - Local SPAN, Ethanalyzer & SPAN-to-CPU: aci/local-span.md
       - Automation:
           - Introduction to Network as Code (NaC): aci/network-as-code.md
+  - Testing & Validation:
+      - Overview: testing-validation/index.md
+      - ACI Spine Supervisor Refresh: testing-validation/aci-spine-supervisor-refresh.md
   - VXLAN EVPN:
       - Overview: vxlan-evpn/index.md
       - VXLAN BGP EVPN (CLI) – Single Site: vxlan-evpn/single-site-cli.md
