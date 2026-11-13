@@ -76,6 +76,14 @@ This is a suggestion, not a requirement — jump straight to whichever lab you n
 
     - **[Introduction to Network as Code (NaC)](network-as-code.md)** · Guided Lab
 
+-   :material-shield-check-outline: **Testing & Validation**
+
+    ---
+
+    Explore risk-based test design, failure injection, measured traffic continuity and recovery planning for ACI infrastructure changes.
+
+    - **[The Art of Testing and Validation: ACI Spine Supervisor Refresh](../testing-validation/aci-spine-supervisor-refresh.md)** · Engineering Case Study
+
 </div>
 
 ## Coming soon
